@@ -1,0 +1,348 @@
+
+10----lines 
+
+5 th line error
+ 5 lines 
+
+termination 
+abnormal 
+
+Exception
+=========
+
+error:-
+=====
+
+
+
+Default ExceptionHandling:-
+=========================
+in a program atleast method terrminates abnormally then the program terrmination is abnormal termination
+
+*if all methods terminated normally then only program termination is normal termination.
+
+Exception hirarchy:-
+--------------------
+
+Object Class  java.lang.*;.....default package 
+
+Object class is super class for all the java  classes and interfaces 
+
+   *Throwable class acts as route for java exception hirarchy
+
+it defines two child  classes 
+
+  1)Exception
+ 
+  2)Error
+
+1)Exception:-
+=============
+int a=10;
+int b=sakd;
+sop(dont enter zero as denminator)
+
+int  c=a/0;Arthimetic Exception
+sop(c);//2
+
+*most of the times Exceptions are caused by our program and these are recoverable 
+
+*if our program requirement is read data from remote file located at london at run time the remote file not available ,then we will get runtime exception saying 
+FileNotFound Exception ,if this exception occurs we can provide local file and continue rest of the program normally.
+
+
+try{
+read the data from remote file located at  london ,at run time
+}
+catch(FileNotFoundException e)
+{
+use localfile and continue rest of the program normally
+}
+
+
+Error:-
+-------
+
+*Most of the time errors are not caused by our program and these are due to lack of system resourses,and these are non recoverable.
+
+**for example if OutOfMemory error occurs being a programer we cant do any thing and program will be terminated abnormally 
+and system admin server admin is responsible to increase heap memory .
+
+
+1)RunTimeException
+2)IoException
+3)ServletException
+4)RemoteException
+5)InteruptedException(Thread.sleep())
+
+1)uncheckedChecked
+   *ArthimeticException
+   *NullPointerException
+   *ClassCasteException
+   *IndexOutOfBoundsException
+          *ArrayIndexOutOfBoundsException
+          *StringIndexOutOfBoundsException
+   *IlligalArgumentException
+          *NumberFormatException
+
+2)checked
+    *EndOfFileException
+    *FileNotFoundException
+    *InterruptedIoException(Thread.sleep())
+
+
+.
+.
+.
+.
+.
+.
+.
+
+
+
+**)Error
+
+
+   *VirtualMachineError
+        *StackOverFlowError 
+        *OutOfMemoryError  
+
+   *AssertionError
+   *ExceptionInIntializerError
+
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+
+
+***
+Cheked and Unchecked Exception:-
+===============================
+
+     Cheked Exception:-
+     -----------------
+ *** The exceptions which are cheked by compiler for smooth execution of the program are called checked exceptions
+
+Ex:-FileNotFoundException
+====
+*in our program if there is a chance of rising cheked exception then compusary we should handle that 
+checked exception either by try catch or by throws keyword otherwise we will get comile time error
+
+
+import java.io.*;
+
+class test
+{
+public static void main(String args[])
+{
+PrintWriter pe=new PrintWriter("abc.txt");
+pw.println("hello");
+}
+}
+
+output:-"error"
+
+UnChekedException:-
+===================
+
+*the exceptions which are not checked by compiler weather the programer handling or not such type exceptions are called unchecked exceptions 
+
+Example:-ArthimeticException...
+
+
+import java.io.*;
+
+class test
+{
+public static void main(String args[])
+{
+PrintWriter pe=new PrintWriter("abc.txt");
+pw.println("hello");
+sopln(10/0);
+}
+}
+
+
+Note:-weather it is checked or unchecked every exception occurs at run time only,there isno chnace occuring at compile time
+
+*RUNTIME exceptions and childclasses error and child classes are unchecked except these remaining are checked /
+
+
+fully checked vs partially checked:-
+-----------------------------------
+
+
+a checked exception is said to be fully checked if and only if  all its child classes also checked 
+
+Ex:-
+IoException
+InterptedException
+a checked exception is said to be paritally checked if and only if some ofits child classes are  not  checked
+
+Ex:-
+Exception
+Throwable
+
+Thread.sleep();
+
+
+
+
+
+5 keywords
+
+
+try
+{
+sop(10/0);.....error code
+int a[] =new Int[1];
+a[0]=10;
+a[1]=20;
+}
+catch(Exception aa)
+{
+sop(ae);//handleing exception
+}
+
+finally
+{
+con.close()
+}
+
+throw
+userdefind Exception
+
+throws
+
+
+gmail
+
+un
+
+pwd
+
+
+un,pwd mismathch enter valid details    try catch
+
+ORA-600   throws
+
+
+1)
+try
+{}
+catch
+{}
+finally
+{}
+
+2)
+try
+{}
+finally
+{}
+
+3)
+try
+{}
+catch
+{}
+catch
+{}
+4)
+try{
+try{}
+catch{}
+}
+finaly{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

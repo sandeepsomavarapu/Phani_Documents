@@ -1,0 +1,335 @@
+1) Create a program to get the hashmap from the given input string array where the key for the hashmap
+
+is first three letters of array element in uppercase and the value of hashmap is the element itself
+
+Input:{“goa”,”kerala”,”gujarat”} [string array]
+
+Output:{{GOA,goa},{KER,kerala},{GUJ,Gujarat}} [hashmap]
+
+ 
+
+2) I/P hashmap<String String>{"ram:hari","cisco:barfi","honeywell:cs","cts:hari"};
+
+i/p 2="hari";
+
+o/p string[]={"ram","cts"};
+
+ 
+
+3) Collect no’s frm list1 which is not present in list2
+
+& Collect no’s frm list2 which is not present in list1
+
+and store it in output1[].
+
+ex: input1={1,2,3,4}; input2={1,2,3,5}; output1={4,5};
+
+ 
+
+4) input1-List1-{apple,orange,grapes}
+
+input2-List2-{melon,apple,mango}
+
+output={mango,orange}
+
+operation-- In 1st list remove strings starting with 'a' or 'g'
+
+In 2nd list remove strings ending with 'n' or 'e'
+
+Ignore case, return in string array
+
+ 
+
+5) input1-- Hello*world
+
+output-- boolean(true or false)
+
+operation-- if the character before and after * are same return true else false
+
+if there in no star in the string return false(Ignore case)
+
+ 
+
+6) HashMap<String,Integer> h1={“abc”:50,”efg”:70};
+
+if the mark is less than 60 then put the output in the
+
+HashMap<String,String> h2={“abc”:”fail”,”efg”:”pass”}
+
+ 
+
+7) In a hashmap if key is odd then find average of value as integer
+
+ex: h1={1:4,2:6,4:7,5:9}
+
+output=(4+9)/2
+
+ 
+
+8.1)For the given key as parameter. If the key is null return "null", if the key is not present return null, if the key is present return its value.
+
+8.2)For the given key and value as parameter. If the key and value are null return false, else add both in the tree map and return true.
+
+8.3)For the given value as parameter. If the value is null return false, if the value is not present return false, if the value is present return true.
+
+class Test{
+
+    private static Tree Map<String,String> data;
+
+    public Source() { }
+
+    public String getingNumber( String name ) { }
+
+    public boolean getingName(String number){ }
+
+    public boolean putingNumber( String name, String number ) { }
+
+    public TreeMap<String,String> printing() { }
+
+}
+
+class MainTest{
+
+    public static void main(String[] args) {
+
+ 
+
+    }
+
+}
+
+9)Implement try-catch block to validate if the give ching value in not between 100 and 120 call Chingexception by passing "ChingException". else return "ching... chong".
+
+public class Ching {
+
+    public String setChing(int Ching) {
+
+    }
+
+}
+
+ 
+
+10.1)return the Fahrenheit part of the string str
+
+10.2)return the Celsius part of the string str
+
+10.3)Calculate and return the Difference as Fahrenheit-Celsius and return the value.
+
+10.4)return "Good" if the diff value is in b/w 10-20  or "Bad" for the remaining values.
+
+              Assume :
+
+              1.Tempetaure is given in this format as string 68-45@11-58
+
+              2.This is 68-45 => 68.45f
+
+              3.This is 11-58 => 11.58c
+
+ 
+
+class Bing {
+
+    public float returnFahrenheit(String str){ }
+
+    public float returnCelsius(String str){ }
+
+    public float calculateDiff(float height,float weight){ }
+
+   public String checkStatus(float diff){ }
+
+}
+
+class Bong {
+
+    public static void main(String[] args){
+
+    }
+
+}
+
+ 
+
+11) 4 fields name,price,type,category are of String, double, String,String respectively.
+
+              Fill logics in the constructors as
+
+              if price is >100 and <200   category is "category-c"
+
+              if price is >=1000 and <4000   category is "category-b"
+
+              if price is >=4000   category is "category-a"
+
+              if price is <50   category is "no category"
+
+class Bow{
+
+Bow(name,price){}
+
+Bow(name,price,type){}
+
+Bow(price){}
+
+}
+
+class Meow{
+
+    public static void main(String []args){ }
+
+}
+
+12)given string as input - first 4 characters are alphanumeric followed by date of join. format must be 1st 2nd and 3rd chars are upper case alphabits followed by dd/MM/yyyy eg:- ME4W02/12/2019
+
+12.1)verify in given string that the str much be in the valid format. if so return str with date only.
+
+eg:02/12/2019
+
+12.2)verify length , if length is 12 return true else false
+
+12.3)verify 1st , 2nd, 4th chars are apphabits in Uppercase
+
+and 3rd is numeric if so return true else false
+
+12.4)verify in given string the year must be in between 2000 and 2020 both years are inclusive if so return true else false.
+
+12.5)verify in given string the month must be in between 1 and 12 both months are inclusive if so return true else false.
+
+12.6)verify in given string the day must be in between 1 and 31 both days are inclusive if so return true else false.
+
+12.7)verify in given string that the str much be in the valid format. if so return str without date.
+
+eg: ME4W
+
+class ChingChong{
+
+    public boolean verifyLen(String str){ }
+
+    public boolean verifyStrfirst4(String str){ }
+
+    public boolean verifyYear(String str){ }
+
+    public boolean verifyMonth(String str){ }
+
+    public boolean verifyDay(String str){ }
+
+    public boolean giveWithoutDate(String str){ }
+
+    public boolean giveDate(String str){ }
+
+}
+
+class Test{
+
+    public static void main(String []args){ }
+
+}
+
+ 
+
+13) arraylist1={ 1,2,3,4,5}
+
+arraylist2={ 6,7,8,9,10}
+
+size of both list should be same
+
+output={6,2,8,4,10}
+
+ 
+
+14)input array={red,green,blue,ivory}
+
+sort the given array
+
+reverse the given array
+
+if user input is 1 it should give oth element of an reversed array.
+
+ 
+
+15) Given two integer arrays. merge the common elements into a new array. find the sum of the elements
+
+input1:{1,2,3,4}
+
+input2:{3,4,5,6}
+
+logic:{3,4}
+
+output:7
+
+ 
+
+16)Given two arrayslist. retrieve the odd position elements form first input and even position elemetns from second list.
+
+put it into the new arraylist at the same positions from where they are retrieved from.
+
+(consider 0th position as even position, and two lists are of same size)
+
+input1:{12,1,32,3}
+
+input2:{0,12,2,23}
+
+output:{0,1,2,3}
+
+ 
+
+17) arraylist of string type which has name#mark1#mark2#mark3 format. retrieve the name of the student who has
+
+scored max marks(total of three)
+
+input:{"arun#12#12#12","deepak#13#12#12"}
+
+output:deepak
+
+ 
+
+18) Retrieve the palindorme-true number set from given number limit and return the sum
+
+input1:90 input2:120
+
+logic:99+101+111
+
+output:311
+
+ 
+
+19) HashMap with regnum as key and mark as value. find the avg of marks whose key is odd.
+
+input:{12:90,35:90,33:90,56:88}
+
+output:avg of(90+90) =90
+
+ 
+
+20) A integer input is accepted. find the square of individual digits and find their sum.
+
+input:125
+
+output:1*1+2*2+5*5
+
+ 
+
+21) Check whether a given string is palindrome also check whether it has atleast 2 different vowels
+
+input: "madam"
+
+output: false(no 2 diff vowels)
+
+ 
+
+22) An arraylist of Strings is given as input. The count of the String elements that are not of size input2 string is to be
+
+returned.
+
+input1: {"aaa","bb","cccc","d"}
+
+input2: "bb"
+
+output: 3("bb"-length:2)
+
+ 
+
+23)An array of integers is given.The given element is removed new array is returned.
+
+input1:{10,10,20,30,76}
+
+output: {20,20,76}(10 is asked to remove)
