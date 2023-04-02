@@ -1,0 +1,77 @@
+JVM(Java Virtual Machine):-- It is the environment where java programs can be run. It is resoponsible to execute a java program. It was developed in C language it is platform dependent it does mean that a separate JVM is required by each platform. It is a part of JDK(Java Development Kit).
+
+
+
+
+
+Class Loader Sub System:     
+The class loader sub system will take a .class file as the input and performance the following operations. 
+
+The class loader sub system is responsible for loading the .class file (Byte code) into the JVM.
+
+Before loading the Byte code into the JVM it will verify where there the Byte code is valid  or  not. This verification will be done by Byte code verifier.
+
+If the Byte code is valid then the memory for the Byte code will be allocated in different areas.
+
+
+
+
+ 
+
+1.Method Area: 
+
+Java Virtual Machine Method Area can be used for storing all the class code and method code.
+
+All classes bytecode is loaded and stored in this run time area , and all static variables are created in this area.
+
+2.Heap Memory:
+
+JVM Heap Area can be used for storing all the objects that are created.
+
+It is the main memory of JVM , all objects of classes :- non static variables memory are created in this run time area.
+
+
+3.Java Stack area:
+
+JVM stack Area can be used for storing the information of the methods. That is under execution. 
+
+The java stack can be considered as the combination of stack frames where every frame will contain the stat of a single method.
+
+In this runtime area all Java methods are executed.
+
+In this runtime JVM by default creates two threads. they are
+
+1.main method
+2.Garbage Collection Thread
+ main thread responsible to execute java methods starts with main method.
+
+
+Also responsible to create objects in heap area if its finds new keyword in any method logic.
+
+Garbage collection thread is responsible to destroy all unused objects from heap area.
+
+4.PC Register (program counter) area:
+
+The PC Register i Java Virtual Machine will contain address of the next instruction that have to be executed.
+
+5.Java Native Stack:   
+
+Java native stack area is used for storing non-java coding available in the application. The non-java code is called as native code.
+  
+Execution Engine:
+
+The Execution Engine of JVM is Responsible for executing the program and it contains two parts.
+
+Interpreter
+
+Read bytecode stream then execute the instructions.
+
+JIT Compiler (just in time compiler)
+
+The java code will be executed by both interpreter and JIT compiler simultaneously which will reduce the execution time and them by providing high performance. 
+
+
+
+Execution Unit: It is responsible to execute the byte code, it contains java interpreter (java) and JIT(Just In Time) compiler. Interpreter executes instructions one after another where as JIT translates all instructions into machine understandable code at a time. JIT is faster than interpreter it is used whenever the byte code is to be executed very fast.
+
+

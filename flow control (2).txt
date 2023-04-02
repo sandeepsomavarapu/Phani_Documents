@@ -1,0 +1,641 @@
+FLOW CONTROL:-
+--------------------------
+FLOW CONTROL DESCRIBES THE ORDER in which the statements will be executed at run time.
+
+ 
+
+                                               flow control 
+--------------------------------------------------------------------------------------------------------
+|                                                          |                                                                |
+selection statements             iterative  statements                                      transfer statements
+1)if-else                                1)while                                                        1)break
+2)switch()                             2)do-while                                                   2)continue
+                                            3)for                                                            3)return
+                                            4)for-each loop                                            4)try-catch-finally
+                                                                                                               5)asert
+1)among several options only one option will selecte and executed
+2)a group statements executed iterativly
+3)transfer
+
+
+
+
+select statements:-
+-----------------------
+ * if-else:-
+syntax:-
+if(b)
+{
+action if b is true
+}
+else
+{
+action if b is false
+}
+**the argument to the if statement should be boolean type bymistake if we r trying to provide any other type then we will get compile time error.
+case1:-
+--------
+int x =0;
+if(x)
+{
+sopln("hello");
+}
+else
+{
+sopln("hi");
+}
+0/p:-COMPILE TIME ERROR
+
+CASE2:-
+------------
+
+int x =10;
+if(x=20)
+{
+sopln("hello");
+}
+else
+{
+sopln("hi");
+}
+CE:-COMPILE TIME ERROR(found int ,required boolean)
+
+CASE3:-
+---------
+int x =10;
+if(x==20)
+{
+sopln("hello");
+}
+else
+{
+sopln("hi");
+}
+o/p:-hi
+
+case4:-
+---------
+
+boolean x =true;
+if(x=false)
+{
+sopln("hello");
+}
+else
+{
+sopln("hi");
+}
+
+o/p:-hi
+
+case5:-
+---------
+
+boolean x =false;
+if(b=false)
+{
+sopln("hello");
+}
+else
+{
+sopln("hi");
+}
+
+o/p:-hello.
+
+**else part and curly brases are optional,with out curly brases only one statement is allowed under if, which should not be declarative statements.
+case1:-
+--------
+if(true)
+sopln("hello");
+
+o/p:-hello
+
+case2:-
+--------
+if(true);
+          
+o/p:-execute
+
+case3:-
+---------
+if(true)
+int x=10;
+
+o/p:-CE
+
+case4:-
+-------
+if(true)
+{
+intm x=10;
+}
+o/p:-execute
+
+*semicolon is a valid java statement which is also known as empty statement
+
+*there is no handling else PRBLM IN JAVA EVERY ELSE IS MACTHED TO THE nearest if statement.
+
+***SWITCH***** :-
+-------------------------
+
+* IF SEVERAL OPTIONS ARE AVAILABLE THEN IT IS NOT RECOMMENDED TO use nested if else because it reduces readability to handle this requirement we should go for SWITCH statement.
+ 
+*syntax:-
+
+switch(x)
+{
+case 1:
+    action1;
+     break;
+case 2:
+    action2;
+     break;
+case 3:
+    action3;
+     break;
+       .
+       .
+       .
+       .
+case n:
+       action n;
+       break;
+default:
+     default action;
+ 
+conclusion1:-
+* the allowed argument types for the switch statements are (byte short char int until)  1.4 version but 1.5 version corresponding wrapper classes  and ENUM type also allowed and 1.7 version String type also allowed.
+
+* CURLY BRASES ARE MANDATORY EXCEPT SWITCH every where curly brases are optional. 
+
+* both case ,default are optional i.e an empty switch statement is a valid java syntax
+ex:-
+int x=10;
+switch(x)
+{
+
+ }//valid
+*inside a switch every statement should be under sum case are default i.e independent statement s are not allowed inside a switch otherwise we will get compile time error .
+ex:-
+int x=10;
+switch(x)
+{
+sopln("hello");
+ }
+"CE"
+
+*every case label should be compile time constant (i.e constant expression)
+
+ex:-
+int x=10;
+int y=20;
+switch(x)
+{
+case 10:
+   sopln(10);
+   break
+case y :// CE:constant expression required
+   sopln(20);
+   break;
+ }
+  
+*if we declarey as final we won't get any copile time error.
+
+*both switch argument and case label can be expressions but case label should be constant expression.
+
+ex:-
+ex:-
+int x=10;
+switch(x+1)
+{
+case 10:
+     sopln(10);
+     break;
+case 10+20+30:
+         sopln(60);
+ }//valid
+
+* every case label should be in the range of switch argument type otherwise we will get compile time error
+
+ex1:-
+byte b=10;
+switch(b)
+{
+case10:
+      sopln(10);
+       break;
+case100:
+      sopln(100);
+       break;
+case1000:
+      sopln(1000);
+       break;
+}//CE(possible loss of pression....)
+
+ex1:-
+byte b=10;
+switch(b+1)
+{
+case10:
+      sopln(10);
+       break;
+case100:
+      sopln(100);
+       break;
+case1000:
+      sopln(1000);
+       break;
+}//valid
+
+* duplicate case label 's are not allowed otherwise we will get compile time error.
+
+ex:-
+int x=10;
+switch(x)
+{
+case97:
+      sopln(97);
+       break;
+case98:
+      sopln(98);
+       break;
+case99:
+      sopln(99);
+       break;
+
+case 'a':
+      sopln(99);
+       break;
+}//CE
+summary:-
+*case label :-it should be constant expression.
+*the value should be in the range of switch argument type.
+*duplicate case label's are not allowed.
+*with in the switch if any case is matched from that case onwords all statements will be executed until break or end of the switch this is called fallthrough inside a switch 
+* the main advantage of fall through inside a switch is we can define common action for multiple cases (code reusability) 
+switch(x)
+{
+case1:
+case2:
+case3:
+   sopln("Q-4");
+   break;
+case4:
+case5:
+case6:
+    sopln("Q-1");
+    break;
+.
+.
+.
+.
+.
+.
+}
+
+
+
+ex2:-
+switch(x)
+{
+case0:
+  sopl("0");
+case1:
+  sopl("1");
+case2:
+  sopl("2");
+default:
+   sopln("def");
+}
+
+default case:-
+---------------
+* with in the switch we can default case at most once  
+* default case will be execute dif an only if there is no case matched
+*with in the switch we can write default case anywhere but it is recommended to write as last case . 
+
+switch(x)
+{
+default:
+sopln("def");
+case 0:
+sopln("0");
+break;
+case1:
+sopln(1);
+case2:
+sopln(2);
+}
+
+ITERATIVE STATEMENTS:-
+=====================
+ WHILE:-
+------------
+If we dnt no number iterrations in advance then we should go for while loop .
+
+ex:-
+while(rs.next)
+{
+
+}
+Syntax:-
+
+while(b)
+{
+action;
+}
+*the argument should be boolean type ,if we r trying provide any other type then we will get compile time error.
+
+ex:-
+while(1)
+{
+sopln("hai")
+}//CE:-incompatable error....
+
+*curly brases are optional and with out curly brases we can take only one  statement under while ,which should not be declarative statement.
+ex:1
+while(true)
+sopln("hello");
+ex2:-
+while(true);
+ex3:-
+while(true)
+int x=10;//CE
+
+ex4:-
+while(true)
+{
+int x=10;
+}
+
+while(true)
+{
+System.out.println("hello");
+}
+System.out.println("hai");
+}
+}//CE
+
+ex:-
+while(false)
+{
+System.out.println("hello");
+}
+System.out.println("hai");
+}
+}//CE
+
+ex:-
+int a=10,b=20;
+while(a<b)
+{
+System.out.println("hello");
+}
+System.out.println("hai");
+}
+}//valid
+
+ex:-
+int a=10,b=20;
+while(a>b)
+{
+System.out.println("hello");
+}
+System.out.println("hai");
+}
+}//valid
+
+ex:-
+final int a=10,b=20;
+while(a<b)
+{
+System.out.println("hello");
+}
+System.out.println("hai");
+}
+}//CE
+
+ex:-
+final int a=10,b=20;
+while(a>b)
+{
+System.out.println("hello");
+}
+System.out.println("hai");
+}
+}//CE
+
+note:-
+1)every final variable will be replaced by the value at compile time only.
+ex:-
+final int 1=10;
+int b=20;
+sopln(a);//after compilation sopln(10);
+sopln(b);//after compilation sopln(b);
+
+2)if argument is a final variable(compile time costant)then that operation should be performed at compile time only.
+
+ex:-
+ final int a=10;b=20;
+int c=20;
+sopln(a+b);//after compilation  sopln(30);
+sopln(a+c);//after compilation  sopln(10+c);
+sopln(a<b);//after compilation  sopln(true);
+sopln(a<c);//after compilation  sopln(10<c);
+
+
+*DO-WHILE:-
+  -----------------
+*IF WE WANT TO execute loop body atleast once then we should go for do-while 
+syntax:-
+do
+{
+body
+}while(b); 
+
+*curly brases are optional and with out curly brases we can take only one statement between do and while ,which should not be declarative statement.
+
+ex:-
+do
+sopln("hello");
+while(true);//valid
+
+ex:-
+do;
+while(true);//valid
+
+ex:-
+do
+int x=10;
+while(true);//invalid CE
+
+ex:-
+do
+{
+int x=10;
+}
+while(true);//valid
+
+ex:-
+do
+while(true);//CE
+
+* do 
+      while(true)
+      sopln("hello");
+  while(false);
+o/p :-
+hello
+hello
+  .
+  .
+  .
+  .
+     
+ex:-
+do 
+{
+sopln("hello");
+}while(true);
+sopln("hi");//CE
+
+ex:-
+do 
+{
+sopln("hello");
+}while(false);
+sopln("hi");// o/p:-hello
+                              hi
+
+ex:-
+int a=10,b=20;
+do 
+{
+sopln("hello");
+}while(a<b);
+sopln("hi");
+
+o/p:-hello
+       hello 
+        . 
+        .
+
+int a=10,b=20;
+do
+{
+sopln("hello")
+}while(a>b);
+sopln("hi");
+
+o/p:-hello
+        hi
+
+ex:-
+final int a=10,b=20;
+do 
+{
+sopln("hello");
+}while(a<b);
+sopln("hi");//CE
+
+
+ex:-
+final int a=10,b=20;
+do 
+{
+sopln("hello");
+}while(a>b);
+sopln("hi");
+
+o/p:-
+hello
+hi
+
+
+
+FOR:-
+
+*for loop is most commnly used loop in java 
+
+*if we know number of iterations in advance then for loop is best choice.
+
+syntax:-
+          1               2,5,8                       4,7
+for(intialization;conditional check;incremment/decrement)
+{
+loop body //3,6,9
+}
+*curly brases are optional and with out curly brases we can take only one statement under for loop,which should not be declarative statement.
+
+ex:-
+for(int i=0;true;i++)
+sopln("hello");
+
+ex:-
+for(int i=0;i<10;i++);
+
+ex:-
+for(int i=0;i<10;i++); 
+int x=10;//CE
+
+* this part will be executed only once in loop life cycle.
+* here we can declare and intialize local variables of for loop.
+* here we can declare  any number of variables but should be same type bymistakeif we are trying to declare different datatype variables then we will get compile time error.
+
+ex:-int i=0,j=0;//valid
+
+ex:-int i=0,String s="durga";//invalid
+
+ex:-int i=0,int j=0;//invalid
+
+intialization:-
+--------------- 
+**in the intialization section we can take any valid java statement including SOP.
+
+ex:-
+int i=0;
+for(sopln("hello");i<2;i++)
+{
+sopln("hi");
+}
+o/p:-hello 
+       hai
+       hai
+       hai
+
+conditional check:-
+-----------------------
+*here we can take any valid java expression but sholud be of the type boolean
+
+*this part is optional and if we are not taking any thing then compiler will always place true.
+
+increment/decrement section:-
+------------------------------------- 
+* in the increment/decrement section we can take any valid java statement includeing sop.
+
+ex:-
+int i=0;
+for(sopln("hello");i<3;sopln("hi"))
+{
+i++;
+}
+o/p:-
+------
+hello
+hi
+hi
+hi.
+
+*all three parts of for loop are independent of each other and optional.
+ex:-
+for( ; ; )
+{
+sopln("hello");
+}
+
+ex:-
+for(  ;  ; );
+//infinite loop (valid)
+
+

@@ -1,0 +1,72 @@
+overloading:-
+--------------------
+two methods are said to be overladed if and only if both methods having the same name but different arguments types.
+ex:-
+class test
+{
+public void m1(int i)
+ {
+
+ }
+public void m1(long i)
+ {
+
+ }
+}
+method overriding:-
+------------------------------
+*what ever methods parent has by  default available to the child through inheritance some times child may not satisfy with parent method implementation.then child is allow to redefine that method based on its requirement. this process is called overriding.
+*the parent class method which is overridden  is called overridden method.
+*the child class method which is overriding is called  overriding method.   
+class p
+{
+public void property()
+{
+s.o.pln("cash/gold/land");
+}
+public void marry()
+{
+sopln("subbalaxmi");
+}
+}
+class c extends p
+{
+public void marry()
+{
+sopln("3sha/9tara/4me")
+}
+}
+method signature=method names+arguments
+difference between M.O and M.R:-
+============================
+  property                                    M.O                                                M.R
+
+1)method names               must be same                                   must be same
+
+2)argument types             must be different                            must be same(includeing order)
+                                           (atleast order/datatype)
+3)signature                       must be different                             must be same
+
+4)return type                    no restrictions                                  must be same until 1.4 version only,1.5 v                                                                                                                                                      co-varient
+5)private,static,final       can be  overloaded                           can't be overridden
+
+6)access modifiers           no restrictions                                 reduce (not possible)---->
+                                                                                                      increase(possible)
+
+7)throws(class)                 no restrictions                                   of child---->
+
+8)method resolution      always takes care by                       always takes care by 
+                                          compiler  based on                         jvm based on runtime object
+                                           reference type
+
+9)also called as               compile time polymorphism         runtime   polymorphism
+                                           static polymorphism                       dynamic  polymorphism
+                                           early binding                                    late binding
+
+
+
+NOTE:-
+======
+*in overloading we have to check only method names(must be same)and argument types (must be different)except this remaining like return types ,access modifiers etc., are not required to check.
+
+*But in overriding every thing we have to check like method names argument types,returntypes,access modifiers etc.

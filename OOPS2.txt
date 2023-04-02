@@ -1,0 +1,126 @@
+Has-a relationship:-
+=================
+*has -a relation ship also known as composition or aggregation
+*there is no specific keyword to implement has- a relation bur most of the times we r depending on 'new 'keyword.
+*the main advntage of has-a relationship  is reusability of the code.
+ex:
+class car
+{
+engine e=new engine();
+}
+car has-a engine reference
+class engine
+{
+//engine specifications;
+}
+Q:-diff betwen composition and aggregation?
+with out exsisting container object if there no chance of exsisting contained objects then container and contained objects are strongly assosiated and this strong association is nothing but composition.
+ex:-university consists of several dept 
+with out exsisting university there is no chnace of exsisting dept,hence university and depts are strongly assosiated and this assosiationis nothing but compositon
+aggregation:-
+with out exsisting container object if there is a chance of exsisting contained object then container and contained objects are weakly assosiated and this weak assosiation is nothing but aggregation 
+ex:-
+department consists of several professors with out exsisting dept there may be chance of exsisting professor objects hence dept and professor objects are weakly assosiated and this weak assosiation is nothing but  aggregation
+
+NOTE:-
+1)IN COMPSITION OBJECTS ARE STRONGLY ASSOSIATED  WHERE AS IN AGGREGATION OBJECTS ARE weakly assosiated 
+2)in compositon container object holds directly contained objects where as in aggregation container objects holds just refferences of contained objects 
+
+**is-a (v)has-a:-
+============
+*if we want total functionality of class automatically then we should go for is-a relationship.
+*if we want part of the functionality then we should go for has-a relationship.
+
+Method Signature:-
+=================
+*in java method signature consists of method names followed by argument types 
+ex:-public static int m1(int i, float f)
+
+in this m1(int i, float f) method signature
+ * return type is not part of method signature in java.
+*compiler will use method signature to resolve  method calls.
+ex:-
+class test
+{
+public void m1(int i)
+{
+
+}
+public void m2(string s)
+{
+
+}
+}
+test t=new test();
+t.m1(10);
+t.m2("sas");
+t.m3(10.5);{CE:can't find symbol symbol:method m3(double) location:class test}
+
+*with in a class two methods with a same signature not allowed 
+ex:-
+class test
+{
+{
+public void m1(int i)
+}
+public int m1(int x)
+{
+return 10;
+}
+}
+CE :-m1(int) is already defined in test
+
+ OVER LOADING:-
+=================
+*TWO METHODS ARE SAID TO BE OVERLAODED if and only if both methods having same name but different arguments types.
+
+*in c language method overloading concept is not available hence we can't declare multiple methods with same name but different  arguments types ,if there is change in argument type compalsary we should go for new method name which increases complexity of programing.
+
+IN C -LANG:-
+--------------------
+abs(int i)=>abs(10);
+labs(long l)=>labs(10 L);
+fabs(float f)=>fabs(10.5f);
+
+* but in java we can declare multiple methods with same name but different argument types such type methods are called over loaded methods
+IN JAVA:-
+---------------
+abs(int i)
+abs(long L)
+abs(float f)
+*having overlading concept in java reduces complexity of programming 
+Ex:-
+class test
+{
+public void m1()
+{
+sopln("no arg");
+}
+public void m1(int i)
+{
+sopln("int org");
+}
+public void m1(double d)
+{
+sopln("double-org");
+}
+psvm(string[] args)
+{
+test a=new test();
+t.m1();no-org
+t.m2(10);int-org
+t.m3(10.5);double-org
+}
+}
+here 3 methods are over loaded methods
+
+**in overloading method resolution always takes care by compiler based on reference type hence overloading is also considered as compile time polymorphisam or static polymorphisam or early binding .
+
+
+
+
+
+
+
+
+

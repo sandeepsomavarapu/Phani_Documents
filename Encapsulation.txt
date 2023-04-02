@@ -1,0 +1,18 @@
+The process of binding data and corresponding methods into a single unit is knows as Encapsulation.
+
+
+Exmaple:
+
+class student
+{
+
+Data members
+
++
+
+Methods(behaviour)
+
+
+}
+
+Note:here class is best for Encapsulation.

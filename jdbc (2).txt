@@ -1,0 +1,175 @@
+JDBC(java database conncetion):-
+---------------------------------------------------
+here we are developing one  application using java for programming and i  used html and jsp for front end ,now i want enter some values in UI those values need to perform operations  on database  and response to the user like front end 
+
+here database is used to store the large data  for long time .
+
+now we need to take the connection of the database to our java application.
+
+inorder take the connection between we need follow 5 steps they are like....
+
+
+1)loading the driver class.(oracle/mysql/db2......) or registering the driver class.
+
+2)establishing the connection using Connection  interface.
+
+3)create the statement.(Statement/PreparedStatement/CallableStatement.)
+
+4)executing the queries (execute/executeUpdate/executeQuery/executeBatch)
+
+5)closing he connection
+
+these are the 5 steps we need to follow to make the cconnection between between the java application  and any database(orace,mysql,DB2,sybase.....)
+
+
+
+**How Many Types Of Drivers we have .....?
+
+
+we have  4 types driver s  in jdbc 
+---------------------------------------------------
+
+1)jdbc-odbc driver
+
+
+2)native api driver
+
+
+
+3)network protocol driver
+
+4)Thin driver
+
+Advantage:
+
+Better performance than all other drivers.
+No software is required at client side or server side.
+
+
+5 STEPS:-
+---------------
+1)loading the drver class:-
+------------------------------------------
+
+forName() method   present in Class class it is used to load the driver class  .
+
+syntax:-
+-------------
+void forName("String class name")throws ClassNotFoundException
+
+Example:-
+---------------
+oracle:-
+=======
+Classs.forName("oracle.jdbc.driver.OracleDriver");
+
+"oracle.jdbc.driver.OracleDriver" this is the driver class of "oracle"
+
+mysql:-
+=======
+
+Classs.forName("com.mysql.jdbc.Driver");
+
+"com.mysql.jdbc.Driver" this is the driver class of"mysql"
+
+2)establishing the connection:-
+============================
+
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","sandeep","sandeep");
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/sonoo","sandeep","sandeep");
+
+Connection URL: The connection URL for the oracle10G database is jdbc:oracle:thin:@localhost:1521:xe where jdbc is the API, oracle is the database, thin is the driver, localhost is the server name on which oracle is running, we may also use IP address, 1521 is the port number and XE is the Oracle service name. You may get all these informations from the tnsnames.ora file.
+
+
+Username: The default username for the oracle database is system.
+Password: Password is given by the user at the time of installing the oracle database.
+
+
+Commonly used methods of Connection interface:
+
+1) public Statement createStatement(): creates a statement object that can be used to execute SQL queries.
+2) public Statement createStatement(int resultSetType,int resultSetConcurrency): Creates a Statement object that will generate ResultSet objects with the given type and concurrency.
+3) public void setAutoCommit(boolean status): is used to set the commit status.By default it is true.
+4) public void commit(): saves the changes made since the previous commit/rollback permanent.
+5) public void rollback(): Drops all changes made since the previous commit/rollback.
+6) public void close(): closes the connection and Releases a JDBC resources immediately.
+
+
+==>DriverManager is  a class 
+
+==>Connection  is Interface
+
+==>Statement is interface
+
+==>Prepared Statement  interface
+
+prepared statement is the sub interface of statement interface it is used to execute parameterized query.
+
+"insert into emp values(?,?,?)"; 
+
+here we are passing "?", we can pass values by using preparedstatements setter methods.
+
+
+Methods of PreparedStatement interface
+
+The important methods of PreparedStatement interface are given below:
+
+Method	                                                                                                    Description
+public void setInt(int paramIndex, int value)	    sets the integer value to the given parameter index.
+public void setString(int paramIndex, String value)	    sets the String value to the given parameter index.
+public void setFloat(int paramIndex, float value)	    sets the float value to the given parameter index.
+public void setDouble(int paramIndex, double value)	    sets the double value to the given parameter index.
+public int executeUpdate()	                                            executes the query. It is used for create, drop, insert, update, delete etc.
+public ResultSet executeQuery()	                        executes the select query. It returns an instance of ResultSet.
+
+
+
+
+
+
+
+
+==>ResultSet interface
+
+**The object of ResultSet maintains a cursor pointing to a particular row of data. Initially, cursor points to before the first row.
+
+**By default, ResultSet object can be moved forward only and it is not updatable.
+
+**But we can make this object to move forward and backward direction by passing either TYPE_SCROLL_INSENSITIVE or TYPE_SCROLL_SENSITIVE in createStatement(int,int) method as well as we can make this object as updatable by:
+
+Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  
+                     ResultSet.CONCUR_UPDATABLE);  
+
+
+
+
+1) public boolean next():	                    is used to move the cursor to the one row next from the current position.
+2) public boolean previous():	                    is used to move the cursor to the one row previous from the current position.
+3) public boolean first():	                    is used to move the cursor to the first row in result set object.
+4) public boolean last():	                    is used to move the cursor to the last row in result set object.
+5) public boolean absolute(int row):	is used to move the cursor to the specified row number in the ResultSet object.
+6) public boolean relative(int row):	is used to move the cursor to the relative row number in the ResultSet object, it may be positive or negative.
+7) public int getInt(int columnIndex):	is used to return the data of specified column index of the current row as int.
+8) public int getInt(String columnName):	is used to return the data of specified column name of the current row as int.
+9) public String getString(int columnIndex):	is used to return the data of specified column index of the current row as String.
+10) public String getString(String columnName)         is used to return the data of specified column name of the current row as String.
+
+3)create statement //used to execute the database querys:-
+-----------------------------------------------------------------------------------------
+
+
+
+Commonly used methods of Statement interface:
+
+The important methods of Statement interface are as follows:
+
+1) public ResultSet executeQuery(String sql): is used to execute SELECT query. It returns the object of ResultSet.
+2) public int executeUpdate(String sql): is used to execute specified query, it may be create, drop, insert, update, delete etc.
+3) public boolean execute(String sql): is used to execute queries that may return multiple results.
+4) public int[] executeBatch(): is used to execute batch of commands.
+
+
+
+
+
+ 

@@ -1,0 +1,69 @@
+***MVC:-
+=========
+(MODEL VIEW CONTROLER)
+
+VIEW            CONTROLER           MODEL
+
+
+VIEW :-we have to write presentation logic in view.
+
+
+CONTROLER:we have to write controler operations in conroler .
+
+
+
+
+MODEL:- we have to write business logic in model part.
+
+
+MVC-2:*****
+======
+***model part into divided into again three sub parts
+
+
+1)Business
+2)DAO
+3)Service
+
+
+
+***if we want to write business class and database  operations  in separate class .
+
+
+enterprize application(business application)(banking,ecomers,health care,sports(starsports) applications are come under business applications) .
+
+to bulid EPA mvc 2 is recommended.
+
+**as a view  we can use HTML,HTML5,JSP,CustomTags///,css,css3,jquery(to provide styles)
+(for providing validations)javaScript,jquery,nodejs,angularjs,bootstrap(javascript frameworks).***
+
+
+****controler need to have capability to read the data which is coming from presentation part and finally it need  to send  output.****
+
+*we can use servlets ,jsp,filter,tag support()*
+
+***
+model :-
+
+1)DAO (data base crud opertaions)
+
+JDBC(it is not ORM),HIBERNATE,IBatics,Many ORM Tools,EJB.
+
+JDBC  disadvantage
+***data base dependent(jdbc disadvantage)
+**Cache support
+
+ORM tools by default contain cache support
+
+**HQL querys are database independent querys .
+**EJB ''               ''                ''
+
+****JPA 
+2)business
+
+*to write business simple java code is enough(like arthemetic traansaction).
+
+
+
+
+

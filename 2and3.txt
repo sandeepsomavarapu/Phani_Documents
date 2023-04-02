@@ -1,0 +1,176 @@
+                                                                                              DATA TYPES
+                                                                                            ***************
+** In java every variable and every expression has some type each and every data type is clearly defined every assignment should be checked by compiler for type compatabilty .
+
+*Because of above reasons we can conclude java language is strongly typed programming language .
+
+**java is not considered as pure ooplang because several oop features are not satisfied by java.(like operater overlaoding and  multiple inheritance etc)
+
+**more over we are depending on premitive data types which are non objects.
+                           
+                           
+                                              ********************************************************************************
+                                              ********************************************************************************
+                      
+                                                                                                               premitive data types
+                                                          ---------------------------------------------------------------------------------------------------------------
+                                                          |                                                                                                                                   |
+                                       numeric data types                                                                                                   non -numeric datatypes                     
+                                      |                           |                                                                                                                    |
+                            integral DT         floating pointDT                                                                                                        |
+                               |                                    |-->float                                                                                                       |-->char
+                               |-->byte                         |                                                                                                                  |
+                               |                                    |-->double                                                                                                   |-->boolean
+                               |-->short
+                               |
+                               |-->int
+                               |
+                               |-->long
+                               |
+
+
+**except booleanand char remaining DT are considered as signed DT because we can represent both positive and negitive numbers.
+
+
+Byte:-
+------
+size--1byte(8bits)
+max_value--   +127
+min_value--    -128
+range:       -128 to 127
+ 
+the most significant bit acts as sign bit ,0 means positive number ,1 means negitive number
+
+positive number s will be represented directly in the memory where as negitive numbers will be represented in two's compliment form.
+
+**byte is the best choice if we want handle the data interms of streams either from file or from the network(file supported form and network supported form is byte)
+
+short:-
+--------
+*this is the most rarly used DT in java
+
+size--2bytes
+
+range--    -32768 to 32767
+
+ex:-
+
+short s=32767;
+short s=32768;//invalid  CE :-plp
+short s=10.5;//invalid  CE :-plp
+short s=true;//incmpatable error
+**short DT is best suitable for 16 bit processors like 8085
+but these processors are completly outdated and hense corresponding short DT is also outdated DT  
+
+**int:-
+======    
+the most commnly used DT is int
+
+size :4 bytes
+
+range:  -2147483648 to 2147483647
+
+ex:-
+int x=2147483647;
+int x=2147483648;//invalid  CE :-integer number two large
+int x=2147483648;//invalid  CE :-plp
+int c=true; //invalid  CE :- incompatable err
+
+long:-
+====
+sometimes int may not enough to hold big values then we should go for long type.
+
+ex1:-
+the amount of distance in 1000 days,to hold this value int maynot enough we should go for long data type.
+
+long l=1,26000*60*60*24*1000 miles;
+
+ex2:-the number of charecter s present in a big file may exceeds int range hense the return type" length ()"  is long but not int.
+
+
+long l=f.length();
+
+size:- 8 bytes(64 bits)
+range:- (-2 power 63) to( 2 power 63)-1
+
+**All the above datatypes(byte,short,int,long)meant for representing integral values if we want represent floating point values then we should go for floating point datatypes.
+
+Floating point DT;-
+=============
+ float DT:-
+---------------
+* if we want  5 to 6 decimal places of accuracy then we should go for 
+*float follows single presicion.
+*size 4 bytes.
+*Range:  -3.4e38 to 3.4e38
+double DT:-
+---------------
+* if we want  14 to 15 decimal places of accuracy then we should go for doble .
+* doble follows doble presicion.
+* size is 8 bytes.
+*Range:  -3.4e38 to 3.4e38
+
+Boolean:-
+-----------
+size(not applicable(virtual machine depedent)).
+range(not applicable(but allowed values are true or false)).
+
+boolean b=true;
+boolean b=0;//invalid  CE:- incompatable types
+boolean b=True;// CE:-cant find symbol symbol:varable true location class test
+boolean b="True";//CE:-incompatable types found: j.l.String required:-boolean
+
+Ex:-
+----
+int x=0;
+if(x)
+sopln("hello");
+else
+sopln("hi");
+
+CE:-incompatable types
+ found:int
+required:boolean
+
+
+Ex:-
+while(1)
+sopln("hello");
+
+CE:-incompatable types
+ found:int
+required:boolean
+
+Char:-
+=====
+*Old languages(c,c++)are ascii code based.and the number of allowed different ascii code charecters are (<=256)to represent these 256 charcters are enough hence the size of char in old lang is 1 byte.
+but java is unicode based and the number of different unicode charecters are >256and <=65536/
+*To represent these many charecters 8 bits maynot enough compulsary we sholud go for 16 bits hence the size of char in java is 2 bytes 
+range: 0 to 65535
+
+Summary of java premitive datadypes:-
+============================
+DT                               size(bytes)                    wrapperclass                defaultvalues               
+byte                                1                                    Byte                             0
+short                               2                                    Short                            0
+ int                                  4                                    Integer                           0
+long                                8                                    Long                              0
+float                                4                                    Float                              0.0
+double                             8                                   Double                            0.0
+boolean                           NA                                 Boolean                           false
+char                                 2                                   Charecter                       0(represents space charecter)
+
+*****NULL IS THE DEFAULT VALUE FOR OBJECT REFFERENCE AND WE CANT APPLY FOR PREMITIVES IF WE ARE TRYING TO USE FOR PRIMITIVE THEN WE WILL GET COMPILE TIME ERROR.
+EX:-
+	char ch=niull;//CE:-incompatable types 
+
+
+
+
+
+
+
+
+
+
+

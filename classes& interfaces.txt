@@ -1,0 +1,20 @@
+INTERFACE
+=========
+
+1. if we don't know anything about implementation just we have requirement specification then we should go for interface.
+ 
+ ex. servlet
+
+ABSTRACT CLASS
+==============
+
+2. if we talking about implementation but not completely (partial implementation) then we should go for Abstarct class.
+ 
+ ex. Generic servlet & Http servlet
+
+CONCRETE CLASS
+===============
+
+3. if we talking about implementation completely and ready to provide service then we should go for concrete class.
+ 
+ ex.MyOwnServlet

@@ -1,0 +1,28 @@
+	  try {
+	
+	 statement 1;
+	 statement 2;
+	 statement 3;
+	
+	} catch(X e) {
+	
+	 statement 4;
+	
+	} finally {
+	
+	 statement 5;
+	
+	}
+	 statement 6;
+
+
+1.Normal termination
+---------------------
+
+if any error occurs in try block that type of execution is called Normal termination. 
+
+2.Abnormal termination
+----------------------
+
+if any error occurs in out of the try block then it is called Abnormal termination.
+

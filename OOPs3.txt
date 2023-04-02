@@ -1,0 +1,147 @@
+case1:-
+=====
+automatic promotion in overloading:-
+----------------------------------------------------
+while resolving overloaded methods  if exact matched method is not available then we dnt get any compile time error immediatly first it will promote argument to the next level and check weather matched method is available or not if mtche dmethod is available then it will be considered if the matched method is not available then compiler promotes argument once again to the next level this process will be continued untill all possible promotions still if the matched method is not available then we will get compile time error the following are all possible promotions in overlaoding.
+
+byte--->short-->int--->long--->float--->double
+                         /\
+                         |   
+                         |
+                       char
+
+class test
+{
+public void m1()
+{
+sopln("no arg");
+}
+public void m1(int i)
+{
+sopln("int org");
+}
+psvm(string[] args)
+{
+test a=new test();
+t.m1();no-org
+t.m1(10);int-org
+t.m1(10.5); CE:can't find symbol.......etc
+
+case2:-
+=====
+class test
+{
+public void m1(string s)
+{
+sopln("string version");
+}
+public void m1(object o)                                                                   object
+{                                                                                                                 /\
+sopln("object version");                                                                         | 
+}                                                                                                                  |
+psvm(string[] args)                                                                             string
+{
+test a=new test();
+t.m1(new object()); //object version
+t.m1(''sandeep");//string version
+t.m1(null);string version
+}
+}
+note:-
+--------
+*while resolving overloaded methods compiler always gives presidence for child type argument when compared with parent type argument 
+
+case3:-
+---------------
+lass test
+{
+public void m1(string s)
+{
+sopln("string version");
+}                                                                                                               object
+public void m1(stringbuffer sb)                                  --------------------------------------------                                
+{                                                                                                            /\           /\
+sopln("string  version");                                                                   |            |
+}                                                                                                            |            |
+psvm(string[] args)                                                                        string    string buffer
+test a=new test();
+t.m1(''sandeep");//string version
+t.m1(new stringbuffer("durga");//string buffer version
+t.m1(null);CE:-reference to m1() is  ambiguous
+}
+}
+case4:-
+----------
+ass test
+{
+public void m1(int i,float f)
+{
+sopln("int-float version");
+}                                                                                                      
+public void m1(float f,int i)                                                                 
+{                                                                                                        
+sopln("float-int  version");                                                                 
+}                                                                                                        
+psvm(string[] args)                                                                        
+test a=new test();
+t.m1(10,10.5f);//int-float version
+t.m1(10.5f,10);//float-int  version
+t.m1(10,10);CE:-reference to m1() is  ambiguous
+t.m1(10.5f,10.5f);CE:-can't find symbol...
+}
+case5:-
+class test
+{
+public void m1(int i)
+{
+sopln("genaral method");
+}                                                                                                      
+public void m1(int .....i)                                                                 
+{                                                                                                        
+sopln(" var -arg method");                                                                 
+}                                                                                                        
+psvm(string[] args)                                                                        
+test a=new test();
+t.m1(); //var-org method
+t.m1(10,20);//var-org method
+t.m1(10);//genaral method
+}
+
+}
+note:-
+*in genaral var-org method will get least priarity i.e if no other matched then only var-org method will get the chance it is exactly same as default case inside switch.
+
+case6:-
+class aniaml
+{
+
+}
+class monkey extends animal
+{ 
+
+}
+class test
+{
+public void m1(animal a)
+{
+sopln(''animal version'');
+}
+public void m1(monkey m)
+{
+sopln(''monkey version'');
+}
+psvm(string [] args)
+{
+test t=new test();
+animal a=new animal();
+t.m1(a);//animal version 
+monkey m=new monkey();
+t.m1(m);//monkey version
+animal a1=new monkey();
+t.m1(a1);//animal version
+}
+}
+note:-
+-------------
+* in overloading method resolution always takes care by compiler  based on reference type.
+in overloading run time object won't play any role . 

@@ -1,0 +1,20 @@
+
+
+
+
+
+class Test {
+
+ static String s= "java";
+
+}
+
+Test.s.length();
+
+
+class System {
+
+ static PrinStream out= "java";
+
+}
+

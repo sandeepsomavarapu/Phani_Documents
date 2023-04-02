@@ -1,0 +1,358 @@
+java:-
+======
+
+1)what is java ?
+
+it is a programming language....
+
+programming language:-
+=====================
+
+A programming language is a special language, programmers use to develop software programs
+
+software(set of insturctions //  set of programs).
+
+we have number of languages are there like c ,c++,java, .net , perl,scala,sql,html.....etc.
+
+Although there are over 2,000 computer languages, relatively few are widely used.
+
+now we wil see the java 
+
+it is one of the programming language,
+
+it is used to write set programs those programs are used to develop  different softwares/applications 
+
+Applications :
+---------------------
+what are the differrent types of applications.
+
+Application:
+-----------------
+
+set of programs (set of code/set of operations)
+
+
+here by using java what we can develop,what are the different applications are  there,and how many types of applications we have will see now ....
+
+
+types of java applications:
+------------------------------------------
+
+
+here mainly we have four types of applications.
+
+Standalone Applications
+
+Web applications 
+
+Enterprise applications
+
+Mobile applications 
+
+Java has three development environments: JSE, JME and JEE.
+
+
+Jse 
+Jee
+Jme
+
+JAVA released to the market in three categories JSE (JAVA  Standard Edition), JEE (JAVA 
+
+Enterprise Edition) and JME (JAVA  Micro/Mobile Edition).
+
+i. J2SE is basically used for developing client side applications/programs.
+
+ii. J2EE is used for developing server side applications/programs.
+
+iii. J2ME is used for developing server side applications/programs.
+
+why they devide like this 
+
+ It´s possible to run Java programs on small devices (like mobile phones), on personal computers and even on 
+mainframes. To be able to do that Java has three development environments.
+
+Standalone Applications
+----------------------------------------
+
+a standalone application  is one which runs in the context of local disk.
+
+it is also known as window-based /desktop applications,by seeing this name we can understand.
+
+a standalone  applications that we need to install in each and every machine 
+
+ex:-OS,Anti virus,media players(vlc)....AWT and Swing
+
+
+
+
+Web applications 
+-----------------------------
+*An application that runs on the server side and creates dynamic page, is called web application. Currently, servlet, jsp, struts, jsf etc. technologies are used for creating web applications in java.
+
+*A distributed application is one which can be accessed across the globe.Web application is also one which runs in the contest of the World Wide Web.
+
+
+Enterprise applications
+------------------------------------
+An application that is distributed in nature, such as banking applications etc. It has the advantage of high level security, load balancing and clustering.
+ In java, EJB is used for creating enterprise applications.
+
+
+
+Mobile applications:-
+---------------------------------
+An application that is created for mobile devices. Currently Android and Java ME are used for creating mobile applications.
+
+
+
+
+
+
+
+
+
+******************************************************************************************************************************************************************************************************************************
+
+
+
+
+
+
+
+History of java :-
+---------------------------
+
+
+green team(java team members)
+
+**intially they developed  a language  for digital devices  such as setup boxes,televisions 
+
+
+**James Gosling, Mike Sheridan, and Patrick Naughton initiated the Java language project in June 1991.
+
+
+**Firstly, it was called "Greentalk" by James Gosling,After that, it was called Oak 
+
+Why Oak? 
+
+Oak is a symbol of strength and choosen as a national tree of many countries like U.S.A., France, Germany, Romania .
+
+In 1995, Oak was renamed as "Java" because it was already a trademark by Oak Technologies.
+
+
+
+JDK 1.0 released in(January 23, 1996).
+.
+.
+.
+.
+.
+.
+Java SE 8 (18th March, 2014).
+
+
+
+
+FEATURES OF JAVA:-
+=====================
+
+
+
+
+Simple:-
+--------------
+java is simple because of following factors
+
+**java is free from pointers(because of pointers performance will be decreased, A pointer is a variable whose value is the address of another variable).
+
+**No need to remove unreferenced objects because there is "Automatic Garbage Collection" in java.
+
+
+Object-Oriented:-
+---------------------------
+in industry  we have two types of programming models ,they are   
+
+
+Procedure oriented programming :
+--------------------------------------------------
+If we represent the data using procedural oriented programming languages then there is no security for the data  which we represent.
+COBOl,PASCAL,FORTON,BASIC,C
+
+Object oriented programming:
+---------------------------------------------
+Object-oriented programming(OOPs) is a methodology that simplify software development and maintenance by providing some rules.
+
+Object
+Class
+Inheritance
+Polymorphism
+Abstraction
+Encapsulation
+
+
+
+
+Platform independent:-
+===================
+the slogan of java is WORA(write once run any  where)
+
+it will make the java as platform-independent 
+
+Java was originally developed by James Gosling at Sun Microsystems(now owned by Oracle corporation)
+
+Microsoft System has developed a technology called DOTNET and SunMicro System has developed a technology called JAVA Both this technologies are called distributed technologies
+
+The technology DOT NET will run only on that operating system’s which are provided by Microsoft (as on today). Hence DOT NET
+
+technology called platform dependent technology.JAVA will run on all operating system’s irrespective of their providers hence is called platform independent technology
+
+
+Secured:-
+========
+1)explicit pointer
+2)the progrms runs inside virtual machine 
+3)ByteCodeVerifier
+
+
+
+Robust:-
+=======
+
+**Robust means Strong  java uses strong memory management.
+
+**There is automatic garbage collection in java.
+
+**There is exception handling and type checking mechanism in java. All these points makes java robust.
+
+
+
+Architecture neutral:-
+==================
+
+**A language or technology is said to be architectural neutral which can run on any available processors in the real world.
+
+**In C programming, int data type occupies 2 bytes of memory for 32-bit architecture and 4 bytes of memory for 64-bit architecture. But in java, it occupies 4 bytes of memory for both 32 and 64 bit architectures.
+
+
+Portable:-
+========
+
+**Portability=platform independent+architecture neutral
+
+**A portable language is one which can run on all operating systems and on all processors irrespective their architectures
+
+Dynamic:-
+=========
+any thing which loads the resources at run time called as dynamic nature,java loads the byte code(.class) dynamically at runtime and executes that code and doesn't reveals the object code.so Java is considered as dynamic
+
+      Interpreted:-
+     ===========
+Why Java is both compiled and interpreted language?
+ 
+In case of C/C++, the source code is directly converted to binary code by the compiler that can be executed by the OS to get output. This binary code generated on one OS does not execute on other OS. 
+
+Now let us see the scenario on Java with respect to Why Java both compiled and interpreted.
+But coming to Java, the scenario is completely a new one and different. Java is platform-independent language. 
+
+To achieve the platform independency, the designers put two 
+phases between source code to output – compilation stage and interpretation stage introducing a new concept called bytecode.
+
+
+ 
+High Performance:-
+=================
+
+Because of JIT(just in time compiler )
+
+Multithreaded:-
+==============
+*A flow of control is known as thread.
+
+*A multi threaded program is one in which there exists multiple flow of controls i.e., threads.
+
+*A program is said to be multi threaded program if and only of there exists n number of sub-programs. For each and every sub-program there exists a separate flow of control.	
+
+*All such flow controls  are executing concurrently,such flow of controls is known as threads.such knd of applications are called multithreading applications.
+
+*The languages like C, Cpp are treated as threads as single threaded modeling languages.SMTL are those in which there exists single flow of control.
+ 
+*The languages like JAVA and DOT NET are treated as multi threaded modeling languages.MTML are those in which there exist multiple flows of controls
+
+
+
+Distributed:-
+=============
+
+
+**A service is a said to be a distributed service which runs in multiple servers and that service can be accessed by n number of clients across the globe
+
+**To develop these applications we require a technology called j2ee.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*****************************************************************************************************************
+
+
+
+
+main intraduction:-
+-----------------------
+* wheather class contains main() method or not and whether main() method is declared according to requirement     or not these things won't be checked by compiler.at runtime,jvm is responsible to check these things.
+* at run time if jvm is unable to find required main() method then we will get runtime exception saying  
+  nosuchmethod error.main
+class test
+{
+
+}
+javac test.java;(compilation success)
+java test;(run time exception)
+
+
+{ Error: Main method not found in class main, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application }
+
+                               -----------------------------------------
+                              |PUBLIC STATIC VOID MAIN |
+                              ------------------------------------------
+
+PUBLIC---->TO CALL BY JVM FROM ANYWHERE
+
+STATIC---->WITHOUT EXSISTING OBJECT ALSO JVM HAS TO CALL THIS METHOD NO WAY RELATED TO ANY OBJECT
+
+VOID()---->MAIN() METHOD WONT RETURN ANYTHING TO JVM
+
+MAIN---->THIS IS NAME WHICH IS CONFIGURED INSIDE JVM
+
+STRING[]ARGS--->COMMAND LINE ARGUMENTS
+
+* The above syntax is very strict if we perform any change we will get runtime exception saying NOSUCHMETHOD ERROR.MAIN.
+
+even though the above syntax is very strict the following changes are acceptable.
+---------------------------------------------------------------------------------------------------
+
+*the order of modifiers i not important that is instead of "public static "we can take "static public also.
+
+*we can declare "strign[]"in any acceeptable form.
+main(String[] args)
+
+main(String []args)
+
+main(String args[])
+
+*instead of 'args' we can take any valid java identifier
+
+*we can replace String[] with var arg parameter
+
+main(String [] args)==>main(String...args)

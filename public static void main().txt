@@ -1,0 +1,42 @@
+
+	public static void main (String [] args)
+
+============================================================
+
+public : To call by jvm from anyware the main method should be public
+
+static : without existing object also jvm has to call method means main method is no way related to object
+
+void : main method won't  return any thing to jvm
+
+main : this is name which is configured inside jvm
+
+String : commandline argumements
+
+
+1. the order of the modifiers is not important that is instead of "public staitc" we cam take "static public" also.
+
+2. we can declare "String[]" in any acceptable form.
+
+		main (Stirng[] args)
+		main (String []args)
+		main (String args[])
+
+3. we can replace String[] with var arg parameter
+
+	main(String[] args) ==> main(String... args)
+
+4.	class Test
+	{
+
+	final static synchronized strictfp public void main(String... srikanth)
+
+
+	which of the following are valid main method declarations?
+
+	1.public static void Main(String[] args)
+	2.public static int main(String[] args)
+	3.public static void main(String args)
+	4.public final synchronized strictfp void main(String[] args)
+	5.public static final synchronized strictfp void main(String[] args)
+	6.public static void main(String... args)		

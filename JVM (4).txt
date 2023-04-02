@@ -1,0 +1,38 @@
+What is JVM?
+JVM is a virtual machine or a program that provides run-time environment in which java byte code can be executed. JVMs are available for many hardware and software platforms. The use of the same byte code for all JVMs on all platforms make java platform independent.
+
+
+JVM details:
+1. Class loader subsystem:
+It is a part of JVM that care of finding and loading of class files.
+
+2.  Class/method area:
+It is a part of JVM that contains the information of types/classes loaded by class loader. It also contain the static variable, method body etc.
+
+3.  Heap:
+It is a part of JVM that contains object. When a new object is created, memory is allocated to the object from the heap and object is no longer referenced memory is reclaimed by garbage collector.
+
+4. Java Stack:
+It is a part of JVM that contains local variable, operands and frames. To perform an operation, Byte code instructions takes operands from the stack, operate and then return the result in to the java stack.
+
+5. Program Counter:
+For each thread JVM instance provide a separate program counter (PC) or pc register which contains the address of currently executed instruction.
+
+6. Native method stack:
+As java program can call native methods (A method written in other language like c).  Native method stack contains these native methods.
+
+7. Execution Engine:
+It is a part JVM that uses Virtual processor (for execution), interpreter (for reading instructions) and JIT (Just in time) compiler (for performance improvement) to execute the instructions.
+
+How JVM is created(Why JVM is virtual):    
+When JRE installed on your machine, you got all required code to create JVM. JVM is created when you run a java program, e.g. If you create a java program named FirstJavaProgram.java. To compile use – java FirstJavaProgram.java and to execute use – java FirstJavaProgram. When you run second command – java FirstJavaProgram, JVM is created. That’s why it is virtual.
+
+ Lifetime of JVM:          
+When an application starts, a runtime instance is created. When application ends, runtime environment destroyed. If n no. of applications starts on one machine then n no. of runtime instances are created and every application run on its own JVM instance.
+
+Main task of JVM:
+1. Search and locate the required files.
+2. Convert byte code into executable code.
+3. Allocate the memory into ram
+4. Execute the code.
+5. Delete the executable code.

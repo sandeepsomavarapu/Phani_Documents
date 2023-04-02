@@ -1,0 +1,217 @@
+main intraduction:-
+-----------------------
+* wheather class contains main() method or not and whether main() method is declared according to requirement     or not these things won't be checked by compiler.at runtime,jvm is responsible to check these things.
+* at run time if jvm is unable to find required main() method then we will get runtime exception saying  
+  nosuchmethod error.main
+class test
+{
+
+}
+javac test.java;(compilation success)
+java test;(run time exception)
+
+
+{ Error: Main method not found in class main, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application }
+
+                               -----------------------------------------
+                              |PUBLIC STATIC VOID MAIN |
+                              ------------------------------------------
+
+PUBLIC---->TO CALL BY JVM FROM ANYWHERE
+
+STATIC---->WITHOUT EXSISTING OBJECT ALSO JVM HAS TO CALL THIS METHOD NO WAY RELATED TO ANY OBJECT
+
+VOID()---->MAIN() METHOD WONT RETURN ANYTHING TO JVM
+
+MAIN---->THIS IS NAME WHICH IS CONFIGURED INSIDE JVM
+
+STRING[]ARGS--->COMMAND LINE ARGUMENTS
+
+* The above syntax is very strict if we perform any change we will get runtime exception saying NOSUCHMETHOD ERROR.MAIN.
+
+even though the above syntax is very strict the following changes are acceptable.
+---------------------------------------------------------------------------------------------------
+
+*the order of modifiers i not important that is instead of "public static "we can take "static public also.
+
+*we can declare "strign[]"in any acceeptable form.
+main(String[] args)
+
+main(String []args)
+
+main(String args[])
+
+*instead of 'args' we can take any valid java identifier
+*we can replace String[] with var arg parameter
+main(String [] args)==>main(String...args)
+* we can declare main() method with th e following modifiers also.
+      ..final
+      ..synchronized
+      ..strictfp 
+
+
+CASE1:-
+------------
+*overloading of the main method  is possible but jvm will always call String[] argument main method only.
+
+*the other overloaded method method we have to call explicity then it will be executed just a normal mthod call.
+
+                        class test
+                          {
+                            public static void main(String args[])
+                             } 
+                           System.out.println("Strign[]");
+                            }
+                public static void main(int args[])
+                 {
+                    System.out.println("int[]");
+                    }
+}
+
+case2:-
+--------
+class p
+{
+public static void main(String [] args)
+{
+System.out.println("parent main");
+}
+class c extends p
+{
+
+}
+}
+case3:-
+---------
+it seems overriding concept applicable for main method but it is not overriding is it method hiding.
+
+
+class p
+{
+public static void main(String [] args)
+{
+System.out.println("parent main");
+}
+}
+class c extends p
+{
+public static void main(String [] args)
+{
+System.out.println("child main");
+}
+}
+note:-
+======
+*for main method inheritance and overloading concepts are applicable but overriding concept is not applicable instead of overriding method hiding concept is applicable
+
+
+
+variables:
+-----------
+name of a storage location
+
+2 types variables
+
+1)local variables===>if declare a var with in the method 
+
+2)global variables===>declare out side the method and with in the class
+
+
+
+class A
+{
+int c;//data members 4 bytes//global ==>instance,static varib
+int add(int a,int b)//local var//parameters
+{
+c=a+b;
+return c;
+}
+void static sub(int x,int y)//local var
+{
+c=x-y;
+syso(c);
+}
+
+public static void main(String args[])
+{
+A x=new A();//object creation  classname  objname= new constructor();//main memory//jvm
+x.add(10,20);//arguments
+
+A.sub(10,20);
+
+
+}
+}
+
+
+
+
+
+
+
+data types:
+------------ 
+premitive data types
+----------------------
+byte ---> 1 byte--->8 bits--->  byte b=12;//1100
+
+short---->2 byte--->16 bits---->short c=1212;
+
+int--->4 bytes
+
+long---->8 bytes
+
+
+float-->4 bytes===>12.0598f,123.56
+
+double---> 8 bytes===>
+
+
+char--->char a='a'==>96==>2 bytes
+
+boolean-->true,false===>boolean b=true; // 1 false // 0
+
+
+int a=10;
+
+
+non-premitive datatypes:
+
+String s="sandeep";
+
+Array
+
+
+instance and static variables:
+------------------------------
+
+
+
+local-->
+
+global--->
+
+instance====>copy for each and every object()
+
+static===>one time copy per class 
+
+
+class Student
+{
+int sid;
+String sname;
+static String collegename="vbit";
+
+psvmain(S)
+{
+Student s=new Student(1,"xyz");
+
+Student s1=new Student(2,"abc");
+
+Student s2=new Student();
+
+Student s3=new Student();
+}
+}

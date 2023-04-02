@@ -1,0 +1,184 @@
+main intraduction:-
+-----------------------
+* wheather class contains main() method or not and whether main() method is declared according to requirement     or not these things won't be checked by compiler.at runtime,jvm is responsible to check these things.
+* at run time if jvm is unable to find required main() method then we will get runtime exception saying  
+  nosuchmethod error.main
+class test
+{
+
+}
+javac test.java;(compilation success)
+java test;(run time exception)
+
+
+{ Error: Main method not found in class main, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application }
+
+                               -----------------------------------------
+                              |PUBLIC STATIC VOID MAIN |
+                              ------------------------------------------
+
+PUBLIC---->TO CALL BY JVM FROM ANYWHERE
+
+STATIC---->WITHOUT EXSISTING OBJECT ALSO JVM HAS TO CALL THIS METHOD NO WAY RELATED TO ANY OBJECT
+
+VOID()---->MAIN() METHOD WONT RETURN ANYTHING TO JVM
+
+MAIN---->THIS IS NAME WHICH IS CONFIGURED INSIDE JVM
+
+STRING[]ARGS--->COMMAND LINE ARGUMENTS
+
+* The above syntax is very strict if we perform any change we will get runtime exception saying NOSUCHMETHOD ERROR.MAIN.
+
+even though the above syntax is very strict the following changes are acceptable.
+---------------------------------------------------------------------------------------------------
+
+*the order of modifiers i not important that is instead of "public static "we can take "static public also.
+
+*we can declare "strign[]"in any acceeptable form.
+main(String[] args)
+
+main(String []args)
+
+main(String args[])
+
+*instead of 'args' we can take any valid java identifier
+*we can replace String[] with var arg parameter
+main(String [] args)==>main(String...args)
+* we can declare main() method with th e following modifiers also.
+      ..final
+      ..synchronized
+      ..strictfp 
+
+
+CASE1:-
+------------
+*overloading of the main method  is possible but jvm will always call String[] argumentmain method only.
+
+*the other overloaded method method we have to call explicity then it will be executed just a normal mthod call.
+
+                        class test
+                          {
+                            public static void main(String args[])
+                             } 
+                           System.out.println("Strign[]");
+                            }
+                public static void main(int args[])
+                 {
+                    System.out.println("int[]");
+                    }
+}
+
+case2:-
+--------
+class p
+{
+public static void main(String [] args)
+{
+System.out.println("parent main");
+}
+class c extends p
+{
+
+}
+}
+case3:-
+---------
+it seems overriding concept applicable for main method but it is not overriding it is method hiding.
+
+
+class p
+{
+public static void main(String [] args)
+{
+System.out.println("parent main");
+}
+}
+class c extends p
+{
+public static void main(String [] args)
+{
+System.out.println("child main");
+}
+}
+note:-
+======
+*for main method inheritance and overloading concepts are applicable but overriding concept is not applicable instead of overriding method hiding concept is applicable
+
+
+
+
+
+* if the class final we cant extend that class
+
+*if the class is public we  can access any where ....
+
+*if the class is abstract we cant create object for that class. 
+
+
+
+the only applicable modifiers for top level classes are...
+
+we can apply public ,<default>,final,abstract,strctfp at top level classes.(5)
+
+we can apply private ,protected,static along with above five for inner classes.(8)
+
+**every method present inside  final class s always final by default,but every variable present inside final class need not be final.
+
+
+abstract final void m1();
+
+CE:illigal combination of abstract.
+
+
+
+
+
+
+**A class can extend only one class at a time.
+**A interface can extend any number of interface simutaniously.
+
+
+** a class can implement any muber of interfaces simutaniously .
+* a class can  extend another class and implements  any number  interfaces simutaniously. 
+
+
+
+
+
+
+
+**whih of the following is valid
+
+1)a class can extends any number of classes at a time.
+2)a class can implement only on interface  at a time.
+3)an interface can extend only one interface at a time.
+4)an interface can implement any number of interfaces simultaniously.
+5)a class can extend class or can implement a n interface but not both simutaniously.
+6)none of the above
+
+
+
+
+X implements Y extends Z
+
+CE:-because we have to taake extends first follwed by interface.
+
+
+why interface methods bydefault  public.
+
+A:-to make this method available to every implementation class. 
+
+why abstract
+
+A:-implementation class is responcible for to provide implementation.
+
+why interface variable is static public and final.
+
+A:-static :-without exsisting object implementation class can access this variable.
+A:final:-if one implementation class changes values then remaining implementation classes will be effected to restrict this every interrface variable is always final.
+
+
+**for interface variables compusary we should perform intialization at the time declaration otherwise we will get compile time error.
+inside implementation class we can access interface variables but  we cant  modify values

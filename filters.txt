@@ -1,0 +1,9 @@
+FilterChain.dofilter(req,res)
+
+when ever we call this dofilter our execution will go to servlet.
+
+* before dofilter if we write any operations ,that operations will execute before servlet,and if we write any operations after dofilter  they will execute after servlet.
+
+**SO filter will execute two times 
+1)before servlet execution
+2)after servlet execution 

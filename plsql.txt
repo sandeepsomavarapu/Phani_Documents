@@ -1,0 +1,53 @@
+plsql ,it is an upgraded language to sql,in sql we cant achieve complex requirements using simple sql statements why beacause we are using plsql here .
+
+ex:
+1)update salaries of employees by 10000
+
+    To achieve  this requirement simply we can write like 
+
+SQL:update emp set sal=sal+10000;
+ 
+in single sql  query we can achieve above requirement ,but our requirement is like
+
+update salaries of employees based on designation
+
+yes  we can achieve but we need to write number querys to number of designations,it is enough for upto 3 r 4 designations but if company had 100 designations at that time we need to write 100 sql querys it is lengthy process and in the network trips are increased due to number trips network traffic issue occur,to avoid this in plsql block we can write by using conditional statements we need to write number querys but we are writing in a "BLOCK" so number of trips is only one for one block,Block  is combination of sql and plsql statements 
+
+what is block ?
+
+a set of sql and plsql statements  are grouped together as a single unit called as block 
+
+block consists three sections 
+
+1)decaration section
+
+2)execution section
+
+3)exception section
+
+in the three above sections execution section is mandatory reaing are not mandatory  
+
+syntax of normal plsql block
+
+ declare 
+
+     variable
+      constants
+
+ begin
+
+
+        executional statements
+         (sql/plsql statements)
+
+ end;
+
+exception
+
+  the debugging statement of plsql block is 
+
+DBMS_OUTPUT.PUT_LINE();
+ 
+ *DBMS_OUTPUT : Package
+
+ *PUT_LINE : Procedure

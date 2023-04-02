@@ -1,0 +1,195 @@
+Student s=new Student("durga",101);
+
+** new operater is used to create object .(object created and two instance variables created with default values name string -"null",roll no int -"0").
+
+**constructer is used to  perform intialization of an object .( after creation of object Constructer will be executed).
+
+
+Example:-
+--------------
+class Student 
+{
+String name;
+int rollno;
+Student (String name,int rollno)
+{
+this.name=name;
+this.rollno=rollno;
+}
+}
+
+**when ever we are creating child class object parent constructer will be executed ,but parent object wont be created.
+
+
+class P
+{
+p()
+{
+sop(this.hashCode());
+}
+}
+class C extends P
+{
+c()
+{
+sop(this.hashCode());
+}
+class Test
+{
+psvm(String args[])
+{
+C c=new C();
+sop(c.hashCode());
+}
+
+}
+
+**in the above example wee just created only child class object but both parent and child constructer executed for that child 
+
+
+
+***********************************************************************************************************************
+
+
+Note:-
+========
+when ever we creating child class objects automatically parent constructer will be executed to perform initialization for the instance varible which are inherting from parent.  
+
+
+example:-
+----------------
+
+
+
+class person
+{
+String name;
+int age;
+Person(String name,int age)
+{
+this.name=name;
+this.age=age;
+}
+}
+class Student extends Person
+{
+int rollno;
+int marks;
+Student(String name,int age,int rollno,int marks)
+{
+super(name ,age);
+this.rollno=rollno
+this.marks=marks;
+psvm(String args)
+{
+Student s=new Student("sandeep",24,101,90);
+}
+}
+
+
+name:sandeep   }
+age:24                  } ===>this initialization performed by parent constructor
+rollno:101
+marks:90           } ===>this initialization performed by child constructor
+
+**in the above program both parent ,child constructers executed for child object initalization only .
+
+
+
+*******************************************************************************************
+
+
+with out constructer in abstract class:-
+-------------------------------------------------------------------
+
+*
+example:
+--------------
+abstract class Person
+{
+Sring name;
+int age;
+}
+}
+class  Student extends Person
+{
+int roll no;
+int marks;
+Student (String name,int age,int rollno,int marks)
+{
+this.name=name;
+this.age=age;
+this.rollno=rollno;
+this.marks=marks;
+psvm(String args[])
+{
+Student s=new Student("sandeep",22,1,100);
+}
+}
+class Teacher extends Person
+{
+double salary;
+String subject;
+Teacher (String name,int age,double salary,String subject)
+{
+this.name=name;
+this.age=age;
+this.salary=salary;
+this.subject=subject;
+}
+
+
+
+**
+Q)    any way we create object for abstract class either diretly or indirectly ,but abstract class can contain constructer what is the need ? 
+A:-the main objective constructer  is to perform intialization for the instance variable which are inherting from abstract class to the child class
+*when ever we are creating child class objects automatically abstract class constructer will be executed to perform initialiation for the instance  variable which are inheriting from abstract class(code reusability).
+
+
+
+******************************************************************************************************
+
+**the main purpose of constructer is to pefform initilization of an object i.e, to perform intialization instance variable .
+
+**abstract class can contain instance variables which are required for child class object to perform intializaiton for these instance variables constructer concept is required for abstract classes.
+
+**every variable present inside interface is always public static final weather wee are declaing or not,hense there is no chance of exsisting instance varibales inside interface, because this constructer concept not required for interfaces.
+
+*******************************************************************************************************
+
+
+**if every thing is abstract it is highly recommended to go for interface but not abstract class 
+
+**wee can replace interface with abstract class but it is not a good programming practice(this someting like recruting IAS officer for sweping  purpose )
+
+
+interface x
+{
+
+}
+**while implementing interface wee can extend any other class  annd hense we wont miss inheritance benifit.
+
+abstract class x
+{
+
+
+}
+
+class Test extends A implements X
+{
+
+//invalid
+}
+
+**while extending abstract class we cant extend any other class and hense we are missing inheritance benifit.
+
+class Test extends A implements X
+{
+
+//valid;
+}
+
+* in this case object creation is not costly 
+
+
+

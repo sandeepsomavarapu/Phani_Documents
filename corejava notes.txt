@@ -1,0 +1,596 @@
+class Simple{  
+    public static void main(String args[]){  
+     System.out.println("Hello Java");  
+    }  
+}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+next ?? prev
+How to set path in Java
+
+How to set path of JDK in Windows OS
+Setting Temporary Path of JDK
+Setting Permanent Path of JDK
+How to set path of JDK in Linux OS
+The path is required to be set for using tools such as javac, java etc.
+
+If you are saving the java source file inside the jdk/bin directory, path is not required to be set because all the tools will be available in the current directory.
+
+But If you are having your java file outside the jdk/bin folder, it is necessary to set path of JDK.
+
+There are 2 ways to set java path:
+
+temporary
+permanent
+1) How to set Temporary Path of JDK in Windows
+
+To set the temporary path of JDK, you need to follow following steps:
+
+Open command prompt
+copy the path of jdk/bin directory
+write in command prompt: set path=copied_path
+For Example:
+
+set path=C:\Program Files\Java\jdk1.6.0_23\bin
+Let's see it in the figure given below:
+
+how to set path in java
+2) How to set Permanent Path of JDK in Windows
+
+For setting the permanent path of JDK, you need to follow these steps:
+
+Go to MyComputer properties -> advanced tab -> environment variables -> new tab of user variable -> write path in variable name -> write path of bin folder in variable value -> ok -> ok -> ok
+For Example:
+
+1)Go to MyComputer properties
+how to set path in java
+2)click on advanced tab
+how to set path in java
+3)click on environment variables
+how to set path in java 
+4)click on new tab of user variables
+how to set path in java
+5)write path in variable name
+how to set path in java
+6)Copy the path of bin folder
+how to set path in java
+7)paste path of bin folder in variable value
+how to set path in java
+8)click on ok button
+how to set path in java
+9)click on ok button
+how to set path in java
+Now your permanent path is set.You can now execute any program of java from any drive.
+
+Setting Java Path in Linux OS
+
+Setting the path in Linux OS is same as setting the path in the Windows OS. But here we use export tool rather than set. Let's see how to set path in Linux OS:
+
+export PATH=$PATH:/home/jdk1.6.01/bin/
+Here, we have installed the JDK in the home directory under Root (/home).
+
+
+
+
+1) Classloader
+
+Classloader is a subsystem of JVM that is used to load class files.
+
+2) Class(Method) Area
+
+Class(Method) Area stores per-class structures such as the runtime constant pool, field and method data, the code for methods.
+
+3) Heap
+
+It is the runtime data area in which objects are allocated.
+
+4) Stack
+
+Java Stack stores frames.It holds local variables and partial results, and plays a part in method invocation and return.
+Each thread has a private JVM stack, created at the same time as thread.
+A new frame is created each time a method is invoked. A frame is destroyed when its method invocation completes.
+5) Program Counter Register
+
+PC (program counter) register. It contains the address of the Java virtual machine instruction currently being executed.
+
+6) Native Method Stack
+
+It contains all the native methods used in the application.
+
+7) Execution Engine
+
+It contains:
+1) A virtual processor
+2) Interpreter: Read bytecode stream then execute the instructions.
+3) Just-In-Time(JIT) compiler: It is used to improve the performance.JIT compiles parts of the byte code that have similar functionality at the same time, and hence reduces the amount of time needed for compilation.Here the term ?compiler? refers to a translator from the instruction set of a Java virtual machine (JVM) to the instruction set of a specific CPU.
+
+
+
+
+
+Example to understand the types of variables
+
+class A{  
+int data=50;//instance variable  
+static int m=100;//static variable  
+void method(){  
+int n=90;//local variable  
+}  
+}//end of class
+
+
+
+
+
+ypes of Variable
+
+There are three types of variables in java
+local variable
+instance variable
+static variable
+types of variable
+Local Variable
+
+A variable that is declared inside the method is called local variable.
+Instance Variable
+
+A variable that is declared inside the class but outside the method is called instance variable . It is not declared as static.
+Static variable
+
+A variable that is declared as static is called static variable. It cannot be local.
+
+We will have detailed learning of these variables in next chapters.
+
+
+
+
+
+
+
+Operators	Precedence
+postfix	expr++ expr--
+unary	++expr --expr +expr -expr ~ !
+multiplicative	* / %
+additive	+ -
+shift	<< >> >>>
+relational	< > <= >= instanceof
+equality	== !=
+bitwise AND	&
+bitwise exclusive OR	^
+bitwise inclusive OR	|
+logical AND	&&
+logical OR	||
+ternary	? :
+assignment	= += -= *= /= %= &= ^= |= <<= >>= >>>=
+
+
+
+
+Simple Example of Object and Class
+
+In this example, we have created a Student class that have two data members id and name. We are creating the object of the Student class by new keyword and printing the objects value.
+
+class Student1{  
+ int id;//data member (also instance variable)  
+ String name;//data member(also instance variable)  
+  
+ public static void main(String args[]){  
+  Student1 s1=new Student1();//creating an object of Student  
+  System.out.println(s1.id);  
+  System.out.println(s1.name);  
+ }  
+}  
+
+
+
+
+
+
+class Student2{  
+ int rollno;  
+ String name;  
+  
+ void insertRecord(int r, String n){  //method  
+  rollno=r;  
+  name=n;  
+ }  
+  
+ void displayInformation(){System.out.println(rollno+" "+name);}//method  
+  
+ public static void main(String args[]){  
+  Student2 s1=new Student2();  
+  Student2 s2=new Student2();  
+  
+  s1.insertRecord(111,"Karan");  
+  s2.insertRecord(222,"Aryan");  
+  
+  s1.displayInformation();  
+  s2.displayInformation();  
+  
+ }  
+}  
+
+
+
+
+
+
+
+
+class Rectangle{  
+ int length;  
+ int width;  
+  
+ void insert(int l,int w){  
+  length=l;  
+  width=w;  
+ }  
+  
+ void calculateArea(){System.out.println(length*width);}  
+  
+ public static void main(String args[]){  
+  Rectangle r1=new Rectangle();  
+  Rectangle r2=new Rectangle();  
+  
+  r1.insert(11,5);  
+  r2.insert(3,15);  
+  
+  r1.calculateArea();  
+  r2.calculateArea();  
+}  
+}  
+
+
+Annonymous object
+
+Annonymous simply means nameless.An object that have no reference is known as annonymous object.
+If you have to use an object only once, annonymous object is a good approach.
+
+
+class Calculation{  
+  
+ void fact(int  n){  
+  int fact=1;  
+  for(int i=1;i<=n;i++){  
+   fact=fact*i;  
+  }  
+ System.out.println("factorial is "+fact);  
+}  
+  
+public static void main(String args[]){  
+ new Calculation().fact(5);//calling method with annonymous object  
+}  
+}  
+
+
+
+
+
+
+Creating multiple objects by one type only
+
+We can create multiple objects by one type only as we do in case of primitives.
+Rectangle r1=new Rectangle(),r2=new Rectangle();//creating two objects  
+Let's see the example:
+class Rectangle{  
+ int length;  
+ int width;  
+  
+ void insert(int l,int w){  
+  length=l;  
+  width=w;  
+ }  
+  
+ void calculateArea(){System.out.println(length*width);}  
+  
+ public static void main(String args[]){  
+  Rectangle r1=new Rectangle(),r2=new Rectangle();//creating two objects  
+    
+  r1.insert(11,5);  
+  r2.insert(3,15);  
+  
+  r1.calculateArea();  
+  r2.calculateArea();  
+}  
+}  
+
+
+Advantage of method overloading?
+
+Method overloading increases the readability of the program.
+
+Different ways to overload the method
+
+There are two ways to overload the method in java
+By changing number of arguments
+By changing the data type
+
+
+
+
+Que) Why Method Overloaing is not possible by changing the return type of method?
+
+In java, method overloading is not possible by changing the return type of the method because there may occur ambiguity. Let's see how ambiguity may occur:
+
+because there was problem:
+
+class Calculation3{  
+  int sum(int a,int b){System.out.println(a+b);}  
+  double sum(int a,int b){System.out.println(a+b);}  
+  
+  public static void main(String args[]){  
+  Calculation3 obj=new Calculation3();  
+  int result=obj.sum(20,20); //Compile Time Error  
+  
+  }  
+}  
+
+
+
+
+
+Constructor in Java
+
+Types of constructors
+Default Constructor
+Parameterized Constructor
+Constructor Overloading
+Does constructor return any value
+Copying the values of one object into another
+Does constructor perform other task instead initialization
+Constructor in java is a special type of method that is used to initialize the object.
+
+Java constructor is invoked at the time of object creation. It constructs the values i.e. provides data for the object that is why it is known as constructor.
+
+Rules for creating java constructor
+
+There are basically two rules defined for the constructor.
+
+Constructor name must be same as its class name
+Constructor must have no explicit return type
+Types of java constructors
+
+There are two types of constructors:
+
+Default constructor (no-arg constructor)
+Parameterized constructor
+java constructor
+Java Default Constructor
+
+A constructor that have no parameter is known as default constructor.
+Syntax of default constructor:
+
+<class_name>(){}  
+Example of default constructor
+
+In this example, we are creating the no-arg constructor in the Bike class. It will be invoked at the time of object creation.
+class Bike1{  
+Bike1(){System.out.println("Bike is created");}  
+public static void main(String args[]){  
+Bike1 b=new Bike1();  
+}  
+}  
+Test it Now
+Output:
+
+Bike is created
+Rule: If there is no constructor in a class, compiler automatically creates a default constructor.
+
+default constructor
+Q) What is the purpose of default constructor?
+
+Default constructor provides the default values to the object like 0, null etc. depending on the type.
+
+Example of default constructor that displays the default values
+
+class Student3{  
+int id;  
+String name;  
+  
+void display(){System.out.println(id+" "+name);}  
+  
+public static void main(String args[]){  
+Student3 s1=new Student3();  
+Student3 s2=new Student3();  
+s1.display();  
+s2.display();  
+}  
+}  
+Test it Now
+Output:
+
+0 null
+0 null
+Explanation:In the above class,you are not creating any constructor so compiler provides you a default constructor.Here 0 and null values are provided by default constructor.
+
+Java parameterized constructor
+
+A constructor that have parameters is known as parameterized constructor.
+Why use parameterized constructor?
+
+Parameterized constructor is used to provide different values to the distinct objects.
+Example of parameterized constructor
+
+In this example, we have created the constructor of Student class that have two parameters. We can have any number of parameters in the constructor.
+class Student4{  
+    int id;  
+    String name;  
+      
+    Student4(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+    void display(){System.out.println(id+" "+name);}  
+   
+    public static void main(String args[]){  
+    Student4 s1 = new Student4(111,"Karan");  
+    Student4 s2 = new Student4(222,"Aryan");  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+Test it Now
+Output:
+
+111 Karan
+222 Aryan
+Constructor Overloading in Java
+
+Constructor overloading is a technique in Java in which a class can have any number of constructors that differ in parameter lists.The compiler differentiates these constructors by taking into account the number of parameters in the list and their type.
+Example of Constructor Overloading
+
+class Student5{  
+    int id;  
+    String name;  
+    int age;  
+    Student5(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+    Student5(int i,String n,int a){  
+    id = i;  
+    name = n;  
+    age=a;  
+    }  
+    void display(){System.out.println(id+" "+name+" "+age);}  
+   
+    public static void main(String args[]){  
+    Student5 s1 = new Student5(111,"Karan");  
+    Student5 s2 = new Student5(222,"Aryan",25);  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+Test it Now
+Output:
+
+111 Karan 0
+222 Aryan 25
+Difference between constructor and method in java
+
+There are many differences between constructors and methods. They are given below.
+
+Java Constructor	Java Method
+Constructor is used to initialize the state of an object.	Method is used to expose behaviour of an object.
+Constructor must not have return type.	Method must have return type.
+Constructor is invoked implicitly.	Method is invoked explicitly.
+The java compiler provides a default constructor if you don't have any constructor.	Method is not provided by compiler in any case.
+Constructor name must be same as the class name.	Method name may or may not be same as class name.
+Java Copy Constructor
+
+There is no copy constructor in java. But, we can copy the values of one object to another like copy constructor in C++.
+
+There are many ways to copy the values of one object into another in java. They are:
+
+By constructor
+By assigning the values of one object into another
+By clone() method of Object class
+In this example, we are going to copy the values of one object into another using java constructor.
+
+class Student6{  
+    int id;  
+    String name;  
+    Student6(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+      
+    Student6(Student6 s){  
+    id = s.id;  
+    name =s.name;  
+    }  
+    void display(){System.out.println(id+" "+name);}  
+   
+    public static void main(String args[]){  
+    Student6 s1 = new Student6(111,"Karan");  
+    Student6 s2 = new Student6(s1);  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+Test it Now
+Output:
+
+111 Karan
+111 Karan
+Copying values without constructor
+
+We can copy the values of one object into another by assigning the objects values to another object. In this case, there is no need to create the constructor.
+
+class Student7{  
+    int id;  
+    String name;  
+    Student7(int i,String n){  
+    id = i;  
+    name = n;  
+    }  
+    Student7(){}  
+    void display(){System.out.println(id+" "+name);}  
+   
+    public static void main(String args[]){  
+    Student7 s1 = new Student7(111,"Karan");  
+    Student7 s2 = new Student7();  
+    s2.id=s1.id;  
+    s2.name=s1.name;  
+    s1.display();  
+    s2.display();  
+   }  
+}  
+Test it Now
+Output:
+
+111 Karan
+111 Karan
+Q) Does constructor return any value?
+
+Ans:yes, that is current class instance (You cannot use return type yet it returns a value).
+
+Can constructor perform other tasks instead of initialization?
+
+Yes, like object creation, starting a thread, calling method etc. You can perform any operation in the constructor as you perform in the method.
+
+1)Example of Method Overloading by changing the no. of arguments
+
+In this example, we have created two overloaded methods, first sum method performs addition of two numbers and second sum method performs addition of three numbers.
+
+class Calculation{  
+  void sum(int a,int b){System.out.println(a+b);}  
+  void sum(int a,int b,int c){System.out.println(a+b+c);}  
+  
+  public static void main(String args[]){  
+  Calculation obj=new Calculation();  
+  obj.sum(10,10,10);  
+  obj.sum(20,20);  
+  
+  }  
+} 
+
+Can we overload main() method?
+
+Yes, by method overloading. You can have any number of main methods in a class by method overloading. Let's see the simple example:
+
+
+
+class Overloading1{  
+  public static void main(int a){  
+  System.out.println(a);  
+  }  
+    
+  public static void main(String args[]){  
+  System.out.println("main() method invoked");  
+  main(10);  
+  }  
+}  
+
+

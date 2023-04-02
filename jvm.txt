@@ -1,0 +1,52 @@
+		jdk,jvm,jre
+
+* jdk provides environment to develop and run the java prgrm.
+
+*jre provides the environment for only run the prgrm.
+
+*jvm is interpreter which is responcible to run java porgrm line by line.
+
+*with in the jdk we have JRE and development tools and with in the jre ,jvm and library  classes
+
+
+
+* here we have java source file (.java file) the compiler will  ganarates .class file
+
+*this .class file we have to give input to the jvm,here jvm is responcible for load and execute
+  that .class file.
+* .class file is input to the class loader subsystem
+*in CLSS 3 parts   LOADING ,LINKING,INTIALIZATION
+* for loading ,linking ,intializing some memory will be required 
+SO there are some diff memory areas are there...
+
+
+
+
+in loading    cl
+bootstrop     cl(all core java api classes loaded by BCL(rt.jar) )
+extension     cl(the classes present inside ext floder --->jdk,jre,lib,ext)
+application  cl(load clses from apcn level cls path environment cls variable)
+
+
+linking 
+verifier(byte code)
+prepare
+resolve
+
+1}method area  (here class level data will be there and static variables )
+2}heap area     (object data will be there/instance variable )  
+3} stack  area   (for every thread run time stack will be created(t1,t2,t3..tn) ,stack frame ,local v)
+4}pc register    (it holds addr of next execution)
+5} native method  area(to hold native method info)
+
+jit is only repeated reqired  methods 
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+ PROCEDURE ORIENTED PROGRAMMING(POP) :The language whrere the programmer uses 
+functions or procedure to perform a particular task is known as Procedure Oriented language. 
+
+Problems with Procedure Oriented Approach:
+1) Here the main focus is on making functions for performing task which means whenever he wants to  
+perform a new task, he would  be writing a set of functions.
+
+2) There will be no reuseability of previous functions in other programs.
+
+3) If the code of the software exceeds 10,000 lines of code and before reaching 1,00,000, suddenly there
+ may be a chance that programmer could lost control over the program.
+
+4) The other problem with (Procedure Oriented Approach) is that, programming is done in one place and
+ its use is in another place like in "SPACE" which is considered to be unnatural for human beings.
+
+NEED TO DEVELOP A NEW LANGUAGE:
+
+	Due to the above problems with POP, there is a need to 
+replace this language and this new language is nothing but your 
+object oriented programming system.
+
+OBJECT ORIENTED PROGRAMMING SYSTEM(OOPS):
+OOPS: Object oriented programming approach is a programming methodology to design computer 
+programs using classes and objects.
+
+Features of OOPS are:
+
+1) Class/Object: A group of objects exhibiting same behavior like variables and methods come under
+ the same group called a class.
+A class represents a group name given to several objects.
+For example, take the person class where Ahmed,Ali,Sami are the objects. So person is the class name
+ with four objects.
+
+Example for creating an object:
+
+Box mybox=new Box();
+
+The above mybox is an object of type Box class.
+The NEW operator dynamically allocates memory for an object and returns a reference to it.
+This reference is the address in memory of the object allocated by new.
+
+Suppose, if we write 
+
+1) Box mybox;   //declare reference to object
+2) Box mybox=new Box();  //allocate a Box object
+
+The first line declares mybox as a reference to an object of type Box.
+After this line executes,mybox contains the value null,which indicates
+that it does not yet point to an actual object. Any attempt to use
+mybox at this point will result in a compile-time error. 
+
+The next line allocates an actual object and assigns a reference to it
+to mybox.
+
+
+2) Encapsulation: It is a mechanism where the data (variables) and code (methods) that act on the data 
+will bind together. 
+For example, take a class example, here we write variables and methods inside the class.Thus, class is
+ binding them together. So class is an example of encapsulation.
+
+3) Abstraction: There may be a lot of data, a class contains and the user does not need the entire data. 
+The user requires only some part of the some part of the available data. In this case, we can hide the 
+unnecessary data from the user and expose only that data that is of interest to the user. This is called 
+Abstraction.
+
+4) Inheritance: The process of creating the new class from the existing class, the new class will acquire
+ all the features of the existing class, this is called 'Inheritance'. 
+Example: parents where children acquire all the features and add their own features.
+
+5) Polymorphism: The 'polymorphism' word came from the Greek word 'Poly' means many and
+ 'morphos' means forms. Thus, polymorphism represents the ability to assume several different forms.

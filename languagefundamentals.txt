@@ -1,0 +1,658 @@
+language  fundamentals:-
+===================
+identifiers
+reserved words(keyword)
+datatypes
+arrays
+types of variables
+var-arg methods
+main method
+command line arguments
+java coding standards.
+
+**************************************
+
+1)identifiers:-
+-----------------
+*a name in java program is called identifier.
+
+*which can be used for identification purpose .
+
+* it can be method name or variable name class name or label name .
+
+class test
+{
+psvmain(String []args)
+{
+int x=10;
+}
+}
+
+5 identifiers are there in above program.
+
+**String is predifined class name in java.
+
+** name of the array.
+
+rules for java identifiers :-
+---------------------------------
+**the only allowed charecters in java, identifiers are 
+ 
+                a to z
+                A to Z
+                0 to 9
+                   $
+                    _
+
+if we are using any other charecter we will get compile time error
+
+ex:- 1)total_number (valid)
+      
+      2)total#  (invalid)
+    
+**identifiers cant start with digit 
+
+3)total123(valid)
+4)123total(invalid)
+
+
+** java identifiers are case sensitive offcourse java lang itselt treated as case sensitive p.lang
+class test
+{
+int number=10;
+int Number=20;
+int NUMBER=30;
+} 
+
+**there is no length limit for java identifiers but it is not recommended to take to legthy identifiers
+
+**we cant use reserved words as identifiers 
+
+int x=10;(valid)
+int if=20;(invalid)
+
+** all predifined classes and interfaces names we can use as identifiers
+
+Ex1:-class Test
+{
+psvmain(String args[])
+{
+int String=888;
+sopln(String);
+}
+}o/p:-888
+
+Ex2:-
+class Test
+{
+psvmain(String args[])
+{
+int Runnable=999;
+sopln(Runnable);
+}
+}
+o/p:-999
+
+
+**even though it is valid but it is not a good prograing practise because it reduses readability and creates confusion.
+
+Q) which of the following are valid java identifiers ?
+
+    total_number (valid)
+    total#          (invalid)
+    123total      (invalid)
+     total123   (valid) 
+     ca$h         (valid)
+     _$_$_$_$_$_(valid)
+   all@hands    (invalid)
+   java2share (valid)
+   Integer  (valid)
+   Int      (valid)
+   int      (invalid)
+
+******************************************************
+
+Reserved words:-
+============
+
+**in java some words reserverd to represent some meaning  or functionality such type words are called reserved words.
+
+                                                                           
+                                                                                 53 reserved words			
+                                                                                           |
+                                     -----------------------------------------------------------------------------------------
+                                     |                                                                                                          |
+                                keywords(50)                                                                         reserved literals(3)
+                                |                                                                                                                |
+                    --------------------                                                                                               --------------------
+                   |                        |                                                                                             |             |               |
+       used keywords(48)         un used keywords(2)                                         true        false           null
+      |          |           |                             |           |
+    if        else........                            goto     const
+
+
+keywords for data types:-
+-------------------------------
+
+ (8)
+byte 
+short 
+int 
+long 
+float 
+double
+boolean
+char
+
+keywords for flow control
+----------------------------------
+
+ (11)   
+   if
+  else
+  switch
+  case
+  default 
+  while
+  do
+  for
+  break 
+  continue
+  return
+
+keywords for modifiers:-
+------------------------------
+  
+   (11)
+public 
+private
+protected
+static
+final
+abstract
+synchronized
+native
+strictfp(1.2)
+transient
+vloatile
+
+keywords for exception handling:-
+-----------------------------------------
+ (6)
+try
+catch
+finally
+throw
+throws
+assert(1.4)
+
+class related keywords:-
+-----------------------------
+   (6)
+class
+interface
+extends
+implements
+package
+import
+
+object related keywords:-
+-------------------------------
+  (4)
+new
+instanceof
+super
+this
+
+void return type keyword:-
+--------------------------------
+''void''
+
+**in java return tpe is mandatory if a method wont return anything then we have to declare that method with void return type
+
+*** but in C lang return type is optional and default return type is "int"
+
+unused keywords:-
+---------------------
+ (2)
+goto
+const
+
+ 
+goto:-
+
+usage of goto created  several problems in old languages and hense sun people baned this keyword in java
+
+const:-
+
+use final instead of const
+
+**goto and const are unused keywords and if we are trying to use we will get compile time error .
+
+Reserved literals:-
+----------------------
+ (3)    
+ true   |
+ false  | ---- values for boolean data type
+          |
+ 
+null-----default value for object referrence
+
+
+enum keyword(1.5):-
+----------------------
+ *we can use enum to define a group of named constants 
+
+enum moth
+{
+JAN,FEB,...DEC
+}
+Enum bear
+{
+kf,ko,rc,fo....
+}
+
+conclusions:-
+-----------------
+**All 53 reserved words in java contains only lower case alphabet sysmbols.
+
+**in java we have only new keyword and there is no delete keyword because distruction use less objects is the responcibility of garbage collecter.
+
+
+
+                                                                                              DATA TYPES
+                                                                                               ***************
+** In java every variable and every expression has some type each and every data type is clearly defined every assignment should be checked by compiler for type compatabilty .
+
+*Because of above reasons we can conclude java language is strongly typed programming language.
+
+
+                                                     
+                                                                      ********************************************************************************
+                                                                      ********************************************************************************
+                      
+                                                                                                               premitive data types
+                                                          ---------------------------------------------------------------------------------------------------------------
+                                                          |                                                                                                                                   |
+                                       numeric data types                                                                                                   non -numeric datatypes                     
+                                      |                           |                                                                                                                    |
+                            integral DT         floating pointDT                                                                                                        |
+                               |                                    |-->float                                                                                                       |-->char
+                               |-->byte                         |                                                                                                                  |
+                               |                                    |-->double                                                                                                   |-->boolean
+                               |-->short
+                               |
+                               |-->int
+                               |
+                               |-->long
+                               |
+
+
+**except boolean and char remaining DT are considered as signed DT because we can represent both positive and negitive numbers.
+
+
+Byte:-
+------
+size--1byte(8bits)
+
+max_value--   +127
+min_value--    -128
+range:       -128 to 127
+ 
+
+short:-
+--------
+*this is the most rarly used DT in java
+
+size--2bytes
+
+range--    -32768 to 32767
+
+ex:-
+
+short s=32767;
+short s=32768;//invalid  CE :-plp
+short s=10.5;//invalid  CE :-plp
+short s=true;//incmpatable error
+
+
+**int:-
+======    
+the most commnly used DT is int
+
+size :4 bytes
+
+range:  -2147483648 to 2147483647
+
+ex:-
+int x=2147483647;
+int x=2147483648;//invalid  CE :-integer number two large
+int x=2147483648;//invalid  CE :-plp
+int c=true; //invalid  CE :- incompatable err
+
+long:-
+====
+sometimes int may not enough to hold big values then we should go for long type.
+
+
+ex:-the number of charecter s present in a big file may exceeds int range hense the return type" length ()"  is long but not int.
+
+
+long l=f.length();
+
+size:- 8 bytes(64 bits)
+range:- (-2 power 63) to( 2 power 63)-1
+
+**All the above datatypes(byte,short,int,long)meant for representing integral values if we want represent floating point values then we should go for floating point datatypes.
+
+Floating point DT;-
+=============
+ float DT:-
+---------------
+* if we want  5 to 6 decimal places of accuracy then we should go for 
+*float follows single presicion.
+*size 4 bytes.
+
+double DT:-
+---------------
+* if we want  14 to 15 decimal places of accuracy then we should go for doble .
+* doble follows doble presicion.
+* size is 8 bytes.
+
+
+Boolean:-
+-----------
+size(not applicable)
+range(not applicable(but allowed values are true or false)).
+
+boolean b=true;
+boolean b=0;//invalid  CE:- incompatable types
+boolean b=True;// CE:-cant find symbol symbol:varable true location class test
+boolean b="True";//CE:-incompatable types found: j.l.String required:-boolean
+
+Ex:-
+----
+int x=0;
+if(x)
+sopln("hello");
+else
+sopln("hi");
+
+CE:-incompatable types
+ found:int
+required:boolean
+
+
+Ex:-
+while(1)
+sopln("hello");
+
+CE:-incompatable types
+ found:int
+required:boolean
+
+Char:-
+=====
+*Old languages(c,c++)are ascii code based.and the number of allowed different ascii code charecters are (<=256)to represent these 256 charcters are enough hence the size of char in old lang is 1 byte.
+but java is "unicode based" and the number of different unicode charecters are >256and <=65536
+*To represent these many charecters 8 bits maynot enough compulsary we sholud go for 16 bits hence the size of char in java is 2 bytes 
+range: 0 to 65535
+
+Summary of java premitive datadypes:-
+============================
+DT                               size(bytes)                    wrapperclass                defaultvalues               
+byte                                1                                    Byte                                 0
+short                               2                                    Short                               0
+ int                                  4                                    Integer                             0
+long                                8                                    Long                                0
+float                                4                                    Float                                 0.0
+double                             8                                   Double                             0.0
+boolean                           NA                                 Boolean                           false
+char                                 2                                   Charecter                            0(represents space charecter)
+ 
+*****NULL IS THE DEFAULT VALUE FOR OBJECT REFFERENCE AND WE CANT APPLY FOR PREMITIVES IF WE ARE TRYING TO USE FOR PRIMITIVE THEN WE WILL GET COMPILE TIME ERROR.
+EX:-
+	char ch=niull;//CE:-incompatable types 
+
+
+ARRAY:-
+========
+**an array is an idexed collection of fixed no of  homogeneous data elements.
+
+*the main advantage of arrays is we can represent huge number of values by using single variable  so that readability of the code will be improved ,but the main dis advantage of arrays  is fixed in size I.e once we create an array there is no chance of increasing or decreasing our requirement hence to use arrays concept compulsary we shoud know the size in advance,which may not possible always.
+
+Array declaration:-
+=============
+one dimentional array declaration:-
+------------------------------------------
+1)int[] x;         recommended because name is clearly separated from type
+2)int   []x;
+3)int x[];
+
+**At the time of declaration we cant specify the size otherwise we wil get compile time error.
+
+      int[6]  x;//invaalid
+      int[]    x;//valid
+
+2-dimentional array declaration:-
+---------------------------------------
+int[][]   x;
+int    [][]x;
+int  x[][];
+int[]  []x;
+int[]   x[];
+int   []x[]; 
+***all are valid
+
+
+*int[]  []a,[]b,[]c;  
+upto a valid,b and c are not valid.
+
+3-dimentional array:-
+------------------------
+int[][][]  a;
+int [][][]a;
+int a[][][];
+int[]   [][]a;
+int[]  a[][];
+int[]  []a[];
+int[][]  []a;
+int[][]   a[];
+int    [][]a[];
+int   []a[][];
+
+Array  creation:-
+--------------------
+
+**every array in java is an object only hence we can create array by using new operater
+
+* int[][]   a=new int[3];/a is an refference variable of object.
+
+**for every arraytype corresponding classes are available and these classes are part of java language and not available to the programer level.
+sopln(a.getClass().getName());
+
+o/p:-       [I
+byte        [B
+boolean   [Z
+
+
+1)at the time array creation compulsary we should specify the size  otherwise we will get compile time error
+
+int[] x=new int[];//invalid
+int[] x=new int[3];//valid
+
+
+
+Class:-
+==========
+class is collection of datamembers and member methods 
+
+**we can compile a java program with out main method but ,we cant compile  java program with out class, and we will get compile time error like expexcted class or enum or interface...
+
+**we cant run our java program with out main method we will get exception at run time like  could not found or load main  
+
+**we can compile empty java program  but we cant run..
+
+
+
+*a java program contains any number classes but  at most one class can be declaredas public if there 
+is a public class then name of the program and name of the public class must be matched otherwise we will get 
+compile time error. 
+
+ex:-
+-----
+class a
+{}
+class b
+{}
+class c
+{}
+
+case1:-
+--------------
+if there is no public class
+then we can use any name and there are no restrictions.
+a.java
+b.java
+c.java
+sandeep.java
+case2:-
+--------------
+*if class b is public then name of the program should be b.java otherwise we will get compile time error,saying 
+class b is public  ,should be declared in a file named b.java.
+case3:-
+-------------
+
+* if  classes  b and c declared  as public and name of the program is b.java then we will get compile time error saying.....
+
+
+Ex:-
+======
+class A
+{
+public static voidmain(String args[])
+{
+Sop("A class main");
+}
+}
+class B
+{
+public static voidmain(String args[])
+{
+Sop("B class main");
+}
+}
+class C
+{
+public static voidmain(String args[])
+{
+Sop("C class main");
+}
+}
+
+javac filename.java
+javac Durga.java
+
+java classname
+java A
+ 
+=>A.class  // output:- A class main
+=>B.class  // output:- B class main
+=>C.class  // output:- C class main
+
+
+
+
+** when ever we are executing java class the corresponding class main method will be executed if the class doesnt
+ contain main method then we will get run time exception.
+
+*if the corresponding .class filenotavailable then we will get run time exception.
+
+* highly recommended to declare only  one class for source file  and name of the programe have to keep same as class name
+
+the main adv of this approach is readability and maintainbility of the code will be improved .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

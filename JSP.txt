@@ -1,0 +1,2717 @@
+JSP Tutorial
+
+jsp tutorial with example
+JSP technology is used to create web application just like Servlet technology. It can be thought of as an extension to servlet because it provides more functionality than servlet such as expression language, jstl etc.
+
+A JSP page consists of HTML tags and JSP tags. The jsp pages are easier to maintain than servlet because we can separate designing and development. It provides some additional features such as Expression Language, Custom Tag etc.
+
+Advantage of JSP over Servlet
+
+There are many advantages of JSP over servlet. They are as follows:
+
+1) Extension to Servlet
+
+JSP technology is the extension to servlet technology. We can use all the features of servlet in JSP. In addition to, we can use implicit objects, predefined tags, expression language and Custom tags in JSP, that makes JSP development easy.
+
+2) Easy to maintain
+
+JSP can be easily managed because we can easily separate our business logic with presentation logic. In servlet technology, we mix our business logic with the presentation logic.
+
+3) Fast Development: No need to recompile and redeploy
+
+If JSP page is modified, we don't need to recompile and redeploy the project. The servlet code needs to be updated and recompiled if we have to change the look and feel of the application.
+
+4) Less code than Servlet
+
+In JSP, we can use a lot of tags such as action tags, jstl, custom tags etc. that reduces the code. Moreover, we can use EL, implicit objects etc.
+
+Life cycle of a JSP Page
+
+The JSP pages follows these phases:
+
+Translation of JSP Page
+Compilation of JSP Page
+Classloading (class file is loaded by the classloader)
+Instantiation (Object of the Generated Servlet is created).
+Initialization ( jspInit() method is invoked by the container).
+Reqeust processing ( _jspService() method is invoked by the container).
+Destroy ( jspDestroy() method is invoked by the container).
+Note: jspInit(), _jspService() and jspDestroy() are the life cycle methods of JSP.
+
+how JSP is converted into servlet
+As depicted in the above diagram, JSP page is translated into servlet by the help of JSP translator. The JSP translator is a part of webserver that is responsible to translate the JSP page into servlet. Afterthat Servlet page is compiled by the compiler and gets converted into the class file. Moreover, all the processes that happens in servlet is performed on JSP later like initialization, committing response to the browser and destroy.
+
+Creating a simple JSP Page
+
+To create the first jsp page, write some html code as given below, and save it by .jsp extension. We have save this file as index.jsp. Put it in a folder and paste the folder in the web-apps directory in apache tomcat to run the jsp page.
+
+index.jsp
+Let's see the simple example of JSP, here we are using the scriptlet tag to put java code in the JSP page. We will learn scriptlet tag later.
+
+<html>  
+<body>  
+<% out.print(2*5); %>  
+</body>  
+</html>  
+It will print 10 on the browser.
+
+How to run a simple JSP Page ?
+
+Follow the following steps to execute this JSP page:
+
+Start the server
+put the jsp file in a folder and deploy on the server
+visit the browser by the url http://localhost:portno/contextRoot/jspfile e.g. http://localhost:8888/myapplication/index.jsp
+Do I need to follow directory structure to run a simple JSP ?
+
+No, there is no need of directory structure if you don't have class files or tld files. For example, put jsp files in a folder directly and deploy that folder.It will be running fine.But if you are using bean class, Servlet or tld file then directory structure is required.
+
+Directory structure of JSP
+
+The directory structure of JSP page is same as servlet. We contains the jsp page outside the WEB-INF folder or in any directory.
+
+
+
+
+
+
+The JSP API
+
+The JSP API
+javax.servlet.jsp package
+The JspPage interface
+The HttpJspPage interface
+The JSP API consists of two packages:
+
+javax.servlet.jsp
+javax.servlet.jsp.tagext
+javax.servlet.jsp package
+
+The javax.servlet.jsp package has two interfaces and classes.The two interfaces are as follows:
+
+JspPage
+HttpJspPage
+The classes are as follows:
+
+JspWriter
+PageContext
+JspFactory
+JspEngineInfo
+JspException
+JspError
+The JspPage interface
+
+According to the JSP specification, all the generated servlet classes must implement the JspPage interface. It extends the Servlet interface. It provides two life cycle methods.
+
+JSP API
+Methods of JspPage interface
+
+public void jspInit(): It is invoked only once during the life cycle of the JSP when JSP page is requested firstly. It is used to perform initialization. It is same as the init() method of Servlet interface.
+public void jspDestroy(): It is invoked only once during the life cycle of the JSP before the JSP page is destroyed. It can be used to perform some clean up operation.
+The HttpJspPage interface
+
+The HttpJspPage interface provides the one life cycle method of JSP. It extends the JspPage interface.
+
+Method of HttpJspPage interface:
+
+public void _jspService(): It is invoked each time when request for the JSP page comes to the container. It is used to process the request. The underscore _ signifies that you cannot override this method.
+We will learn all other classes and interfaces later.
+
+
+
+
+
+
+
+JSP Scriptlet tag (Scripting elements)
+
+Scripting elements
+JSP scriptlet tag
+Simple Example of JSP scriptlet tag
+Example of JSP scriptlet tag that prints the user name
+In JSP, java code can be written inside the jsp page using the scriptlet tag. Let's see what are the scripting elements first.
+
+JSP Scripting elements
+
+The scripting elements provides the ability to insert java code inside the jsp. There are three types of scripting elements:
+
+scriptlet tag
+expression tag
+declaration tag
+JSP scriptlet tag
+
+A scriptlet tag is used to execute java source code in JSP. Syntax is as follows:
+
+<%  java source code %>  
+Example of JSP scriptlet tag
+
+In this example, we are displaying a welcome message.
+
+<html>  
+<body>  
+<% out.print("welcome to jsp"); %>  
+</body>  
+</html>  
+Example of JSP scriptlet tag that prints the user name
+
+In this example, we have created two files index.html and welcome.jsp. The index.html file gets the username from the user and the welcome.jsp file prints the username with the welcome message.
+
+File: index.html
+
+<html>  
+<body>  
+<form action="welcome.jsp">  
+<input type="text" name="uname">  
+<input type="submit" value="go"><br/>  
+</form>  
+</body>  
+</html>  
+File: welcome.jsp
+
+<html>  
+<body>  
+<%  
+String name=request.getParameter("uname");  
+out.print("welcome "+name);  
+%>  
+</form>  
+</body>  
+</html>  
+
+
+
+
+
+
+
+
+JSP expression tag
+
+The code placed within JSP expression tag is written to the output stream of the response. So you need not write out.print() to write data. It is mainly used to print the values of variable or method.
+
+Syntax of JSP expression tag
+
+<%=  statement %>  
+Example of JSP expression tag
+
+In this example of jsp expression tag, we are simply displaying a welcome message.
+
+<html>  
+<body>  
+<%= "welcome to jsp" %>  
+</body>  
+</html>  
+Note: Do not end your statement with semicolon in case of expression tag.
+
+Example of JSP expression tag that prints current time
+
+To display the current time, we have used the getTime() method of Calendar class. The getTime() is an instance method of Calendar class, so we have called it after getting the instance of Calendar class by the getInstance() method.
+
+index.jsp
+
+<html>  
+<body>  
+Current Time: <%= java.util.Calendar.getInstance().getTime() %>  
+</body>  
+</html>  
+Example of JSP expression tag that prints the user name
+
+In this example, we are printing the username using the expression tag. The index.html file gets the username and sends the request to the welcome.jsp file, which displays the username.
+
+File: index.jsp
+
+<html>  
+<body>  
+<form action="welcome.jsp">  
+<input type="text" name="uname"><br/>  
+<input type="submit" value="go">  
+</form>  
+</body>  
+</html>  
+File: welcome.jsp
+
+<html>  
+<body>  
+<%= "Welcome "+request.getParameter("uname") %>  
+</body>  
+</html>  
+
+
+
+
+
+
+
+
+
+JSP Declaration Tag
+
+JSP declaration tag
+Difference between JSP scriptlet tag and JSP declaration tag
+Example of JSP declaration tag that declares field
+Example of JSP declaration tag that declares method
+The JSP declaration tag is used to declare fields and methods.
+
+The code written inside the jsp declaration tag is placed outside the service() method of auto generated servlet.
+
+So it doesn't get memory at each request.
+
+Syntax of JSP declaration tag
+
+The syntax of the declaration tag is as follows:
+
+<%!  field or method declaration %>  
+Difference between JSP Scriptlet tag and Declaration tag
+
+Jsp Scriptlet Tag	Jsp Declaration Tag
+The jsp scriptlet tag can only declare variables not methods.	The jsp declaration tag can declare variables as well as methods.
+The declaration of scriptlet tag is placed inside the _jspService() method.	The declaration of jsp declaration tag is placed outside the _jspService() method.
+Example of JSP declaration tag that declares field
+
+In this example of JSP declaration tag, we are declaring the field and printing the value of the declared field using the jsp expression tag.
+
+index.jsp
+
+<html>  
+<body>  
+<%! int data=50; %>  
+<%= "Value of the variable is:"+data %>  
+</body>  
+</html>  
+Example of JSP declaration tag that declares method
+
+In this example of JSP declaration tag, we are defining the method which returns the cube of given number and calling this method from the jsp expression tag. But we can also use jsp scriptlet tag to call the declared method.
+
+index.jsp
+
+<html>  
+<body>  
+<%!   
+int cube(int n){  
+return n*n*n*;  
+}  
+%>  
+<%= "Cube of 3 is:"+cube(3) %>  
+</body>  
+</html>  
+
+
+
+
+
+
+
+
+
+
+JSP Implicit Objects
+
+JSP Implicit Objects
+out implicit object
+Example of out implicit object
+There are 9 jsp implicit objects. These objects are created by the web container that are available to all the jsp pages.
+
+The available implicit objects are out, request, config, session, application etc.
+
+A list of the 9 implicit objects is given below:
+
+Object	Type
+out	JspWriter
+request	HttpServletRequest
+response	HttpServletResponse
+config	ServletConfig
+application	ServletContext
+session	HttpSession
+pageContext	PageContext
+page	Object
+exception	Throwable
+1) JSP out implicit object
+
+For writing any data to the buffer, JSP provides an implicit object named out. It is the object of JspWriter. In case of servlet you need to write:
+
+PrintWriter out=response.getWriter();  
+But in JSP, you don't need to write this code.
+
+Example of out implicit object
+
+In this example we are simply displaying date and time.
+
+index.jsp
+
+<html>  
+<body>  
+<% out.print("Today is:"+java.util.Calendar.getInstance().getTime()); %>  
+</body>  
+</html>  
+Output
+
+jsp out implicit object
+Upcoming topics in JSP implicit Objects
+
+Example of Request implicit Object
+Example of Response implicit Object
+Example of config implicit object
+Example of application implicit object
+Example of session implicit object
+Example of pageContext implicit object
+Example of page implicit object
+Example of exception implicit object
+
+
+
+
+
+
+
+
+
+
+
+
+
+JSP config implicit object
+
+In JSP, config is an implicit object of type ServletConfig. This object can be used to get initialization parameter for a particular JSP page. The config object is created by the web container for each jsp page.
+
+Generally, it is used to get initialization parameter from the web.xml file.
+
+Example of config implicit object:
+
+index.html
+<form action="welcome">  
+<input type="text" name="uname">  
+<input type="submit" value="go"><br/>  
+</form>  
+web.xml file
+<web-app>  
+  
+<servlet>  
+<servlet-name>sonoojaiswal</servlet-name>  
+<jsp-file>/welcome.jsp</jsp-file>  
+  
+<init-param>  
+<param-name>dname</param-name>  
+<param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>  
+</init-param>  
+  
+</servlet>  
+  
+<servlet-mapping>  
+<servlet-name>sonoojaiswal</servlet-name>  
+<url-pattern>/welcome</url-pattern>  
+</servlet-mapping>  
+  
+</web-app>  
+welcome.jsp
+<%   
+out.print("Welcome "+request.getParameter("uname"));  
+  
+String driver=config.getInitParameter("dname");  
+out.print("driver name is="+driver);  
+%>  
+Output
+
+
+
+
+
+
+
+
+
+5) JSP application implicit object
+
+In JSP, application is an implicit object of type ServletContext.
+
+The instance of ServletContext is created only once by the web container when application or project is deployed on the server.
+
+This object can be used to get initialization parameter from configuaration file (web.xml). It can also be used to get, set or remove attribute from the application scope.
+
+This initialization parameter can be used by all jsp pages.
+
+Example of application implicit object:
+
+index.html
+<form action="welcome">  
+<input type="text" name="uname">  
+<input type="submit" value="go"><br/>  
+</form>  
+web.xml file
+<web-app>  
+  
+<servlet>  
+<servlet-name>sonoojaiswal</servlet-name>  
+<jsp-file>/welcome.jsp</jsp-file>  
+</servlet>  
+  
+<servlet-mapping>  
+<servlet-name>sonoojaiswal</servlet-name>  
+<url-pattern>/welcome</url-pattern>  
+</servlet-mapping>  
+  
+<context-param>  
+<param-name>dname</param-name>  
+<param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>  
+</context-param>  
+  
+</web-app>  
+welcome.jsp
+<%   
+  
+out.print("Welcome "+request.getParameter("uname"));  
+  
+String driver=application.getInitParameter("dname");  
+out.print("driver name is="+driver);  
+  
+%>  
+Output
+
+
+
+
+
+
+6) session implicit object
+
+In JSP, session is an implicit object of type HttpSession.The Java developer can use this object to set,get or remove attribute or to get session information.
+Example of session implicit object
+
+index.html
+
+<html>  
+<body>  
+<form action="welcome.jsp">  
+<input type="text" name="uname">  
+<input type="submit" value="go"><br/>  
+</form>  
+</body>  
+</html>  
+welcome.jsp
+
+<html>  
+<body>  
+<%   
+  
+String name=request.getParameter("uname");  
+out.print("Welcome "+name);  
+  
+session.setAttribute("user",name);  
+  
+<a href="second.jsp">second jsp page</a>  
+  
+%>  
+</body>  
+</html>  
+second.jsp
+
+<html>  
+<body>  
+<%   
+  
+String name=(String)session.getAttribute("user");  
+out.print("Hello "+name);  
+  
+%>  
+</body>  
+</html>  
+
+
+
+
+
+7) pageContext implicit object
+
+In JSP, pageContext is an implicit object of type PageContext class.The pageContext object can be used to set,get or remove attribute from one of the following scopes:
+page
+request
+session
+application
+In JSP, page scope is the default scope.
+Example of pageContext implicit object
+
+index.html
+
+<html>  
+<body>  
+<form action="welcome.jsp">  
+<input type="text" name="uname">  
+<input type="submit" value="go"><br/>  
+</form>  
+</body>  
+</html>  
+welcome.jsp
+
+<html>  
+<body>  
+<%   
+  
+String name=request.getParameter("uname");  
+out.print("Welcome "+name);  
+  
+pageContext.setAttribute("user",name,PageContext.SESSION_SCOPE);  
+  
+<a href="second.jsp">second jsp page</a>  
+  
+%>  
+</body>  
+</html>  
+second.jsp
+
+<html>  
+<body>  
+<%   
+  
+String name=(String)pageContext.getAttribute("user",PageContext.SESSION_SCOPE);  
+out.print("Hello "+name);  
+  
+%>  
+</body>  
+</html>  
+
+
+
+
+
+
+
+
+8) page implicit object:
+
+In JSP, page is an implicit object of type Object class.This object is assigned to the reference of auto generated servlet class. It is written as:
+Object page=this;
+For using this object it must be cast to Servlet type.For example:
+<% (HttpServlet)page.log("message"); %>
+Since, it is of type Object it is less used because you can use this object directly in jsp.For example:
+<% this.log("message"); %>
+
+
+
+
+
+
+
+
+9) exception implicit object
+
+In JSP, exception is an implicit object of type java.lang.Throwable class. This object can be used to print the exception. But it can only be used in error pages.It is better to learn it after page directive. Let's see a simple example:
+Example of exception implicit object:
+
+error.jsp
+
+<%@ page isErrorPage="true" %>  
+<html>  
+<body>  
+  
+Sorry following exception occured:<%= exception %>  
+  
+</body>  
+</html>  
+To get the full example, click here full example of exception handling in jsp. But, it will be better to learn it after the JSP Directives.
+
+
+
+
+
+JSP directives
+
+JSP directives
+page directive
+Attributes of page directive
+The jsp directives are messages that tells the web container how to translate a JSP page into the corresponding servlet.
+
+There are three types of directives:
+
+page directive
+include directive
+taglib directive
+Syntax of JSP Directive
+
+<%@ directive attribute="value" %>  
+JSP page directive
+
+The page directive defines attributes that apply to an entire JSP page.
+
+Syntax of JSP page directive
+
+<%@ page attribute="value" %>  
+Attributes of JSP page directive
+
+import
+contentType
+extends
+info
+buffer
+language
+isELIgnored
+isThreadSafe
+autoFlush
+session
+pageEncoding
+errorPage
+isErrorPage
+1)import
+
+The import attribute is used to import class,interface or all the members of a package.It is similar to import keyword in java class or interface.
+Example of import attribute
+
+<html>  
+<body>  
+  
+<%@ page import="java.util.Date" %>  
+Today is: <%= new Date() %>  
+  
+</body>  
+</html>  
+2)contentType
+
+The contentType attribute defines the MIME(Multipurpose Internet Mail Extension) type of the HTTP response.The default value is "text/html;charset=ISO-8859-1".
+
+Example of contentType attribute
+
+<html>  
+<body>  
+  
+<%@ page contentType=application/msword %>  
+Today is: <%= new java.util.Date() %>  
+  
+</body>  
+</html>  
+3)extends
+
+The extends attribute defines the parent class that will be inherited by the generated servlet.It is rarely used.
+
+4)info
+
+This attribute simply sets the information of the JSP page which is retrieved later by using getServletInfo() method of Servlet interface.
+
+Example of info attribute
+
+<html>  
+<body>  
+  
+<%@ page info="composed by Sonoo Jaiswal" %>  
+Today is: <%= new java.util.Date() %>  
+  
+</body>  
+</html>  
+The web container will create a method getServletInfo() in the resulting servlet.For example:
+
+public String getServletInfo() {  
+  return "composed by Sonoo Jaiswal";   
+}  
+5)buffer
+
+The buffer attribute sets the buffer size in kilobytes to handle output generated by the JSP page.The default size of the buffer is 8Kb.
+
+Example of buffer attribute
+
+<html>  
+<body>  
+  
+<%@ page buffer="16kb" %>  
+Today is: <%= new java.util.Date() %>  
+  
+</body>  
+</html>  
+6)language
+
+The language attribute specifies the scripting language used in the JSP page. The default value is "java".
+
+7)isELIgnored
+
+We can ignore the Expression Language (EL) in jsp by the isELIgnored attribute. By default its value is false i.e. Expression Language is enabled by default. We see Expression Language later.
+<%@ page isELIgnored="true" %>//Now EL will be ignored  
+8)isThreadSafe
+
+Servlet and JSP both are multithreaded.If you want to control this behaviour of JSP page, you can use isThreadSafe attribute of page directive.The value of isThreadSafe value is true.If you make it false, the web container will serialize the multiple requests, i.e. it will wait until the JSP finishes responding to a request before passing another request to it.If you make the value of isThreadSafe attribute like:
+<%@ page isThreadSafe="false" %>
+
+The web container in such a case, will generate the servlet as:
+
+public class SimplePage_jsp extends HttpJspBase   
+  implements SingleThreadModel{  
+.......  
+}  
+9)errorPage
+
+The errorPage attribute is used to define the error page, if exception occurs in the current page, it will be redirected to the error page.
+
+Example of errorPage attribute
+
+//index.jsp  
+<html>  
+<body>  
+  
+<%@ page errorPage="myerrorpage.jsp" %>  
+  
+ <%= 100/0 %>  
+  
+</body>  
+</html>  
+10)isErrorPage
+
+The isErrorPage attribute is used to declare that the current page is the error page.
+
+Note: The exception object can only be used in the error page.
+
+Example of isErrorPage attribute
+
+//myerrorpage.jsp  
+<html>  
+<body>  
+  
+<%@ page isErrorPage="true" %>  
+  
+ Sorry an exception occured!<br/>  
+The exception is: <%= exception %>  
+  
+</body>  
+</html>  
+
+
+
+
+Jsp Include Directive
+
+Include directive
+Advantage of Include directive
+Example of include directive
+The include directive is used to include the contents of any resource it may be jsp file, html file or text file. The include directive includes the original content of the included resource at page translation time (the jsp page is translated only once so it will be better to include static resource).
+
+Advantage of Include directive
+
+Code Reusability
+
+Syntax of include directive
+
+<%@ include file="resourceName" %>  
+Example of include directive
+
+In this example, we are including the content of the header.html file. To run this example you must create an header.html file.
+
+<html>  
+<body>  
+  
+<%@ include file="header.html" %>  
+  
+Today is: <%= java.util.Calendar.getInstance().getTime() %>  
+  
+</body>  
+</html>  
+Note: The include directive includes the original content, so the actual page size grows at runtime.
+
+
+
+
+
+
+
+
+JSP Taglib directive
+
+JSP Taglib directive
+Example of JSP Taglib directive
+The JSP taglib directive is used to define a tag library that defines many tags. We use the TLD (Tag Library Descriptor) file to define the tags. In the custom tag section we will use this tag so it will be better to learn it in custom tag.
+
+Syntax JSP Taglib directive
+
+<%@ taglib uri="uriofthetaglibrary" prefix="prefixoftaglibrary" %>  
+Example of JSP Taglib directive
+
+In this example, we are using our tag named currentDate. To use this tag we must specify the taglib directive so the container may get information about the tag.
+
+<html>  
+<body>  
+  
+<%@ taglib uri="http://www.javatpoint.com/tags" prefix="mytag" %>  
+  
+<mytag:currentDate/>  
+  
+</body>  
+</html>  
+
+
+
+
+
+Exception Handling in JSP
+
+Exception Handling in JSP
+Example of exception handling in jsp by the elements of page directive
+Example of exception handling in jsp by specifying the error-page element in web.xml file
+The exception is normally an object that is thrown at runtime. Exception Handling is the process to handle the runtime errors. There may occur exception any time in your web application. So handling exceptions is a safer side for the web developer. In JSP, there are two ways to perform exception handling:
+
+By errorPage and isErrorPage attributes of page directive
+By <error-page> element in web.xml file
+Example of exception handling in jsp by the elements of page directive
+
+In this case, you must define and create a page to handle the exceptions, as in the error.jsp page. The pages where may occur exception, define the errorPage attribute of page directive, as in the process.jsp page.
+
+There are 3 files:
+
+index.jsp for input values
+process.jsp for dividing the two numbers and displaying the result
+error.jsp for handling the exception
+index.jsp
+
+<form action="process.jsp">  
+No1:<input type="text" name="n1" /><br/><br/>  
+No1:<input type="text" name="n2" /><br/><br/>  
+<input type="submit" value="divide"/>  
+</form>  
+process.jsp
+
+<%@ page errorPage="error.jsp" %>  
+<%  
+  
+String num1=request.getParameter("n1");  
+String num2=request.getParameter("n2");  
+  
+int a=Integer.parseInt(num1);  
+int b=Integer.parseInt(num2);  
+int c=a/b;  
+out.print("division of numbers is: "+c);  
+  
+%>  
+error.jsp
+
+<%@ page isErrorPage="true" %>  
+  
+<h3>Sorry an exception occured!</h3>  
+  
+Exception is: <%= exception %>  
+download this example
+Output of this example:
+
+exception handling in jsp exception handling in jsp exception handling in jsp exception handling in jsp
+Example of exception handling in jsp by specifying the error-page element in web.xml file
+
+This approach is better because you don't need to specify the errorPage attribute in each jsp page. Specifying the single entry in the web.xml file will handle the exception. In this case, either specify exception-type or error-code with the location element. If you want to handle all the exception, you will have to specify the java.lang.Exception in the exception-type element. Let's see the simple example:
+
+There are 4 files:
+
+web.xml file for specifying the error-page element
+index.jsp for input values
+process.jsp for dividing the two numbers and displaying the result
+error.jsp for displaying the exception
+1) web.xml file if you want to handle any exception
+
+<web-app>  
+  
+ <error-page>  
+  <exception-type>java.lang.Exception</exception-type>  
+  <location>/error.jsp</location>  
+  </error-page>  
+   
+</web-app>  
+This approach is better if you want to handle any exception. If you know any specific error code and you want to handle that exception, specify the error-code element instead of exception-type as given below:
+
+1) web.xml file if you want to handle the exception for a specific error code
+
+<web-app>  
+  
+ <error-page>  
+  <error-code>500</error-code>  
+  <location>/error.jsp</location>  
+  </error-page>  
+   
+</web-app>  
+2) index.jsp file is same as in the above example
+
+3) process.jsp
+
+Now, you don't need to specify the errorPage attribute of page directive in the jsp page.
+<%@ page errorPage="error.jsp" %>  
+<%  
+  
+String num1=request.getParameter("n1");  
+String num2=request.getParameter("n2");  
+  
+int a=Integer.parseInt(num1);  
+int b=Integer.parseInt(num2);  
+int c=a/b;  
+out.print("division of numbers is: "+c);  
+  
+%>  
+4) error.jsp file is same as in the above example
+
+
+
+
+
+
+
+
+JSP Action Tags
+
+There are many JSP action tags or elements. Each JSP action tag is used to perform some specific tasks.
+
+The action tags are used to control the flow between pages and to use Java Bean. The Jsp action tags are given below.
+
+JSP Action Tags	Description
+jsp:forward	forwards the request and response to another resource.
+jsp:include	includes another resource.
+jsp:useBean	creates or locates bean object.
+jsp:setProperty	sets the value of property in bean object.
+jsp:getProperty	prints the value of property of the bean.
+jsp:plugin	embeds another components such as applet.
+jsp:param	sets the parameter value. It is used in forward and include mostly.
+jsp:fallback	can be used to print the message if plugin is working. It is used in jsp:plugin.
+The jsp:useBean, jsp:setProperty and jsp:getProperty tags are used for bean development. So we will see these tags in bean developement.
+
+jsp:forward action tag
+
+The jsp:forward action tag is used to forward the request to another resource it may be jsp, html or another resource.
+
+Syntax of jsp:forward action tag without parameter
+
+<jsp:forward page="relativeURL | <%= expression %>" />  
+Syntax of jsp:forward action tag with parameter
+
+<jsp:forward page="relativeURL | <%= expression %>">  
+<jsp:param name="parametername" value="parametervalue | <%=expression%>" />  
+</jsp:forward>  
+Example of jsp:forward action tag without parameter
+
+In this example, we are simply forwarding the request to the printdate.jsp file.
+
+index.jsp
+
+<html>  
+<body>  
+<h2>this is index page</h2>  
+  
+<jsp:forward page="printdate.jsp" />  
+</body>  
+</html>  
+printdate.jsp
+
+<html>  
+<body>  
+<% out.print("Today is:"+java.util.Calendar.getInstance().getTime()); %>  
+</body>  
+</html>  
+
+Example of jsp:forward action tag with parameter
+
+In this example, we are forwarding the request to the printdate.jsp file with parameter and printdate.jsp file prints the parameter value with date and time.
+
+index.jsp
+
+<html>  
+<body>  
+<h2>this is index page</h2>  
+  
+<jsp:forward page="printdate.jsp" >  
+<jsp:param name="name" value="javatpoint.com" />  
+</jsp:forward>  
+  
+</body>  
+</html>  
+printdate.jsp
+
+<html>  
+<body>  
+  
+<% out.print("Today is:"+java.util.Calendar.getInstance().getTime()); %>  
+<%= request.getParameter("name") %>  
+  
+</body>  
+</html>  
+
+
+
+
+jsp:include action tag
+
+jsp:include action tag
+Syntax of jsp:include action tag
+Example of jsp:include action tag without parameter
+The jsp:include action tag is used to include the content of another resource it may be jsp, html or servlet.
+
+The jsp include action tag includes the resource at request time so it is better for dynamic pages because there might be changes in future.
+
+The jsp:include tag can be used to include static as well as dynamic pages.
+
+Advantage of jsp:include action tag
+
+Code reusability : We can use a page many times such as including header and footer pages in all pages. So it saves a lot of time.
+
+Difference between jsp include directive and include action
+
+JSP include directive	JSP include action
+includes resource at translation time.	includes resource at request time.
+better for static pages.	better for dynamic pages.
+includes the original content in the generated servlet.	calls the include method.
+Syntax of jsp:include action tag without parameter
+
+<jsp:include page="relativeURL | <%= expression %>" />  
+Syntax of jsp:include action tag with parameter
+
+<jsp:include page="relativeURL | <%= expression %>">  
+<jsp:param name="parametername" value="parametervalue | <%=expression%>" />  
+</jsp:include>  
+Example of jsp:include action tag without parameter
+
+In this example, index.jsp file includes the content of the printdate.jsp file.
+
+File: index.jsp
+<h2>this is index page</h2>  
+  
+<jsp:include page="printdate.jsp" />  
+  
+<h2>end section of index page</h2>  
+File: printdate.jsp
+<% out.print("Today is:"+java.util.Calendar.getInstance().getTime()); %>
+
+
+
+
+
+
+Java Bean
+
+A Java Bean is a java class that should follow following conventions:
+
+It should have a no-arg constructor.
+It should be Serializable.
+It should provide methods to set and get the values of the properties, known as getter and setter methods.
+Why use Java Bean?
+
+According to Java white paper, it is a reusable software component. A bean encapsulates many objects into one object, so we can access this object from multiple places. Moreover, it provides the easy maintenance.
+Simple example of java bean class
+
+//Employee.java  
+  
+package mypack;  
+public class Employee implements java.io.Serializable{  
+private int id;  
+private String name;  
+  
+public Employee(){}  
+  
+public void setId(int id){this.id=id;}  
+  
+public int getId(){return id;}  
+  
+public void setName(String name){this.name=name;}  
+  
+public String getName(){return name;}  
+  
+}  
+How to access the java bean class?
+
+To access the java bean class, we should use getter and setter methods.
+package mypack;  
+public class Test{  
+public static void main(String args[]){  
+  
+Employee e=new Employee();//object is created  
+  
+e.setName("Arjun");//setting value to the object  
+  
+System.out.println(e.getName());  
+  
+}}  
+Note: There are two ways to provide values to the object, one way is by constructor and second is by setter method.
+
+
+
+
+
+
+
+
+next>><<prev
+jsp:useBean action tag
+
+jsp:useBean action tag
+Syntax of jsp:useBean action tag
+Attributes and Usage of jsp:useBean action tag
+Simple example of jsp:useBean action tag
+The jsp:useBean action tag is used to locate or instantiate a bean class. If bean object of the Bean class is already created, it doesn't create the bean depending on the scope. But if object of bean is not created, it instantiates the bean.
+
+Syntax of jsp:useBean action tag
+
+<jsp:useBean id= "instanceName" scope= "page | request | session | application"   
+class= "packageName.className" type= "packageName.className"  
+beanName="packageName.className | <%= expression >" >  
+</jsp:useBean>  
+Attributes and Usage of jsp:useBean action tag
+
+id: is used to identify the bean in the specified scope.
+scope: represents the scope of the bean. It may be page, request, session or application. The default scope is page.
+page: specifies that you can use this bean within the JSP page. The default scope is page.
+request: specifies that you can use this bean from any JSP page that processes the same request. It has wider scope than page.
+session: specifies that you can use this bean from any JSP page in the same session whether processes the same request or not. It has wider scope than request.
+application: specifies that you can use this bean from any JSP page in the same application. It has wider scope than session.
+class: instantiates the specified bean class (i.e. creates an object of the bean class) but it must have no-arg or no constructor and must not be abstract.
+type: provides the bean a data type if the bean already exists in the scope. It is mainly used with class or beanName attribute. If you use it without class or beanName, no bean is instantiated.
+beanName: instantiates the bean using the java.beans.Beans.instantiate() method.
+Simple example of jsp:useBean action tag
+
+In this example, we are simply invoking the method of the Bean class.
+
+For the example of setProperty, getProperty and useBean tags, visit next page.
+
+Calculator.java (a simple Bean class)
+
+package com.javatpoint;  
+public class Calculator{  
+  
+public int cube(int n){return n*n*n;}  
+  
+}  
+index.jsp file
+
+<jsp:useBean id="obj" class="com.javatpoint.Calculator"/>  
+  
+<%  
+int m=obj.cube(5);  
+out.print("cube of 5 is "+m);  
+%>  
+
+
+
+
+
+
+next>><<prev
+jsp:setProperty and jsp:getProperty action tags
+
+jsp:setProperty and jsp:getProperty action tags
+Syntax of jsp:setProperty action tag
+Example of jsp:setProperty
+jsp:getProperty action tag
+Syntax of jsp:getProperty action tag
+Example of jsp:getProperty action tag
+Example of bean development in JSP
+The setProperty and getProperty action tags are used for developing web application with Java Bean. In web devlopment, bean class is mostly used because it is a reusable software component that represents data.
+
+The jsp:setProperty action tag sets a property value or values in a bean using the setter method.
+
+
+
+Syntax of jsp:setProperty action tag
+
+<jsp:setProperty name="instanceOfBean" property= "*"   |   
+property="propertyName" param="parameterName"  |   
+property="propertyName" value="{ string | <%= expression %>}"   
+/>  
+Example of jsp:setProperty action tag if you have to set all the values of incoming request in the bean
+
+<jsp:setProperty name="bean" property="*" />  
+Example of jsp:setProperty action tag if you have to set value of the incoming specific property
+
+<jsp:setProperty name="bean" property="username" />   
+Example of jsp:setProperty action tag if you have to set a specific value in the property
+
+<jsp:setProperty name="bean" property="username" value="Kumar" />  
+jsp:getProperty action tag
+
+The jsp:getProperty action tag returns the value of the property.
+
+Syntax of jsp:getProperty action tag
+
+<jsp:getProperty name="instanceOfBean" property="propertyName" />  
+Simple example of jsp:getProperty action tag
+
+<jsp:getProperty name="obj" property="name" />  
+Example of bean development in JSP
+
+In this example there are 3 pages:
+
+index.html for input of values
+welocme.jsp file that sets the incoming values to the bean object and prints the one value
+User.java bean class that have setter and getter methods
+index.html
+
+<form action="process.jsp" method="post">  
+Name:<input type="text" name="name"><br>  
+Password:<input type="password" name="password"><br>  
+Email:<input type="text" name="email"><br>  
+<input type="submit" value="register">  
+</form>  
+process.jsp
+
+<jsp:useBean id="u" class="org.sssit.User"></jsp:useBean>  
+<jsp:setProperty property="*" name="u"/>  
+  
+Record:<br>  
+<jsp:getProperty property="name" name="u"/><br>  
+<jsp:getProperty property="password" name="u"/><br>  
+<jsp:getProperty property="email" name="u" /><br>  
+User.java
+
+package org.sssit;  
+  
+public class User {  
+private String name,password,email;  
+//setters and getters  
+}  
+download this example
+example of jsp:setProperty and jsp:getProperty action tags example of jsp:setProperty and jsp:getProperty action tags
+Reusing Bean in Multiple Jsp Pages
+
+Let's see the simple example, that prints the data of bean object in two jsp pages.
+
+index.jsp
+
+Same as above.
+
+User.java
+
+Same as above.
+
+process.jsp
+
+<jsp:useBean id="u" class="org.sssit.User" scope="session"></jsp:useBean>  
+<jsp:setProperty property="*" name="u"/>  
+  
+Record:<br>  
+<jsp:getProperty property="name" name="u"/><br>  
+<jsp:getProperty property="password" name="u"/><br>  
+<jsp:getProperty property="email" name="u" /><br>  
+  
+<a href="second.jsp">Visit Page</a>  
+second.jsp
+
+<jsp:useBean id="u" class="org.sssit.User" scope="session"></jsp:useBean>  
+Record:<br>  
+<jsp:getProperty property="name" name="u"/><br>  
+<jsp:getProperty property="password" name="u"/><br>  
+<jsp:getProperty property="email" name="u" /><br>  
+Using variable value in setProperty tag
+
+In some case, you may get some value from the database, that is to be set in the bean object, in such case, you need to use expression tag. For example:
+
+process.jsp
+
+<jsp:useBean id="u" class="org.sssit.User"></jsp:useBean>  
+<%  
+String name="arjun";  
+%>  
+<jsp:setProperty property="name" name="u" value="<%=name %>"/>  
+  
+Record:<br>  
+<jsp:getProperty property="name" name="u"/><br>  
+
+
+
+
+
+Displaying applet in JSP (jsp:plugin action tag)
+
+Displaying applet in JSP
+Syntax of jsp:plugin action tag
+Example of displaying applet in JSP
+The jsp:plugin action tag is used to embed applet in the jsp file. The jsp:plugin action tag downloads plugin at client side to execute an applet or bean.
+
+Syntax of jsp:plugin action tag
+
+<jsp:plugin type= "applet | bean" code= "nameOfClassFile"   
+codebase= "directoryNameOfClassFile"  
+</jsp:plugin>  
+Example of displaying applet in JSP
+
+In this example, we are simply displaying applet in jsp using the jsp:plugin tag. You must have MouseDrag.class file (an applet class file) in the current folder where jsp file resides. You may simply download this program that contains index.jsp, MouseDrag.java and MouseDrag.class files to run this application.
+index.jsp
+
+<html>  
+    <head>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <title>Mouse Drag</title>  
+    </head>  
+    <body bgcolor="khaki">  
+<h1>Mouse Drag Example</h1>  
+  
+ <jsp:plugin align="middle" height="500" width="500"  
+     type="applet"  code="MouseDrag.class" name="clock" codebase="."/>  
+  
+    </body>  
+</html>  
+
+
+
+
+
+
+Expression Language (EL) in JSP
+
+Expression Language (EL) in JSP
+Implicit Objects in Expression Language
+Simple example of Expression Language that prints the name of the user
+Example of Expression Language that prints the value set in the session scope
+Precedence of Operators in EL
+Reserve words in EL
+The Expression Language (EL) simplifies the accessibility of data stored in the Java Bean component, and other objects like request, session, application etc.
+
+There are many implicit objects, operators and reserve words in EL.
+
+It is the newly added feature in JSP technology version 2.0.
+
+
+Syntax for Expression Language (EL)
+
+${ expression }  
+Implicit Objects in Expression Language (EL)
+
+There are many implicit objects in the Expression Language. They are as follows:
+
+Implicit Objects	Usage
+pageScope	it maps the given attribute name with the value set in the page scope
+requestScope	it maps the given attribute name with the value set in the request scope
+sessionScope	it maps the given attribute name with the value set in the session scope
+applicationScope	it maps the given attribute name with the value set in the application scope
+param	it maps the request parameter to the single value
+paramValues	it maps the request parameter to an array of values
+header	it maps the request header name to the single value
+headerValues	it maps the request header name to an array of values
+cookie	it maps the given cookie name to the cookie value
+initParam	it maps the initialization parameter
+pageContext	it provides access to many objects request, session etc.
+Simple example of Expression Language that prints the name of the user
+
+In this example, we have created two files index.jsp and process.jsp. The index.jsp file gets input from the user and sends the request to the process.jsp which in turn prints the name of the user using EL.
+
+index.jsp
+
+<form action="process.jsp">  
+Enter Name:<input type="text" name="name" /><br/><br/>  
+<input type="submit" value="go"/>  
+</form>  
+process.jsp
+
+Welcome, ${ param.name }  
+download this example
+Example of Expression Language that prints the value set in the session scope
+
+In this example, we printing the data stored in the session scope using EL. For this purpose, we have used sessionScope object.
+
+index.jsp
+
+<h3>welcome to index page</h3>  
+<%  
+session.setAttribute("user","sonoo");  
+%>  
+  
+<a href="process.jsp">visit</a>  
+process.jsp
+
+Value is ${ sessionScope.user }  
+download this example
+Precedence of Operators in EL
+
+There are many operators that have been provided in the Expression Language. Their precedence are as follows:
+
+[] .
+()
+-(unary) not ! empty
+* / div % mod
++ - (binary)
+< <= > >= lt le gt ge
+== != eq ne
+&& and
+|| or
+?:
+Reserve words in EL
+
+There are many reserve words in the Expression Language. They are as follows:
+
+lt	le	gt	ge
+eq	ne	true	false
+and	or	not	instanceof
+div	mod	empty	null
+
+
+
+
+
+MVC in JSP
+
+MVC in JSP
+Example of following MVC in JSP
+MVC stands for Model View and Controller. It is a design pattern that separates the business logic, presentation logic and data.
+
+Controller acts as an interface between View and Model. Controller intercepts all the incoming requests.
+
+Model represents the state of the application i.e. data. It can also have business logic.
+
+View represents the presentaion i.e. UI(User Interface).
+
+Advantage of MVC (Model 2) Architecture
+
+Navigation Control is centralized
+Easy to maintain the large application
+mvc architecture
+If you new to MVC, please visit Model1 vs Model2 first.
+
+Example of following MVC in JSP
+
+In this example, we are using servlet as a controller, jsp as a view component, Java Bean class as a model.
+
+In this example, we have created 5 pages:
+
+index.jsp a page that gets input from the user.
+ControllerServlet.java a servlet that acts as a controller.
+login-success.jsp and login-error.jsp files acts as view components.
+web.xml file for mapping the servlet.
+File: index.jsp
+<form action="ControllerServlet" method="post">  
+Name:<input type="text" name="name"><br>  
+Password:<input type="password" name="password"><br>  
+<input type="submit" value="login">  
+</form>  
+File: ControllerServlet
+package com.javatpoint;  
+import java.io.IOException;  
+import java.io.PrintWriter;  
+import javax.servlet.RequestDispatcher;  
+import javax.servlet.ServletException;  
+import javax.servlet.http.HttpServlet;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+public class ControllerServlet extends HttpServlet {  
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)  
+            throws ServletException, IOException {  
+        response.setContentType("text/html");  
+        PrintWriter out=response.getWriter();  
+          
+        String name=request.getParameter("name");  
+        String password=request.getParameter("password");  
+          
+        LoginBean bean=new LoginBean();  
+        bean.setName(name);  
+        bean.setPassword(password);  
+        request.setAttribute("bean",bean);  
+          
+        boolean status=bean.validate();  
+          
+        if(status){  
+            RequestDispatcher rd=request.getRequestDispatcher("login-success.jsp");  
+            rd.forward(request, response);  
+        }  
+        else{  
+            RequestDispatcher rd=request.getRequestDispatcher("login-error.jsp");  
+            rd.forward(request, response);  
+        }  
+      
+    }  
+  
+    @Override  
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)  
+            throws ServletException, IOException {  
+        doPost(req, resp);  
+    }  
+}  
+File: LoginBean.java
+package com.javatpoint;  
+public class LoginBean {  
+private String name,password;  
+  
+public String getName() {  
+    return name;  
+}  
+public void setName(String name) {  
+    this.name = name;  
+}  
+public String getPassword() {  
+    return password;  
+}  
+public void setPassword(String password) {  
+    this.password = password;  
+}  
+public boolean validate(){  
+    if(password.equals("admin")){  
+        return true;  
+    }  
+    else{  
+        return false;  
+    }  
+}  
+}  
+File: login-success.jsp
+<%@page import="com.javatpoint.LoginBean"%>  
+  
+<p>You are successfully logged in!</p>  
+<%  
+LoginBean bean=(LoginBean)request.getAttribute("bean");  
+out.print("Welcome, "+bean.getName());  
+%>  
+File: login-error.jsp
+<p>Sorry! username or password error</p>  
+<%@ include file="index.jsp" %>  
+File: web.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"   
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"   
+id="WebApp_ID" version="3.0">  
+    
+  <servlet>  
+  <servlet-name>s1</servlet-name>  
+  <servlet-class>com.javatpoint.ControllerServlet</servlet-class>  
+  </servlet>  
+  <servlet-mapping>  
+  <servlet-name>s1</servlet-name>  
+  <url-pattern>/ControllerServlet</url-pattern>  
+  </servlet-mapping>  
+</web-app>  
+
+
+
+
+
+
+
+JSTL (JSP Standard Tag Library)
+
+JSTL
+JSTL Core Tags
+The JSP Standard Tag Library (JSTL) represents a set of tags to simplify the JSP development.
+
+Advantage of JSTL
+
+Fast Developement JSTL provides many tags that simplifies the JSP.
+Code Reusability We can use the JSTL tags in various pages.
+No need to use scriptlet tag It avoids the use of scriptlet tag.
+There JSTL mainly provides 5 types of tags:
+
+Tag Name	Description
+core tags	The JSTL core tag provide variable support, URL management, flow control etc. The url for the core tag is http://java.sun.com/jsp/jstl/core . The prefix of core tag is c.
+sql tags	The JSTL sql tags provide SQL support. The url for the sql tags is http://java.sun.com/jsp/jstl/sql and prefix is sql.
+xml tags	The xml sql tags provide flow control, transformation etc. The url for the xml tags is http://java.sun.com/jsp/jstl/xml and prefix is x.
+internationalization tags	The internationalization tags provide support for message formatting, number and date formatting etc. The url for the internationalization tags is http://java.sun.com/jsp/jstl/fmt and prefix is fmt.
+functions tags	The functions tags provide support for string manipulation and string length. The url for the functions tags is http://java.sun.com/jsp/jstl/functions and prefix is fn.
+For creating JSTL application, you need to load jstl.jar file.
+
+download jstl1.2.jar file
+JSTL Core Tags
+
+The JSTL core tags mainly provides 4 types of tags:
+
+miscellaneous tags: catch and out.
+url management tags: import, redirect and url.
+variable support tags: remove and set.
+flow control tags: forEach, forTokens, if and choose.
+Syntax for defining core tags
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+c:catch
+
+It is an alternative apporach of global exception handling of JSP. It handles the exception and doesn't propagate the exception to error page. The exception object thrown at runtime is stored in a variable named var.
+
+Example of c:catch
+
+Let's see the simple example of c:catch.
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<c:catch>  
+int a=10/0;  
+</c:catch>  
+c:out
+
+It is just like JSP expression tag but it is used for exression. It renders data to the page.
+
+Example of c:out
+
+Let's see the simple example of c:out.
+
+index.jsp
+<form action="process.jsp" method="post">  
+FirstName:<input type="text" name="fname"/><br/>  
+LastName:<input type="text" name="lname"/><br/>  
+<input type="submit" value="submit"/>  
+</form>  
+process.jsp
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+First Name:<c:out value="${param.fname}"></c:out><br/>  
+Last Name:<c:out value="${param.lname}"></c:out>  
+download this example
+c:import
+
+It is just like jsp include but it can include the content of any resource either within server or outside the server.
+
+Example of c:import
+
+Let's see the simple example of c:import to display the content of other site.
+
+index.jsp
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<h1>ABC.com</h1>  
+<hr/>  
+<c:import url="http://www.javatpoint.com"></c:import>  
+Example of c:import to display the source code
+
+Let's see the simple example of c:import to display the source code of other site.
+
+index.jsp
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<h1>ABC.com</h1>  
+<hr/>  
+<c:import var="data" url="http://www.javatpoint.com"></c:import>  
+  
+<h2>Data is:</h2>  
+<c:out value="${data}"></c:out>  
+download this example
+c:forEach
+
+It repeats the nested body content for fixed number of times or over collection.
+
+Example of c:forEach
+
+Let's see the simple example of c:forEach.
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<c:forEach var="number" begin="5" end="10">  
+<c:out value="${number}"></c:out>  
+</c:forEach>  
+download this example
+c:if
+
+It tests the condition.
+
+Example of c:if
+
+Let's see the simple example of c:if.
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<c:set var="number" value="${200}">  
+<c:if test="${number<500}">  
+<c:out value="number is less than 500"></c:out>  
+</c:if>  
+c:redirect
+
+It redirects the request to the given url.
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<c:redirect url="http://www.javatpoint.com"></c:redirect>  
+
+
+
+
+
+
+Custom Tags in JSP
+
+Custom Tags in JSP
+Advantages of Custom Tags
+Syntax to use custom tag
+JSP Custom Tag API
+JspTag interface
+Tag interface
+IteratorTag interface
+TagSupport class
+Custom tags are user-defined tags. They eliminates the possibility of scriptlet tag and separates the business logic from the JSP page.
+
+The same business logic can be used many times by the use of custom tag.
+
+Advantages of Custom Tags
+
+The key advantages of Custom tags are as follows:
+
+Eliminates the need of scriptlet tag The custom tags eliminates the need of scriptlet tag which is considered bad programming approach in JSP.
+Separation of business logic from JSP The custom tags separate the the business logic from the JSP page so that it may be easy to maintain.
+Re-usability The custom tags makes the possibility to reuse the same business logic again and again.
+Syntax to use custom tag
+
+There are two ways to use the custom tag. They are given below:
+
+<prefix:tagname attr1=value1....attrn=valuen />  
+<prefix:tagname attr1=value1....attrn=valuen >  
+body code  
+</prefix:tagname>  
+JSP Custom Tag API
+
+The javax.servlet.jsp.tagext package contains classes and interfaces for JSP custom tag API. The JspTag is the root interface in the Custom Tag hierarchy.
+
+Custom tags api
+JspTag interface
+
+The JspTag is the root interface for all the interfaces and classes used in custom tag. It is a marker interface.
+
+Tag interface
+
+The Tag interface is the sub interface of JspTag interface. It provides methods to perform action at the start and end of the tag.
+
+Fields of Tag interface
+
+There are four fields defined in the Tag interface. They are:
+
+Field Name	Description
+public static int EVAL_BODY_INCLUDE	it evaluates the body content.
+public static int EVAL_PAGE	it evaluates the JSP page content after the custom tag.
+public static int SKIP_BODY	it skips the body content of the tag.
+public static int SKIP_PAGE	it skips the JSP page content after the custom tag.
+Methods of Tag interface
+
+The methods of the Tag interface are as follows:
+
+Method Name	Description
+public void setPageContext(PageContext pc)	it sets the given PageContext object.
+public void setParent(Tag t)	it sets the parent of the tag handler.
+public Tag getParent()	it returns the parent tag handler object.
+public int doStartTag()throws JspException	it is invoked by the JSP page implementation object. The JSP programmer should override this method and define the business logic to be performed at the start of the tag.
+public int doEndTag()throws JspException	it is invoked by the JSP page implementation object. The JSP programmer should override this method and define the business logic to be performed at the end of the tag.
+public void release()	it is invoked by the JSP page implementation object to release the state.
+IterationTag interface
+
+The IterationTag interface is the sub interface of the Tag interface. It provides an additional method to reevaluate the body.
+
+Field of IterationTag interface
+
+There is only one field defined in the IterationTag interface.
+
+public static int EVAL_BODY_AGAIN it reevaluates the body content.
+Method of Tag interface
+
+There is only one method defined in the IterationTag interface.
+
+public int doAfterBody()throws JspException it is invoked by the JSP page implementation object after the evaluation of the body. If this method returns EVAL_BODY_INCLUDE, body content will be reevaluated, if it returns SKIP_BODY, no more body cotent will be evaluated.
+TagSupport class
+
+The TagSupport class implements the IterationTag interface. It acts as the base class for new Tag Handlers. It provides some additional methods also.
+
+
+
+Understanding Flow and Example of JSP Custom Tag
+There is given two simple examples of JSP custom tag. One example of JSP custom tag, performs action at the start of the tag and second example performs action at the start and end of the tag.
+
+Attributes in Custom Tag
+Here, we will learn how we can define attributes for the custom tag.
+
+Iteration using Custom Tag
+In this example, we are iterating the body content of the custom tag.
+
+Custom URI in Custom Tag
+We may also refer the TLD file by using the URI. Here we will learn how can we use custom URI.
+
+
+
+
+
+Example of JSP Custom Tag
+
+Example of JSP Custom Tag
+Create the Tag handler class
+Create the TLD file
+Create the JSP file
+In this example, we are going to create a custom tag that prints the current date and time. We are performing action at the start of tag.
+
+For creating any custom tag, we need to follow following steps:
+
+Create the Tag handler class and perform action at the start or at the end of the tag.
+Create the Tag Library Descriptor (TLD) file and define tags
+Create the JSP file that uses the Custom tag defined in the TLD file
+Understanding flow of custom tag in jsp
+
+flow of custom tag
+1) Create the Tag handler class
+
+To create the Tag Handler, we are inheriting the TagSupport class and overriding its method doStartTag().To write data for the jsp, we need to use the JspWriter class.
+
+The PageContext class provides getOut() method that returns the instance of JspWriter class. TagSupport class provides instance of pageContext bydefault.
+
+File: MyTagHandler.java
+package com.javatpoint.sonoo;  
+import java.util.Calendar;  
+import javax.servlet.jsp.JspException;  
+import javax.servlet.jsp.JspWriter;  
+import javax.servlet.jsp.tagext.TagSupport;  
+public class MyTagHandler extends TagSupport{  
+  
+public int doStartTag() throws JspException {  
+    JspWriter out=pageContext.getOut();//returns the instance of JspWriter  
+    try{  
+     out.print(Calendar.getInstance().getTime());//printing date and time using JspWriter  
+    }catch(Exception e){System.out.println(e);}  
+    return SKIP_BODY;//will not evaluate the body content of the tag  
+}  
+}  
+2) Create the TLD file
+
+Tag Library Descriptor (TLD) file contains information of tag and Tag Hander classes. It must be contained inside the WEB-INF directory.
+
+File: mytags.tld
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib  
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"  
+    "http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">  
+  
+<taglib>  
+  
+  <tlib-version>1.0</tlib-version>  
+  <jsp-version>1.2</jsp-version>  
+  <short-name>simple</short-name>  
+  <uri>http://tomcat.apache.org/example-taglib</uri>  
+  
+<tag>  
+<name>today</name>  
+<tag-class>com.javatpoint.sonoo.MyTagHandler</tag-class>  
+</tag>  
+</taglib>  
+3) Create the JSP file
+
+Let's use the tag in our jsp file. Here, we are specifying the path of tld file directly. But it is recommended to use the uri name instead of full path of tld file. We will learn about uri later.
+
+It uses taglib directive to use the tags defined in the tld file.
+
+File: index.jsp
+<%@ taglib uri="WEB-INF/mytags.tld" prefix="m" %>  
+Current Date and Time is: <m:today/>  
+
+
+
+
+Attributes in JSP Custom Tag
+
+Attributes in JSP Custom Tag
+Example to use attribute in JSP Custom Tag
+There can be defined too many attributes for any custom tag. To define the attribute, you need to perform two tasks:
+
+Define the property in the TagHandler class with the attribute name and define the setter method
+define the attribute element inside the tag element in the TLD file
+Let's understand the attribute by the tag given below:
+
+<m:cube number="4"></m:cube>  
+Here m is the prefix, cube is the tag name and number is the attribute.
+
+Simple example of attribute in JSP Custom Tag
+
+In this example, we are going to use the cube tag which return the cube of any given number. Here, we are defining the number attribute for the cube tag. We are using the three file here:
+
+index.jsp
+CubeNumber.java
+mytags.tld
+index.jsp
+<%@ taglib uri="WEB-INF/mytags.tld" prefix="m" %>  
+Cube of 4 is: <m:cube number="4"></m:cube>  
+CubeNumber.java
+package com.javatpoint.taghandler;  
+import javax.servlet.jsp.JspException;  
+import javax.servlet.jsp.JspWriter;  
+import javax.servlet.jsp.tagext.TagSupport;  
+  
+public class CubeNumber extends TagSupport{  
+private int number;  
+      
+public void setNumber(int number) {  
+    this.number = number;  
+}  
+  
+public int doStartTag() throws JspException {  
+    JspWriter out=pageContext.getOut();  
+    try{  
+        out.print(number*number*number);  
+    }catch(Exception e){e.printStackTrace();}  
+      
+    return SKIP_BODY;  
+}  
+}  
+mytags.tld
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib  
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"  
+        "http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">  
+  
+<taglib>  
+  <tlib-version>1.0</tlib-version>  
+  <jsp-version>1.2</jsp-version>  
+  <short-name>simple</short-name>  
+  <uri>http://tomcat.apache.org/example-taglib</uri>  
+  <description>A simple tab library for the examples</description>  
+  
+  <tag>  
+    <name>cube</name>  
+    <tag-class>com.javatpoint.taghandler.CubeNumber</tag-class>  
+    <attribute>  
+    <name>number</name>  
+    <required>true</required>  
+    </attribute>  
+  </tag>  
+</taglib>  
+Output
+
+Cube of 4 is: 64  
+download this example
+JSP Custom Tag attribute example with database
+
+Let's create a custom tag that prints a particular record of table for the given table name and id.
+
+So, you have to have two properties in the tag handler class.
+
+PrintRecord.java
+package com.javatpoint;  
+import javax.servlet.jsp.JspException;  
+import javax.servlet.jsp.JspWriter;  
+import javax.servlet.jsp.tagext.TagSupport;  
+import java.sql.*;  
+  
+public class PrintRecord extends TagSupport{  
+private String id;  
+private String table;  
+  
+public void setId(String id) {  
+    this.id = id;  
+}  
+public void setTable(String table) {  
+    this.table = table;  
+}  
+  
+public int doStartTag()throws JspException{  
+    JspWriter out=pageContext.getOut();  
+    try{   
+        Class.forName("oracle.jdbc.driver.OracleDriver");  
+        Connection con=DriverManager.getConnection(  
+                 "jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+        PreparedStatement ps=con.prepareStatement("select * from "+table+" where id=?");  
+        ps.setInt(1,Integer.parseInt(id));  
+        ResultSet rs=ps.executeQuery();  
+        if(rs!=null){  
+        ResultSetMetaData rsmd=rs.getMetaData();  
+        int totalcols=rsmd.getColumnCount();  
+        //column name  
+        out.write("<table border='1'>");  
+        out.write("<tr>");  
+        for(int i=1;i<=totalcols;i++){  
+            out.write("<th>"+rsmd.getColumnName(i)+"</th>");  
+        }  
+        out.write("</tr>");  
+        //column value  
+          
+        if(rs.next()){  
+            out.write("<tr>");  
+                for(int i=1;i<=totalcols;i++){  
+                out.write("<td>"+rs.getString(i)+"</td>");  
+            }  
+            out.write("</tr>");  
+                  
+        }else{  
+            out.write("Table or Id doesn't exist");  
+        }  
+        out.write("</table>");  
+          
+        }  
+        con.close();  
+    }catch(Exception e){System.out.println(e);}  
+    return SKIP_BODY;  
+}  
+}  
+m.tld
+<?xml version="1.0" encoding="ISO-8859-1" ?>    
+<!DOCTYPE taglib    
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"    
+    "http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">    
+    
+<taglib>  
+  
+  <tlib-version>1.2</tlib-version>  
+  <jsp-version>2.0</jsp-version>  
+  <short-name>c</short-name>  
+  <uri>javatpoint</uri>  
+  
+<tag>  
+<name>printRecord</name>  
+<tag-class>com.javatpoint.PrintRecord</tag-class>  
+<attribute>  
+<name>id</name>  
+<required>true</required>  
+</attribute>  
+<attribute>  
+<name>table</name>  
+<required>true</required>  
+</attribute>  
+  
+</tag>  
+</taglib>  
+index.jsp
+<%@ taglib uri="javatpoint" prefix="j" %>  
+<j:printRecord table="user874" id="1"></j:printRecord>  
+
+
+
+
+
+
+
+Iteration using JSP Custom Tag
+
+Iteration using JSP Custom Tag
+Example of Iteration using JSP Custom Tag
+We can iterate the body content of any tag using the doAfterBody() method of IterationTag interface.
+
+Here we are going to use the TagSupport class which implements the IterationTag interface. For iterating the body content, we need to use the EVAL_BODY_AGAIN constant in the doAfterBody() method.
+
+Example of Iteration using JSP Custom Tag
+
+In this example, we are going to use the attribute in the custom tag, which returns the power of any given number. We have created three files here
+
+index.jsp
+PowerNumber.java
+mytags.tld
+index.jsp
+<%@ taglib uri="WEB-INF/mytags.tld" prefix="m" %>  
+  
+3 ^ 5 = <m:power number="3" power="5">  
+body  
+</m:power>  
+PowerNumber.java
+package com.javatpoint.taghandler;  
+  
+import javax.servlet.jsp.JspException;  
+import javax.servlet.jsp.JspWriter;  
+import javax.servlet.jsp.tagext.TagSupport;  
+  
+public class PowerNumber extends TagSupport{  
+private int number;  
+private int power;  
+private static int counter;  
+private static int result=1;  
+  
+public void setPower(int power) {  
+    this.power = power;  
+}  
+  
+public void setNumber(int number) {  
+    this.number = number;  
+}  
+  
+public int doStartTag() throws JspException {  
+    return EVAL_BODY_INCLUDE;  
+}  
+  
+public int doAfterBody() {  
+    counter++;   
+    result *= number;   
+    if (counter==power)   
+      return SKIP_BODY;   
+    else   
+      return EVAL_BODY_AGAIN;   
+  }   
+  
+public int doEndTag() throws JspException {  
+    JspWriter out=pageContext.getOut();  
+    try{  
+        out.print(result);  
+    }catch(Exception e){e.printStackTrace();}  
+      
+    return EVAL_PAGE;  
+}  
+}  
+mytags.tld
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib  
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"  
+        "http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">  
+  
+<taglib>  
+  <tlib-version>1.0</tlib-version>  
+  <jsp-version>1.2</jsp-version>  
+  <short-name>simple</short-name>  
+  <uri>http://tomcat.apache.org/example-taglib</uri>  
+  <description>A simple tab library for the examples</description>  
+  
+  <tag>  
+    <name>power</name>  
+    <tag-class>com.javatpoint.taghandler.PowerNumber</tag-class>  
+      
+    <attribute>  
+    <name>number</name>  
+    <required>true</required>  
+    </attribute>  
+      
+    <attribute>  
+    <name>power</name>  
+    <required>true</required>  
+    </attribute>  
+    
+  </tag>  
+</taglib>  
+download this example (developed using MyEclipse ide)
+Looping using Iteration Tag (creating tag for loop)
+
+Let's create a loop tag that iterates the body content of this tag.
+
+File: index.jsp
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+<title>Insert title here</title>  
+</head>  
+<body>  
+  
+<%@taglib prefix="m" uri="sssuri" %>  
+<m:loop end="5" start="1">  
+<p>My Name is khan</p>  
+</m:loop>   
+  
+</body>  
+</html>  
+File: mytags.tld
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib  
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"  
+        "http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">  
+<taglib>  
+  <tlib-version>1.0</tlib-version>  
+  <jsp-version>1.2</jsp-version>  
+  <short-name>abc</short-name>  
+    
+  <uri>sssuri</uri>  
+ <tag>  
+    <name>loop</name>  
+    <tag-class>com.javatpoint.customtag.Loop</tag-class>  
+     
+    <attribute>  
+    <name>start</name>  
+    <required>true</required>  
+    </attribute>  
+      
+    <attribute>  
+    <name>end</name>  
+    <required>true</required>  
+    </attribute>  
+ </tag>  
+   
+</taglib>  
+File: Loop.java
+package com.javatpoint.customtag;  
+import javax.servlet.jsp.JspException;  
+import javax.servlet.jsp.tagext.TagSupport;  
+  
+public class Loop extends TagSupport{  
+    private int start=0;  
+    private int end=0;  
+      
+    public void setStart(int start) {  
+        this.start = start;  
+    }  
+    public void setEnd(int end) {  
+        this.end = end;  
+    }  
+      
+    @Override  
+    public int doStartTag() throws JspException {  
+        return EVAL_BODY_INCLUDE;  
+    }  
+  
+    @Override  
+    public int doAfterBody() throws JspException {  
+        if(start<end){  
+            start++;  
+            return EVAL_BODY_AGAIN;  
+        }else{  
+        return SKIP_BODY;  
+       }  
+          
+    }  
+  
+      
+}  
+File: web.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">  
+  
+<jsp-config>  
+<taglib>  
+<taglib-uri>sssuri</taglib-uri>  
+<taglib-location>/WEB-INF/mytags.tld</taglib-location>  
+</taglib>  
+</jsp-config>  
+  
+</web-app>  
+
+
+
+
+
+Custom URI in JSP Custom Tag
+
+Custom URI in JSP Custom Tag
+Example to use Custom URI in JSP Custom Tag
+We can use the custom URI, to tell the web container about the tld file. In such case, we need to define the taglib element in the web.xml. The web container gets the information about the tld file from the web.xml file for the specified URI.
+
+Example to use custom URI in JSP Custom Tag
+
+In this example, we are going to use the custom uri in the JSP file. For this application, we need to focus on 4 files.
+
+index.jsp
+web.xml
+mytags.tld
+PrintDate.java
+index.jsp
+<%@ taglib uri="mytags" prefix="m" %>  
+Today is: <m:today></m:today>  
+web.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE web-app   
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"   
+  "http://java.sun.com/dtd/web-app_2_3.dtd">   
+  
+<web-app>  
+  
+<jsp-config>  
+<taglib>  
+<taglib-uri>mytags</taglib-uri>  
+<taglib-location>/WEB-INF/mytags.tld</taglib-location>  
+</taglib>  
+</jsp-config>  
+  
+</web-app>  
+mytags.tld
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib  
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"  
+        "http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">  
+  
+<taglib>  
+  <tlib-version>1.0</tlib-version>  
+  <jsp-version>1.2</jsp-version>  
+  <short-name>simple</short-name>  
+  <uri>mytags</uri>  
+  <description>A simple tab library for the examples</description>  
+  
+  <tag>  
+    <name>today</name>  
+    <tag-class>com.javatpoint.taghandler.PrintDate</tag-class>  
+  </tag>  
+</taglib>  
+PrintDate.java
+package com.javatpoint.taghandler;  
+  
+import javax.servlet.jsp.JspException;  
+import javax.servlet.jsp.JspWriter;  
+import javax.servlet.jsp.tagext.TagSupport;  
+  
+public class PrintDate extends TagSupport{  
+  
+public int doStartTag() throws JspException {  
+    JspWriter out=pageContext.getOut();  
+    try{  
+        out.print(java.util.Calendar.getInstance().getTime());  
+    }catch(Exception e){e.printStackTrace();}  
+      
+    return SKIP_BODY;  
+    }  
+      
+  
+}  
+
+
+
+
+
+
+
+
+
+Registration Form in JSP
+
+Registration Form in JSP
+Example of Registration Form in JSP
+For creating registration form, you must have a table in the database. You can write the database logic in JSP file, but separating it from the JSP page is better approach. Here, we are going to use DAO, Factory Method, DTO and Singletion design patterns. There are many files:
+
+index.jsp for getting the values from the user
+User.java, a bean class that have properties and setter and getter methods.
+process.jsp, a jsp file that processes the request and calls the methods
+Provider.java, an interface that contains many constants like DRIVER_CLASS, CONNECTION_URL, USERNAME and PASSWORD
+ConnectionProvider.java, a class that returns an object of Connection. It uses the Singleton and factory method design pattern.
+RegisterDao.java, a DAO class that is responsible to get access to the database
+Example of Registration Form in JSP
+
+In this example, we are using the Oracle10g database to connect with the database. Let's first create the table in the Oracle database:
+CREATE TABLE  "USER432"   
+   (    "NAME" VARCHAR2(4000),   
+    "EMAIL" VARCHAR2(4000),   
+    "PASS" VARCHAR2(4000)  
+   )  
+/  
+We have created the table named user432 here.
+
+index.jsp
+
+We are having only three fields here, to make the concept clear and simplify the flow of the application. You can have other fields also like country, hobby etc. according to your requirement.
+
+<form action="process.jsp">  
+<input type="text" name="uname" value="Name..." onclick="this.value=''"/><br/>  
+<input type="text" name="uemail"  value="Email ID..." onclick="this.value=''"/><br/>  
+<input type="password" name="upass"  value="Password..." onclick="this.value=''"/><br/>  
+<input type="submit" value="register"/>  
+</form>  
+process.jsp
+
+This jsp file contains all the incoming values to an object of bean class which is passed as an argument in the register method of the RegisterDao class.
+
+<%@page import="bean.RegisterDao"%>  
+<jsp:useBean id="obj" class="bean.User"/>  
+  
+<jsp:setProperty property="*" name="obj"/>  
+  
+<%  
+int status=RegisterDao.register(obj);  
+if(status>0)  
+out.print("You are successfully registered");  
+  
+%>  
+User.java
+
+It is the bean class that have 3 properties uname, uemail and upass with its setter and getter methods.
+package bean;  
+  
+public class User {  
+private String uname,upass,uemail;  
+  
+public String getUname() {  
+    return uname;  
+}  
+  
+public void setUname(String uname) {  
+    this.uname = uname;  
+}  
+  
+public String getUpass() {  
+    return upass;  
+}  
+  
+public void setUpass(String upass) {  
+    this.upass = upass;  
+}  
+  
+public String getUemail() {  
+    return uemail;  
+}  
+  
+public void setUemail(String uemail) {  
+    this.uemail = uemail;  
+}  
+  
+}  
+Provider.java
+
+This interface contains four constants that can vary from database to database.
+
+package bean;  
+  
+public interface Provider {  
+String DRIVER="oracle.jdbc.driver.OracleDriver";  
+String CONNECTION_URL="jdbc:oracle:thin:@localhost:1521:xe";  
+String USERNAME="system";  
+String PASSWORD="oracle";  
+  
+}  
+ConnectionProvider.java
+
+This class is responsible to return the object of Connection. Here, driver class is loaded only once and connection object gets memory only once.
+
+package bean;  
+import java.sql.*;  
+import static bean.Provider.*;  
+  
+public class ConnectionProvider {  
+private static Connection con=null;  
+static{  
+try{  
+Class.forName(DRIVER);  
+con=DriverManager.getConnection(CONNECTION_URL,USERNAME,PASSWORD);  
+}catch(Exception e){}  
+}  
+  
+public static Connection getCon(){  
+    return con;  
+}  
+  
+}  
+RegisterDao.java
+
+This class inserts the values of the bean component into the database.
+
+package bean;  
+  
+import java.sql.*;  
+  
+public class RegisterDao {  
+  
+public static int register(User u){  
+int status=0;  
+try{  
+Connection con=ConnectionProvider.getCon();  
+PreparedStatement ps=con.prepareStatement("insert into user432 values(?,?,?)");  
+ps.setString(1,u.getUname());  
+ps.setString(2,u.getUemail());  
+ps.setString(3,u.getUpass());  
+              
+status=ps.executeUpdate();  
+}catch(Exception e){}  
+      
+return status;  
+}  
+  
+}  
+
+
+
+
+
+
+
+
+
+Login and Logout Example in JSP
+
+Login and Logout Example in JSP
+Example of Login Form in JSP
+In this example of creating login form, we have used the DAO (Data Access Object), Factory method and DTO (Data Transfer Object) design patterns. There are many files:
+index.jsp it provides three links for login, logout and profile
+login.jsp for getting the values from the user
+loginprocess.jsp, a jsp file that processes the request and calls the methods.
+LoginBean.java, a bean class that have properties and setter and getter methods.
+Provider.java, an interface that contains many constants like DRIVER_CLASS, CONNECTION_URL, USERNAME and PASSWORD
+ConnectionProvider.java, a class that is responsible to return the object of Connection. It uses the Singleton and factory method design pattern.
+LoginDao.java, a DAO class that verifies the emailId and password from the database.
+logout.jsp it invalidates the session.
+profile.jsp it provides simple message if user is logged in, otherwise forwards the request to the login.jsp page.
+In this example, we are using the Oracle10g database to match the emailId and password with the database. The table name is user432 which have many fields like name, email, pass etc. You may use this query to create the table:
+
+CREATE TABLE  "USER432"   
+   (    "NAME" VARCHAR2(4000),   
+    "EMAIL" VARCHAR2(4000),   
+    "PASS" VARCHAR2(4000)  
+   )  
+/  
+We assume that there are many records in this table.
+
+index.jsp
+
+It simply provides three links for login, logout and profile.
+
+<a href="login.jsp">login</a>|  
+<a href="logout.jsp">logout</a>|  
+<a href="profile.jsp">profile</a>  
+login.jsp
+
+This file creates a login form for two input fields name and password. It is the simple login form, you can change it for better look and feel. We are focusing on the concept only.
+
+<%@ include file="index.jsp" %>  
+<hr/>  
+  
+<h3>Login Form</h3>  
+<%  
+String profile_msg=(String)request.getAttribute("profile_msg");  
+if(profile_msg!=null){  
+out.print(profile_msg);  
+}  
+String login_msg=(String)request.getAttribute("login_msg");  
+if(login_msg!=null){  
+out.print(login_msg);  
+}  
+ %>  
+ <br/>  
+<form action="loginprocess.jsp" method="post">  
+Email:<input type="text" name="email"/><br/><br/>  
+Password:<input type="password" name="password"/><br/><br/>  
+<input type="submit" value="login"/>"  
+</form>  
+loginprocess.jsp
+
+This jsp file contains all the incoming values to an object of bean class which is passed as an argument in the validate method of the LoginDao class. If emailid and password is correct, it displays a message you are successfully logged in! and maintains the session so that we may recognize the user.
+
+<%@page import="bean.LoginDao"%>  
+<jsp:useBean id="obj" class="bean.LoginBean"/>  
+  
+<jsp:setProperty property="*" name="obj"/>  
+  
+<%  
+boolean status=LoginDao.validate(obj);  
+if(status){  
+out.println("You r successfully logged in");  
+session.setAttribute("session","TRUE");  
+}  
+else  
+{  
+out.print("Sorry, email or password error");  
+%>  
+<jsp:include page="index.jsp"></jsp:include>  
+<%  
+}  
+%>  
+LoginBean.java
+
+It is the bean class that have 2 properties email and pass with its setter and getter methods.
+
+package bean;  
+  
+public class LoginBean {  
+private String email,pass;  
+  
+public String getEmail() {  
+    return email;  
+}  
+  
+public void setEmail(String email) {  
+    this.email = email;  
+}  
+  
+public String getPass() {  
+    return pass;  
+}  
+  
+public void setPass(String pass) {  
+    this.pass = pass;  
+}  
+  
+  
+}  
+Provider.java
+
+This interface contains four constants that may differ from database to database.
+package bean;  
+  
+public interface Provider {  
+String DRIVER="oracle.jdbc.driver.OracleDriver";  
+String CONNECTION_URL="jdbc:oracle:thin:@localhost:1521:xe";  
+String USERNAME="system";  
+String PASSWORD="oracle";  
+  
+}  
+ConnectionProvider.java
+
+This class provides a factory method that returns the object of Connection. Here, driver class is loaded only once and connection object gets memory only once because it is static.
+
+package bean;  
+import java.sql.*;  
+import static bean.Provider.*;  
+  
+public class ConnectionProvider {  
+private static Connection con=null;  
+static{  
+try{  
+Class.forName(DRIVER);  
+con=DriverManager.getConnection(CONNECTION_URL,USERNAME,PASSWORD);  
+}catch(Exception e){}  
+}  
+  
+public static Connection getCon(){  
+    return con;  
+}  
+  
+}  
+LoginDao.java
+
+This class varifies the emailid and password.
+
+package bean;  
+import java.sql.*;  
+public class LoginDao {  
+  
+public static boolean validate(LoginBean bean){  
+boolean status=false;  
+try{  
+Connection con=ConnectionProvider.getCon();  
+              
+PreparedStatement ps=con.prepareStatement(  
+    "select * from user432 where email=? and pass=?");  
+  
+ps.setString(1,bean.getEmail());  
+ps.setString(2, bean.getPass());  
+              
+ResultSet rs=ps.executeQuery();  
+status=rs.next();  
+              
+}catch(Exception e){}  
+  
+return status;  
+  
+}  
+}  
+
+
+
+
+
+
+
+Uploading file to the server using JSP
+
+Uploading file to the server using JSP
+MultipartRequest class
+Constructors of MultipartRequest class
+Example of File Upload in JSP
+There are many ways to upload the file to the server. One of the way is by the MultipartRequest class. For using this class you need to have the cos.jar file. In this example, we are providing the cos.jar file alongwith the code.
+
+MultipartRequest class
+
+It is a utility class to handle the multipart/form-data request. There are many constructors defined in the MultipartRequest class.
+Commonly used Constructors of MultipartRequest class
+
+MultipartRequest(HttpServletRequest request, String saveDirectory) uploads the file upto 1MB.
+MultipartRequest(HttpServletRequest request, String saveDirectory, int maxPostSize) uploads the file upto specified post size.
+MultipartRequest(HttpServletRequest request, String saveDirectory, int maxPostSize, String encoding) uploads the file upto specified post size with given encoding.
+Example of File Upload in JSP
+
+In this example, we are creating two files only, index.jsp and fileupload.jsp.
+
+index.jsp
+
+To upload the file to the server, there are two requirements:
+
+You must use the post request.
+encodeType should be multipart/form-data that gives information to the server that you are going to upload the file.
+<form action="upload.jsp" method="post" enctype="multipart/form-data">  
+Select File:<input type="file" name="fname"/><br/>  
+<input type="image" src="MainUpload.png"/>  
+</form>  
+upload.jsp
+
+We are uploading the incoming file to the location d:/new, you can specify your location here.
+
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>  
+<%  
+MultipartRequest m = new MultipartRequest(request, "d:/new");  
+out.print("successfully uploaded");  
+  
+%>  
+If size of the file is greater than 1MB, you should specify the post size
+
+
+
+
+
+
+Example of Downloading file from the server using JSP
+
+In this example, we are going to download the jsp file. But you may download any file. For downloading the file from the server, you should specify the content type named APPLICATION/OCTET-STREAM.
+
+index.jsp
+
+This file provides a link to download the jsp file.
+
+<a href="download.jsp">download the jsp file</a>  
+download.jsp
+
+In this example, we are downloading the file home.jsp which is located in the e: drive. You may change this location accordingly.
+
+<%    
+  String filename = "home.jsp";   
+  String filepath = "e:\\";   
+  response.setContentType("APPLICATION/OCTET-STREAM");   
+  response.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");   
+  
+  java.io.FileInputStream fileInputStream=new java.io.FileInputStream(filepath + filename);  
+            
+  int i;   
+  while ((i=fileInputStream.read()) != -1) {  
+    out.write(i);   
+  }   
+  fileInputStream.close();   
+%>   
+
+
+
+
+
+
+
+
+
+
+

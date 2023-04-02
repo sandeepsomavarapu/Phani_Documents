@@ -1,0 +1,9 @@
+A Checked exception is said to be fully checked exception if and only if all its child classes also checked
+
+Example: IOException
+	 
+
+
+A Checked exception is said to be partially checked exception if and only if some of its child classes are Unchecked.
+
+Example: Exception.

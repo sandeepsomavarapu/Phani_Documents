@@ -1,0 +1,342 @@
+language  fundamentals:-
+===================
+1)identifiers
+2)reserved words
+3)datatypes
+5)arrays
+6)types of variables
+7)var-arg methods
+8)main method
+9)command line arguments
+10)java coding standards.
+
+**************************************
+
+1)identifiers:-
+-----------------
+*a name in java program is called identifier.
+*which can be used for identification purpose .
+* it can be method name or variable name class name or label name .
+class test
+{
+psvmain(String []args)
+{
+int x=10;
+}
+}
+
+5 identifiers are there in above program.
+**String is predifined class name in java.
+** name of the array.
+
+rules for java identifiers :-
+---------------------------------
+**the only allowed charecters in ja identifiers are 
+ 
+   ==>      a to z
+                A to Z
+                0 to 9
+                   $
+                    _
+
+if we are using any other charecter we will get compile time error
+
+ex:- 1)total_number (valid)
+      
+      2)total#  (invalid)
+    
+**identifiers cant start with digit 
+
+3)total123(valid)
+4)123total(invalid)
+
+
+** java identifiers are case sensitiveoffcourse java lang itselt treated as case sensitive p.lang
+class test
+{
+int number=10;
+int Number=20;
+int NUMBER=30;
+} 
+
+**there is no length limit for java identifiers but it is not recommended to take to legthy identifiers
+
+**we cant use reserved words as identifiers 
+
+int x=10;(valid)
+int if=20;(invalid)
+** all predifined classes and interfaces names we can use as identifiers
+
+Ex1:-class Test
+{
+psvmain(String args[])
+{
+int String=888;
+sopln(String);
+}
+}o/p:-888
+
+Ex2:-
+class Test
+{
+psvmain(String args[])
+{
+int Runnable=999;
+sopln(Runnable);
+}
+}o/p:-999
+
+
+**even though it is valid but it is not a good prograing practise because it reduses readability and creates confusion.
+
+Q) which of the following are valid java identifiers ?
+
+    total_number (valid)
+    total#          (invalid)
+    123total      (invalid)
+     total123   (valid) 
+     ca$h         (valid)
+     _$_$_$_$_$_(valid)
+   all@hands    (invalid)
+   java2share (valid)
+   Integer  (valid)
+   Int      (valid)
+   int      (invalid)
+
+******************************************************
+
+Reserved words:-
+============
+
+**in java some words reserver to represent some meaning  or functionality such type words are called reserved words.
+
+                                                                           
+                                                                                 53 reserved words			
+                                                                                           |
+                                     -----------------------------------------------------------------------------------------
+                                     |                                                                                                          |
+                                keywords(50)                                                                         reserved literals(3)
+                                |                                                                                                   |
+                    --------------------                                                                            --------------------
+                   |                        |                                                                           |            |              |
+       used keywords(48)         un used keywords(2)                                         true        false           null
+      |          |           |                             |           |
+    if        else........                            goto     const
+
+
+keywords for data types:-
+-------------------------------
+
+ (8)
+byte 
+short 
+int 
+long 
+float
+double
+boolean
+char
+
+keywords for flow control
+----------------------------------
+
+ (11)   
+   if
+  else
+  switch
+  case
+  default 
+  while
+  do
+  for
+  break 
+  continue
+  return
+
+keywords for modifiers:-
+------------------------------
+  
+   (11)
+public 
+private
+protected
+static
+final
+abstract
+synchronized
+native
+strictfp(1.2)
+transient
+vloatile
+
+keywords for exception handling:-
+-----------------------------------------
+ (6)
+try
+catch
+finally
+throw
+throws
+assert(1.4)
+
+class related keywords:-
+-----------------------------
+   (6)
+class
+interface
+extends
+implements
+package
+import
+
+object related keywords:-
+-------------------------------
+  (4)
+new
+instanceof
+super
+this
+
+void return type keyword:-
+--------------------------------
+''void''
+
+**in java return tpe is mandatory if a method wont return anything then we have to declare that method with void return type
+
+*** but in C lang return type is optional and default return type is "int"
+
+unused keywords:-
+---------------------
+ (2)
+goto
+const
+
+ 
+goto:-
+
+usage of goto created  several problems in old languages and hense sun people baned this keyword in java
+
+const:-
+
+use final instead of const
+
+**goto and const are unused keywords and if we are trying to use we will get compile time error .
+
+Reserved literals:-
+----------------------
+ (3)    
+ true   |
+ false  | ---- values for boolean data type
+          |
+ 
+null-----default value for object referrence
+
+
+enum keyword(1.5):-
+----------------------
+ *we can use enum to define a group of named constants 
+
+enum moth
+{
+JAN,FEB,...DEC
+}
+Enum bear
+{
+kf,ko,rc,fo....
+}
+
+conclusions:-
+-----------------
+**All 53 reserved words in java contains only lower case alphabet sysmbols.
+
+**in java we have only new keyword and there is no delete keyword because distruction use less objects is the responcibility of garbage collecter.
+
+*the following are new keywords in java.
+
+strictfp(1.2v)
+assert(1.4v)
+enum(1.5v)
+strictfp butnotstrictFp
+instanceof  butnot  instanceOf 
+synchronized  butnot  synchronize
+extends  butnot extend
+implements  butnot  implement
+import  butnot  imports
+const   butnot constant
+
+
+Q)Which of the follwing list contains only java reserved words
+
+new,delete
+goto,constant
+break,continue,return,exit
+finally,final,finalize
+throw,throws,thrown
+notify,notifyall
+implements,extends,imports
+sizeof,instanceof
+instanceOf,strictFp
+byte,short,Int
+
+none of the above
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

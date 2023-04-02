@@ -1,0 +1,206 @@
+IS-A RELATIONSHIP (Inheritance):-
+==============================
+*it is also known as inheritance.
+*By using extends keyword we can implement is-a relationship. 
+*the main advantage of is-a relation is "code reusability".
+
+**
+Ex 1:-
+class P
+{
+public void m1()
+{
+system.out.println("parent");
+}
+class C extends P
+{
+public void m2()
+{
+system.out.println("child");
+}
+}
+
+Ex 2 :
+class Test
+{
+public static void main(string []args)
+{
+(1)
+parent p=new parent();
+p.m1();/*yes it is possible
+p.m2();/*ERROR it is not possible
+(2)
+child c=new child();
+c.m1(); /*yes possible
+c.m2();/* yes possible
+****(3)
+parent p1=new child();
+p1.m1();/*yes possible
+p1.m2();/*ERROR not possible 
+(4)
+child c1=new parent();/*ERROR not possible
+}
+CONCLUSIONS:-
+================
+1)what ever methods parent has by default available to the child and hence on the child reference we can call both parent and child class methods.
+2)what ever methods child has by default not available to the parent and hence on the parent reference we can't call child specific methods.
+**3)parent reference can be used to hold child  object but using that reference we can't call child specific methods but we can call the methods present in parent class.
+4)parent reference can be used to hold child object but child reference can't be used hold parent object.
+
+Ex:-'with out inheritance'
+class vehicle 
+{
+300 methods
+}
+class hloan
+{
+300 methods
+}
+class ploan
+{
+300 methods
+}
+
+conclusion''[900 methods,90 hours ]
+
+with inheritance:-
+==============
+class  loan
+{
+250 methods
+}
+class vloan extends loan
+ {
+50 specific methods 
+}
+class hloan extends loan
+{
+50 specific methods
+}
+class ploan extends loan
+{
+50 specific methods
+}
+
+conclusion:-[400 methods,4 hours]
+
+NOTE:-
+=======
+*the most common methods which r applicable for any type of child , we have to define in parent class. 
+*the specific methods which r applicable for a particular child we have to define in child class .
+
+{object class is parent class for all classes}
+
+*11 methods present in object class .
+*around  5000+java  classes are there.
+
+*total java api is implemented based on inheritance concept .
+*the most common methods which are applicable for any java object  are defined in object class
+and hence every class in java is the child class of object either  directly or indirectly,so that object class methods by default available to every java class with rewriting due to this object class acts as route for all java classes 
+*throwable class defines the most common methods which are required for every exception and error classes hence this class acts as route for java exception  hirarchy.
+
+                                      OBJECT class                          
+                                                  |
+              -------------------------------------------------------------
+                      |                              |                                   |
+                  1)String       2)string buffer......          n)throwable
+                                                                                             | 
+                                                                           --------------------------------
+                                                                            |                                   | 
+                                                               1)execption                           2)error
+                                                 ------------------------------------------------------------------ 
+                                                                  |                                               |
+                                    1)runtime ex.    2)io exception....N)               1)out of memory error......
+                                    |
+                                   A.E
+                                   N.E
+
+
+
+multiple inheritance:-
+--------------------------------
+a java class can't extend more than one class at a time hence java won't provide support  for multiple inheritance in classes.
+ ex:-
+class  A extends B,C
+{
+COMPILE TIME ERROR;
+}
+
+NOTE:
+1)If our class doesn't   extend any other class then only our class is direct child class of object.
+ex:-
+class A
+{
+
+}         
+A is child of object.
+2)if our class extends any other class then our class is indirect child class object
+ex:-
+class A extends B
+{
+
+}     
+  (B)  (object)
+    /\    /\
+    |      |
+    |      |              (WRONG) (multiple inherit)
+  ------------
+       (A) 
+
+    (Object)
+         /\
+         |
+         |       (write) multilevel
+        (B)   
+         /\
+         |
+         | 
+        (A) 
+Note:-
+either directly or indirectly java won't provide support for inheritance with respect to classes.
+
+Q:why java won't provide support for multiple inheritance?
+ans:-there may be a chance of ambiqity problem hence java wont provide support for M.I
+
+ Ex:
+         p1 --->m1()               p2--->m1()
+                   |                            |
+                   |                            |
+                 ---------- ------------extend(assume)
+                                  |
+                                 (C)               
+                          
+                            C.m1();
+but interface can  extend any number of interfaces simutaniously hence java provide support for multiple inheritance w.r.t interfaces.
+ex:
+interface A              |     interface B
+{                                 |     {
+                                     
+}                                 |     }   
+
+--------------------------------------------------
+                             |extends
+                      interface C extends A,B
+                           {
+                           
+                           }
+
+
+Q: why ambiquity problem won't be there in interfaces?
+           P.I 1 -->m1();               P.I 2( parent interfaces)
+             /\                                          /\
+             |                                           |
+             |                                           |   
+---------------------------------------------------extends
+             C. I -->
+
+      m1()----implementation class
+   { 
+   
+    }
+*even though mlutiple method declarations are available but implementation is unquie and hence there is no chance of abiquity problem in interfaces.
+*strictly speaking through interfaces we dnt get any inheritance.
+* cyclic inheritance is not allowed in java,offcourse it is not required.
+ex 1):- class A extends A
+ 2)class A extends b
+    class B extends A 

@@ -1,0 +1,47 @@
+writing a Java Program
+
+class  FirstJavaProgram {
+public static void main(String args[ ]) {
+System.out.println("output of the program");
+}
+}
+
+main:--- It is name of the method, the main() method is where your program starts running.
+void:---- It does not return any value.
+static:--- This function can be called with out creating an object.
+String :---- It is a predefined class included in java.lang package, it can be used as a datatype.
+args[ ] :---- It is the parameter.
+String args[ ] :---- It can store command line arguments.
+System :---- It is a predefined class included in java.lang package.
+out :---- It is an object of System class, this says print to standard output (defaults to command-line).
+
+
+Steps to Write and Execute a java program:
+
+1. open any editor, for example: Notepad, wordpad, Editplus etc.
+2. type the source code in the editor
+3. Save it with a .java extension, file name should be same as class name.
+4. goto command prompt, and goto the drive where the java file is saved.
+5. to compile the file type, 
+javac FirstJavaProgram.java
+6. To execute the file type,
+java FirstJavaProgram
+
+setting path:
+at the c:\> type
+set path=C:\program files\java\jdk1.5.0\bin;
+set classpath=C:\program files\java\jdk1.5.0\bin;
+
+setting classpath permanently in windows XP:
+1. Click Start
+2. Open Control Panel
+3. Open System
+4. Click Advance Tab
+5. Click Environment Variables button
+6. In user variables, click New Button
+7. In the variable name field type  
+path
+and in the variable value field type     
+C:\program files\java\jdk1.5.0\bin;  
+8. click ok to close the dialog boxes.
+

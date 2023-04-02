@@ -1,0 +1,8 @@
+<html>
+<head>
+
+</head>
+<script>
+document.writln("hello world");
+</script>
+</html>

@@ -1,0 +1,2332 @@
+Java JDBC Tutorial
+
+Java JDBC is a java API to connect and execute query with the database. JDBC API uses jdbc drivers to connect with the database.
+
+JDBC (Java Database Connectivity) 
+Why use JDBC
+
+Before JDBC, ODBC API was the database API to connect and execute query with the database. But, ODBC API uses ODBC driver which is written in C language (i.e. platform dependent and unsecured). That is why Java has defined its own API (JDBC API) that uses JDBC drivers (written in Java language).
+
+
+
+
+
+
+
+
+JDBC Driver
+
+JDBC Driver is a software component that enables java application to interact with the database.There are 4 types of JDBC drivers:
+
+JDBC-ODBC bridge driver
+Native-API driver (partially java driver)
+Network Protocol driver (fully java driver)
+Thin driver (fully java driver)
+
+1) JDBC-ODBC bridge driver
+
+The JDBC-ODBC bridge driver uses ODBC driver to connect to the database. The JDBC-ODBC bridge driver converts JDBC method calls into the ODBC function calls. This is now discouraged because of thin driver.
+bridge driver
+Advantages:
+
+easy to use.
+can be easily connected to any database.
+Disadvantages:
+
+Performance degraded because JDBC method call is converted into the ODBC function calls.
+The ODBC driver needs to be installed on the client machine.
+2) Native-API driver
+
+The Native API driver uses the client-side libraries of the database. The driver converts JDBC method calls into native calls of the database API. It is not written entirely in java.
+Native-API driver
+Advantage:
+
+performance upgraded than JDBC-ODBC bridge driver.
+Disadvantage:
+
+The Native driver needs to be installed on the each client machine.
+The Vendor client library needs to be installed on client machine.
+3) Network Protocol driver
+
+The Network Protocol driver uses middleware (application server) that converts JDBC calls directly or indirectly into the vendor-specific database protocol. It is fully written in java.
+
+Network Protocol driver
+Advantage:
+
+No client side library is required because of application server that can perform many tasks like auditing, load balancing, logging etc.
+Disadvantages:
+
+Network support is required on client machine.
+Requires database-specific coding to be done in the middle tier.
+Maintenance of Network Protocol driver becomes costly because it requires database-specific coding to be done in the middle tier.
+4) Thin driver
+
+The thin driver converts JDBC calls directly into the vendor-specific database protocol. That is why it is known as thin driver. It is fully written in Java language.
+Thin driver
+Advantage:
+
+Better performance than all other drivers.
+No software is required at client side or server side.
+Disadvantage:
+
+Drivers depends on the Database.
+
+
+
+
+
+
+
+****5 Steps to connect to the database in java
+=================================
+There are 5 steps to connect any java application with the database in java using JDBC. They are as follows:
+Register the driver class
+Creating connection
+Creating statement
+Executing queries
+Closing connection
+
+1) Register the driver class
+
+The forName() method of Class class is used to register the driver class. This method is used to dynamically load the driver class.
+Syntax of forName() method
+
+public static void forName(String className)throws ClassNotFoundException  
+Example to register the OracleDriver class
+
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+2) Create the connection object
+
+The getConnection() method of DriverManager class is used to establish connection with the database.
+Syntax of getConnection() method
+
+1) public static Connection getConnection(String url)throws SQLException  
+2) public static Connection getConnection(String url,String name,String password)  
+throws SQLException  
+
+
+Example to establish connection with the Oracle database
+
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","password");  
+3) Create the Statement object
+
+The createStatement() method of Connection interface is used to create statement. The object of statement is responsible to execute queries with the database.
+Syntax of createStatement() method
+
+public Statement createStatement()throws SQLException  
+Example to create the statement object
+
+Statement stmt=con.createStatement();  
+4) Execute the query
+
+The executeQuery() method of Statement interface is used to execute queries to the database. This method returns the object of ResultSet that can be used to get all the records of a table.
+Syntax of executeQuery() method
+
+public ResultSet executeQuery(String sql)throws SQLException  
+Example to execute query
+
+ResultSet rs=stmt.executeQuery("select * from emp");  
+  
+while(rs.next()){  
+System.out.println(rs.getInt(1)+" "+rs.getString(2));  
+}  
+5) Close the connection object
+
+By closing connection object statement and ResultSet will be closed automatically. The close() method of Connection interface is used to close the connection.
+Syntax of close() method
+
+public void close()throws SQLException  
+Example to close connection
+
+con.close();  
+
+
+
+
+Example to connect to the Oracle database
+-------------------------------------------------------
+For connecting java application with the oracle database, you need to follow 5 steps to perform database connectivity. In this example we are using Oracle10g as the database. So we need to know following informations for the oracle database:
+Driver class: The driver class for the oracle database is oracle.jdbc.driver.OracleDriver.
+Connection URL: The connection URL for the oracle10G database is jdbc:oracle:thin:@localhost:1521:xe where jdbc is the API, oracle is the database, thin is the driver, localhost is the server name on which oracle is running, we may also use IP address, 1521 is the port number and XE is the Oracle service name. You may get all these informations from the tnsnames.ora file.
+Username: The default username for the oracle database is system.
+Password: Password is given by the user at the time of installing the oracle database.
+
+Let's first create a table in oracle database.
+create table emp(id number(10),name varchar2(40),age number(3));  
+Example to Connect Java Application with Oracle database
+
+In this example, system is the username and oracle is the password of the Oracle database.
+
+import java.sql.*;  
+class OracleCon{  
+public static void main(String args[]){  
+try{  
+//step1 load the driver class  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+  
+//step2 create  the connection object  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+  
+//step3 create the statement object  
+Statement stmt=con.createStatement();  
+  
+//step4 execute query  
+ResultSet rs=stmt.executeQuery("select * from emp");  
+while(rs.next())  
+System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+  
+//step5 close the connection object  
+con.close();  
+  
+}catch(Exception e){ System.out.println(e);}  
+  
+}  
+}  
+
+
+The above example will fetch all the records of emp table.
+
+To connect java application with the Oracle database ojdbc14.jar file is required to be loaded.
+
+download the jar file ojdbc14.jar
+
+Two ways to load the jar file:
+
+paste the ojdbc14.jar file in jre/lib/ext folder
+
+set classpath
+-----------------
+1) paste the ojdbc14.jar file in JRE/lib/ext folder:
+------------------------------------------------------------
+Firstly, search the ojdbc14.jar file then go to JRE/lib/ext folder and paste the jar file here.
+
+2) set classpath:
+-------------------
+There are two ways to set the classpath:
+temporary
+permanent
+How to set the temporary classpath:
+
+Firstly, search the ojdbc14.jar file then open command prompt and write:
+C:>set classpath=c:\folder\ojdbc14.jar;.;  
+How to set the permanent classpath:
+
+Go to environment variable then click on new tab. In variable name write classpath and in variable value paste the path to ojdbc14.jar by appending ojdbc14.jar;.; as C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib\ojdbc14.jar;.;
+To see the slides of seting parmanent path
+
+
+
+
+
+
+DriverManager class:
+===============
+The DriverManager class acts as an interface between user and drivers. It keeps track of the drivers that are available and handles establishing a connection between a database and the appropriate driver. The DriverManager class maintains a list of Driver classes that have registered themselves by calling the method DriverManager.registerDriver().
+
+Commonly used methods of DriverManager class:
+
+1) public static void registerDriver(Driver driver):	is used to register the given driver with DriverManager.
+2) public static void deregisterDriver(Driver driver):	is used to deregister the given driver (drop the driver from the list) with DriverManager.
+3) public static Connection getConnection(String url):	is used to establish the connection with the specified url.
+4) public static Connection getConnection(String url,String userName,String password):	is used to establish the connection with the specified url, username and password.
+
+
+
+
+
+
+
+Connection interface:
+==============
+
+A Connection is the session between java application and database. The Connection interface is a factory of Statement, PreparedStatement, and DatabaseMetaData i.e. object of Connection can be used to get the object of Statement and DatabaseMetaData. The Connection interface provide many methods for transaction management like commit(),rollback() etc.
+
+By default, connection commits the changes after executing queries.
+
+Commonly used methods of Connection interface:
+
+1) public Statement createStatement(): creates a statement object that can be used to execute SQL queries.
+2) public Statement createStatement(int resultSetType,int resultSetConcurrency): Creates a Statement object that will generate ResultSet objects with the given type and concurrency.
+3) public void setAutoCommit(boolean status): is used to set the commit status.By default it is true.
+4) public void commit(): saves the changes made since the previous commit/rollback permanent.
+5) public void rollback(): Drops all changes made since the previous commit/rollback.
+6) public void close(): closes the connection and Releases a JDBC resources immediately.
+
+
+
+
+
+Statement interface
+=============
+
+The Statement interface provides methods to execute queries with the database. The statement interface is a factory of ResultSet i.e. it provides factory method to get the object of ResultSet.
+
+Commonly used methods of Statement interface:
+
+The important methods of Statement interface are as follows:
+
+1) public ResultSet executeQuery(String sql): is used to execute SELECT query. It returns the object of ResultSet.
+2) public int executeUpdate(String sql): is used to execute specified query, it may be create, drop, insert, update, delete etc.
+3) public boolean execute(String sql): is used to execute queries that may return multiple results.
+4) public int[] executeBatch(): is used to execute batch of commands.
+
+Example of Statement interface
+======================
+Let’s see the simple example of Statement interface to insert, update and delete the record.
+
+import java.sql.*;  
+class FetchRecord{  
+public static void main(String args[])throws Exception{  
+  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+Statement stmt=con.createStatement();  
+  
+//stmt.executeUpdate("insert into emp765 values(33,'Irfan',50000)");  
+//int result=stmt.executeUpdate("update emp765 set name='Vimal',salary=10000 where id=33");  
+int result=stmt.executeUpdate("delete from emp765 where id=33");  
+  
+System.out.println(result+" records affected");  
+con.close();  
+}}  
+
+
+
+
+
+ResultSet interface
+------------------------
+
+The object of ResultSet maintains a cursor pointing to a particular row of data. Initially, cursor points to before the first row.
+
+By default, ResultSet object can be moved forward only and it is not updatable.
+
+But we can make this object to move forward and backward direction by passing either TYPE_SCROLL_INSENSITIVE or TYPE_SCROLL_SENSITIVE in createStatement(int,int) method as well as we can make this object as updatable by:
+
+Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  
+                     ResultSet.CONCUR_UPDATABLE);  
+Commonly used methods of ResultSet interface
+
+1) public boolean next():	is used to move the cursor to the one row next from the current position.
+2) public boolean previous():	is used to move the cursor to the one row previous from the current position.
+3) public boolean first():	is used to move the cursor to the first row in result set object.
+4) public boolean last():	is used to move the cursor to the last row in result set object.
+5) public boolean absolute(int row):	is used to move the cursor to the specified row number in the ResultSet object.
+6) public boolean relative(int row):	is used to move the cursor to the relative row number in the ResultSet object, it may be positive or negative.
+7) public int getInt(int columnIndex):	is used to return the data of specified column index of the current row as int.
+8) public int getInt(String columnName):	is used to return the data of specified column name of the current row as int.
+9) public String getString(int columnIndex):	is used to return the data of specified column index of the current row as String.
+10) public String getString(String columnName):	is used to return the data of specified column name of the current row as String.
+Example of Scrollable ResultSet
+
+Let’s see the simple example of ResultSet interface to retrieve the data of 3rd row.
+
+import java.sql.*;  
+class FetchRecord{  
+public static void main(String args[])throws Exception{  
+  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);  
+ResultSet rs=stmt.executeQuery("select * from emp765");  
+  
+//getting the record of 3rd row  
+rs.absolute(3);  
+System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3));  
+  
+con.close();  
+}}  
+
+
+
+
+
+PreparedStatement interface
+=====================
+
+The PreparedStatement interface is a subinterface of Statement. It is used to execute parameterized query.
+
+Let's see the example of parameterized query:
+
+String sql="insert into emp values(?,?,?)";  
+As you can see, we are passing parameter (?) for the values. Its value will be set by calling the setter methods of PreparedStatement.
+
+Why use PreparedStatement?
+======================
+
+Improves performance: The performance of the application will be faster if you use PreparedStatement interface because query is compiled only once.
+
+How to get the instance of PreparedStatement?
+
+The prepareStatement() method of Connection interface is used to return the object of PreparedStatement. Syntax:
+
+public PreparedStatement prepareStatement(String query)throws SQLException{}  
+Methods of PreparedStatement interface
+
+The important methods of PreparedStatement interface are given below:
+
+Method	Description
+public void setInt(int paramIndex, int value)	sets the integer value to the given parameter index.
+public void setString(int paramIndex, String value)	sets the String value to the given parameter index.
+public void setFloat(int paramIndex, float value)	sets the float value to the given parameter index.
+public void setDouble(int paramIndex, double value)	sets the double value to the given parameter index.
+public int executeUpdate()	executes the query. It is used for create, drop, insert, update, delete etc.
+public ResultSet executeQuery()	executes the select query. It returns an instance of ResultSet.
+Example of PreparedStatement interface that inserts the record
+
+First of all create table as given below:
+
+create table emp(id number(10),name varchar2(50));  
+Now insert records in this table by the code given below:
+
+import java.sql.*;  
+class InsertPrepared{  
+public static void main(String args[]){  
+try{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+  
+PreparedStatement stmt=con.prepareStatement("insert into Emp values(?,?)");  
+stmt.setInt(1,101);//1 specifies the first parameter in the query  
+stmt.setString(2,"Ratan");  
+  
+int i=stmt.executeUpdate();  
+System.out.println(i+" records inserted");  
+  
+con.close();  
+  
+}catch(Exception e){ System.out.println(e);}  
+  
+}  
+}  
+
+Example of PreparedStatement interface that updates the record
+
+PreparedStatement stmt=con.prepareStatement("update emp set name=? where id=?");  
+stmt.setString(1,"Sonoo");//1 specifies the first parameter in the query i.e. name  
+stmt.setInt(2,101);  
+  
+int i=stmt.executeUpdate();  
+System.out.println(i+" records updated");  
+download this example
+Example of PreparedStatement interface that deletes the record
+
+PreparedStatement stmt=con.prepareStatement("delete from emp where id=?");  
+stmt.setInt(1,101);  
+  
+int i=stmt.executeUpdate();  
+System.out.println(i+" records deleted");  
+download this example
+Example of PreparedStatement interface that retrieve the records of a table
+
+PreparedStatement stmt=con.prepareStatement("select * from emp");  
+ResultSet rs=stmt.executeQuery();  
+while(rs.next()){  
+System.out.println(rs.getInt(1)+" "+rs.getString(2));  
+}  
+download this example
+Example of PreparedStatement to insert records until user press n
+
+import java.sql.*;  
+import java.io.*;  
+class RS{  
+public static void main(String args[])throws Exception{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+  
+PreparedStatement ps=con.prepareStatement("insert into emp130 values(?,?,?)");  
+  
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+  
+do{  
+System.out.println("enter id:");  
+int id=Integer.parseInt(br.readLine());  
+System.out.println("enter name:");  
+String name=br.readLine();  
+System.out.println("enter salary:");  
+float salary=Float.parseFloat(br.readLine());  
+  
+ps.setInt(1,id);  
+ps.setString(2,name);  
+ps.setFloat(3,salary);  
+int i=ps.executeUpdate();  
+System.out.println(i+" records affected");  
+  
+System.out.println("Do you want to continue: y/n");  
+String s=br.readLine();  
+if(s.startsWith("n")){  
+break;  
+}  
+}while(true);  
+  
+con.close();  
+}}  
+
+
+
+ResultSetMetaData Interface
+====================
+
+The metadata means data about data i.e. we can get further information from the data.
+
+If you have to get metadata of a table like total number of column, column name, column type etc. , ResultSetMetaData interface is useful because it provides methods to get metadata from the ResultSet object.
+
+Commonly used methods of ResultSetMetaData interface
+
+Method	Description
+public int getColumnCount()throws SQLException	it returns the total number of columns in the ResultSet object.
+public String getColumnName(int index)throws SQLException	it returns the column name of the specified column index.
+public String getColumnTypeName(int index)throws SQLException	it returns the column type name for the specified index.
+public String getTableName(int index)throws SQLException	it returns the table name for the specified column index.
+How to get the object of ResultSetMetaData:
+
+The getMetaData() method of ResultSet interface returns the object of ResultSetMetaData. Syntax:
+public ResultSetMetaData getMetaData()throws SQLException 
+ 
+Example of ResultSetMetaData interface :
+============================
+import java.sql.*;  
+class Rsmd{  
+public static void main(String args[]){  
+try{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+  
+PreparedStatement ps=con.prepareStatement("select * from emp");  
+ResultSet rs=ps.executeQuery();  
+  
+ResultSetMetaData rsmd=rs.getMetaData();  
+  
+System.out.println("Total columns: "+rsmd.getColumnCount());  
+System.out.println("Column Name of 1st column: "+rsmd.getColumnName(1));  
+System.out.println("Column Type Name of 1st column: "+rsmd.getColumnTypeName(1));  
+  
+con.close();  
+  
+}catch(Exception e){ System.out.println(e);}  
+  
+}  
+}  
+Output:Total columns: 2
+       Column Name of 1st column: ID
+       Column Type Name of 1st column: NUMBER
+
+
+
+
+Example to store image in Oracle database
+==============================
+
+You can store images in the database in java by the help of PreparedStatement interface.
+
+The setBinaryStream() method of PreparedStatement is used to set Binary information into the parameterIndex.
+
+Signature of setBinaryStream method
+
+The syntax of setBinaryStream() method is given below:
+
+1) public void setBinaryStream(int paramIndex,InputStream stream)  
+throws SQLException  
+2) public void setBinaryStream(int paramIndex,InputStream stream,long length)  
+throws SQLException  
+For storing image into the database, BLOB (Binary Large Object) datatype is used in the table. For example:
+
+CREATE TABLE  "IMGTABLE"   
+   (    "NAME" VARCHAR2(4000),   
+    "PHOTO" BLOB  
+   )  
+/  
+Let's write the jdbc code to store the image in the database. Here we are using d:\\d.jpg for the location of image. You can change it according to the image location.
+
+import java.sql.*;  
+import java.io.*;  
+public class InsertImage {  
+public static void main(String[] args) {  
+try{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+              
+PreparedStatement ps=con.prepareStatement("insert into imgtable values(?,?)");  
+ps.setString(1,"sonoo");  
+  
+FileInputStream fin=new FileInputStream("d:\\g.jpg");  
+ps.setBinaryStream(2,fin,fin.available());  
+int i=ps.executeUpdate();  
+System.out.println(i+" records affected");  
+          
+con.close();  
+}catch (Exception e) {e.printStackTrace();}  
+}  
+}  
+If you see the table, record is stored in the database but image will not be shown. To do so, you need to retrieve the image from the database which we are covering in the next page.
+
+
+
+
+
+
+
+
+
+
+Example to retrieve image from Oracle database
+=================================
+
+By the help of PreparedStatement we can retrieve and store the image in the database.
+
+The getBlob() method of PreparedStatement is used to get Binary information, it returns the instance of Blob. After calling the getBytes() method on the blob object, we can get the array of binary information that can be written into the image file.
+
+Signature of getBlob() method of PreparedStatement
+
+public Blob getBlob()throws SQLException  
+Signature of getBytes() method of Blob interface
+
+public  byte[] getBytes(long pos, int length)throws SQLException  
+We are assuming that image is stored in the imgtable.
+
+CREATE TABLE  "IMGTABLE"   
+   (    "NAME" VARCHAR2(4000),   
+    "PHOTO" BLOB  
+   )  
+/  
+Now let's write the code to retrieve the image from the database and write it into the directory so that it can be displayed.
+
+In AWT, it can be displayed by the Toolkit class. In servlet, jsp, or html it can be displayed by the img tag.
+
+import java.sql.*;  
+import java.io.*;  
+public class RetrieveImage {  
+public static void main(String[] args) {  
+try{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+      
+PreparedStatement ps=con.prepareStatement("select * from imgtable");  
+ResultSet rs=ps.executeQuery();  
+if(rs.next()){//now on 1st row  
+              
+Blob b=rs.getBlob(2);//2 means 2nd column data  
+byte barr[]=b.getBytes(1,(int)b.length());//1 means first image  
+              
+FileOutputStream fout=new FileOutputStream("d:\\sonoo.jpg");  
+fout.write(barr);  
+              
+fout.close();  
+}//end of if  
+System.out.println("ok");  
+              
+con.close();  
+}catch (Exception e) {e.printStackTrace();  }  
+}  
+}  
+Now if you see the d drive, sonoo.jpg image is created.
+
+
+
+
+
+
+
+Example to store file in Oracle database:
+============================
+
+The setCharacterStream() method of PreparedStatement is used to set character information into the parameterIndex.
+
+Syntax:
+
+1) public void setBinaryStream(int paramIndex,InputStream stream)throws SQLException
+2) public void setBinaryStream(int paramIndex,InputStream stream,long length)throws SQLException
+For storing file into the database, CLOB (Character Large Object) datatype is used in the table. For example:
+
+CREATE TABLE  "FILETABLE"   
+   (    "ID" NUMBER,   
+    "NAME" CLOB  
+   )  
+/  
+import java.io.*;  
+import java.sql.*;  
+  
+public class StoreFile {  
+public static void main(String[] args) {  
+try{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+              
+PreparedStatement ps=con.prepareStatement(  
+"insert into filetable values(?,?)");  
+              
+File f=new File("d:\\myfile.txt");  
+FileReader fr=new FileReader(f);  
+              
+ps.setInt(1,101);  
+ps.setCharacterStream(2,fr,(int)f.length());  
+int i=ps.executeUpdate();  
+System.out.println(i+" records affected");  
+              
+con.close();  
+              
+}catch (Exception e) {e.printStackTrace();}  
+}  
+}  
+
+
+
+
+
+
+Example to retrieve file from Oracle database:
+================================
+The getClob() method of PreparedStatement is used to get file information from the database.
+
+Syntax of getClob method
+
+public Clob getClob(int columnIndex){}  
+Let's see the table structure of this example to retrieve the file.
+
+CREATE TABLE  "FILETABLE"   
+   (    "ID" NUMBER,   
+    "NAME" CLOB  
+   )  
+
+  
+
+The example to retrieve the file from the Oracle database is given below.
+=================================================
+
+import java.io.*;  
+import java.sql.*;  
+  
+public class RetrieveFile {  
+public static void main(String[] args) {  
+try{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+              
+PreparedStatement ps=con.prepareStatement("select * from filetable");  
+ResultSet rs=ps.executeQuery();  
+rs.next();//now on 1st row  
+              
+Clob c=rs.getClob(2);  
+Reader r=c.getCharacterStream();              
+              
+FileWriter fw=new FileWriter("d:\\retrivefile.txt");  
+              
+int i;  
+while((i=r.read())!=-1)  
+fw.write((char)i);  
+              
+fw.close();  
+con.close();  
+              
+System.out.println("success");  
+}catch (Exception e) {e.printStackTrace();  }  
+}  
+}  
+
+
+
+
+
+CallableStatement Interface
+
+To call the stored procedures and functions, CallableStatement interface is used.
+
+We can have business logic on the database by the use of stored procedures and functions that will make the performance better because these are precompiled.
+
+Suppose you need the get the age of the employee based on the date of birth, you may create a function that receives date as the input and returns age of the employee as the output.
+
+What is the difference between stored procedures and functions.
+
+The differences between stored procedures and functions are given below:
+
+Stored Procedure	Function
+is used to perform business logic.	is used to perform calculation.
+must not have the return type.	must have the return type.
+may return 0 or more values.	may return only one values.
+We can call functions from the procedure.	Procedure cannot be called from function.
+Procedure supports input and output parameters.	Function supports only input parameter.
+Exception handling using try/catch block can be used in stored procedures.	Exception handling using try/catch can't be used in user defined functions.
+How to get the instance of CallableStatement?
+
+The prepareCall() method of Connection interface returns the instance of CallableStatement. Syntax is given below:
+
+public CallableStatement prepareCall("{ call procedurename(?,?...?)}");  
+The example to get the instance of CallableStatement is given below:
+
+CallableStatement stmt=con.prepareCall("{call myprocedure(?,?)}");  
+It calls the procedure myprocedure that receives 2 arguments.
+
+Full example to call the stored procedure using JDBC
+
+To call the stored procedure, you need to create it in the database. Here, we are assuming that stored procedure looks like this.
+
+create or replace procedure "INSERTR"  
+(id IN NUMBER,  
+name IN VARCHAR2)  
+is  
+begin  
+insert into user420 values(id,name);  
+end;  
+/     
+The table structure is given below:
+
+create table user420(id number(10), name varchar2(200));  
+In this example, we are going to call the stored procedure INSERTR that receives id and name as the parameter and inserts it into the table user420. Note that you need to create the user420 table as well to run this application.
+
+import java.sql.*;  
+public class Proc {  
+public static void main(String[] args) throws Exception{  
+  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+  
+CallableStatement stmt=con.prepareCall("{call insertR(?,?)}");  
+stmt.setInt(1,1011);  
+stmt.setString(2,"Amit");  
+stmt.execute();  
+  
+System.out.println("success");  
+}  
+}  
+Now check the table in the database, value is inserted in the user420 table.
+
+Example to call the function using JDBC
+============================
+In this example, we are calling the sum4 function that receives two input and returns the sum of the given number. Here, we have used the registerOutParameter method of CallableStatement interface, that registers the output parameter with its corresponding type. It provides information to the CallableStatement about the type of result being displayed.
+
+The Types class defines many constants such as INTEGER, VARCHAR, FLOAT, DOUBLE, BLOB, CLOB etc.
+
+Let's create the simple function in the database first.
+
+create or replace function sum4  
+(n1 in number,n2 in number)  
+return number  
+is   
+temp number(8);  
+begin  
+temp :=n1+n2;  
+return temp;  
+end;  
+/  
+Now, let's write the simple program to call the function.
+
+import java.sql.*;  
+  
+public class FuncSum {  
+public static void main(String[] args) throws Exception{  
+  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection(  
+"jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+  
+CallableStatement stmt=con.prepareCall("{?= call sum4(?,?)}");  
+stmt.setInt(2,10);  
+stmt.setInt(3,43);  
+stmt.registerOutParameter(1,Types.INTEGER);  
+stmt.execute();  
+  
+System.out.println(stmt.getInt(1));  
+          
+}  
+}  
+Output: 53
+
+
+
+
+
+Transaction Management in JDBC
+
+Transaction represents a single unit of work.
+
+The ACID properties describes the transaction management well. ACID stands for Atomicity, Consistency, isolation and durability.
+
+Atomicity means either all successful or none.
+
+Consistency ensures bringing the database from one consistent state to another consistent state.
+
+Isolation ensures that transaction is isolated from other transaction.
+
+Durability means once a transaction has been committed, it will remain so, even in the event of errors, power loss etc.
+
+Advantage of Transaction Mangaement
+
+fast performance It makes the performance fast because database is hit at the time of commit.
+
+transaction management in jdbc
+In JDBC, Connection interface provides methods to manage transaction.
+
+Method	Description
+void setAutoCommit(boolean status)	It is true bydefault means each transaction is committed bydefault.
+void commit()	commits the transaction.
+void rollback()	cancels the transaction.
+
+
+
+Simple example of transaction management in jdbc using Statement
+===============================================
+Let's see the simple example of transaction management using Statement.
+
+import java.sql.*;  
+class FetchRecords{  
+public static void main(String args[])throws Exception{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+con.setAutoCommit(false);  
+  
+Statement stmt=con.createStatement();  
+stmt.executeUpdate("insert into user420 values(190,'abhi',40000)");  
+stmt.executeUpdate("insert into user420 values(191,'umesh',50000)");  
+  
+con.commit();  
+con.close();  
+}}  
+If you see the table emp400, you will see that 2 records has been added.
+
+Example of transaction management in jdbc using PreparedStatement
+
+Let's see the simple example of transaction management using PreparedStatement.
+
+import java.sql.*;  
+import java.io.*;  
+class TM{  
+public static void main(String args[]){  
+try{  
+  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+con.setAutoCommit(false);  
+  
+PreparedStatement ps=con.prepareStatement("insert into user420 values(?,?,?)");  
+  
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+while(true){  
+  
+System.out.println("enter id");  
+String s1=br.readLine();  
+int id=Integer.parseInt(s1);  
+  
+System.out.println("enter name");  
+String name=br.readLine();  
+  
+System.out.println("enter salary");  
+String s3=br.readLine();  
+int salary=Integer.parseInt(s3);  
+  
+ps.setInt(1,id);  
+ps.setString(2,name);  
+ps.setInt(3,salary);  
+ps.executeUpdate();  
+  
+System.out.println("commit/rollback");  
+String answer=br.readLine();  
+if(answer.equals("commit")){  
+con.commit();  
+}  
+if(answer.equals("rollback")){  
+con.rollback();  
+}  
+  
+  
+System.out.println("Want to add more records y/n");  
+String ans=br.readLine();  
+if(ans.equals("n")){  
+break;  
+}  
+  
+}  
+con.commit();  
+System.out.println("record successfully saved");  
+  
+con.close();//before closing connection commit() is called  
+}catch(Exception e){System.out.println(e);}  
+  
+}}  
+
+
+
+
+
+Batch Processing in JDBC
+
+Instead of executing a single query, we can execute a batch (group) of queries. It makes the performance fast.
+
+The java.sql.Statement and java.sql.PreparedStatement interfaces provide methods for batch processing.
+
+Advantage of Batch Processing
+
+Fast Performance
+
+Methods of Statement interface
+
+The required methods for batch processing are given below:
+
+Method	Description
+void addBatch(String query)	It adds query into batch.
+int[] executeBatch()	It executes the batch of queries.
+Example of batch processing in jdbc
+
+Let's see the simple example of batch processing in jdbc. It follows following steps:
+
+Load the driver class
+Create Connection
+Create Statement
+Add query in the batch
+Execute Batch
+Close Connection
+import java.sql.*;  
+class FetchRecords{  
+public static void main(String args[])throws Exception{  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+con.setAutoCommit(false);  
+  
+Statement stmt=con.createStatement();  
+stmt.addBatch("insert into user420 values(190,'abhi',40000)");  
+stmt.addBatch("insert into user420 values(191,'umesh',50000)");  
+  
+stmt.executeBatch();//executing the batch  
+  
+con.commit();  
+con.close();  
+}}  
+If you see the table user420, two records has been added.
+
+Example of batch processing using PreparedStatement
+======================================
+
+import java.sql.*;  
+import java.io.*;  
+class BP{  
+public static void main(String args[]){  
+try{  
+  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+  
+PreparedStatement ps=con.prepareStatement("insert into user420 values(?,?,?)");  
+  
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+while(true){  
+  
+System.out.println("enter id");  
+String s1=br.readLine();  
+int id=Integer.parseInt(s1);  
+  
+System.out.println("enter name");  
+String name=br.readLine();  
+  
+System.out.println("enter salary");  
+String s3=br.readLine();  
+int salary=Integer.parseInt(s3);  
+  
+ps.setInt(1,id);  
+ps.setString(2,name);  
+ps.setInt(3,salary);  
+  
+ps.addBatch();  
+System.out.println("Want to add more records y/n");  
+String ans=br.readLine();  
+if(ans.equals("n")){  
+break;  
+}  
+  
+}  
+ps.executeBatch();  
+  
+System.out.println("record successfully saved");  
+  
+con.close();  
+}catch(Exception e){System.out.println(e);}  
+  
+}}  
+It will add the queries into the batch until user press n. Finally it executes the batch. Thus all the added queries will be fired.
+It will ask to add more records until you press n. If you press n, transaction is committed.
+
+
+
+
+
+JDBC RowSet
+
+The instance of RowSet is the java bean component because it has properties and java bean notification mechanism. It is introduced since JDK 5.
+
+It is the wrapper of ResultSet. It holds tabular data like ResultSet but it is easy and flexible to use.
+
+The implementation classes of RowSet interface are as follows:
+
+JdbcRowSet
+CachedRowSet
+WebRowSet
+JoinRowSet
+FilteredRowSet
+Let's see how to create and execute RowSet.
+
+JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();  
+rowSet.setUrl("jdbc:oracle:thin:@localhost:1521:xe");  
+rowSet.setUsername("system");  
+rowSet.setPassword("oracle");  
+           
+rowSet.setCommand("select * from emp400");  
+rowSet.execute();  
+It is the new way to get the instance of JdbcRowSet since JDK 7.
+
+Advantage of RowSet
+
+The advantages of using RowSet are given below:
+
+It is easy and flexible to use
+It is Scrollable and Updatable bydefault
+Simple example of JdbcRowSet
+
+Let's see the simple example of JdbcRowSet without event handling code.
+
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.sql.ResultSet;  
+import java.sql.Statement;  
+import javax.sql.RowSetEvent;  
+import javax.sql.RowSetListener;  
+import javax.sql.rowset.JdbcRowSet;  
+import javax.sql.rowset.RowSetProvider;  
+  
+public class RowSetExample {  
+        public static void main(String[] args) throws Exception {  
+                 Class.forName("oracle.jdbc.driver.OracleDriver");  
+      
+    //Creating and Executing RowSet  
+        JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();  
+        rowSet.setUrl("jdbc:oracle:thin:@localhost:1521:xe");  
+        rowSet.setUsername("system");  
+        rowSet.setPassword("oracle");  
+                   
+        rowSet.setCommand("select * from emp400");  
+        rowSet.execute();  
+                   
+    while (rowSet.next()) {  
+                        // Generating cursor Moved event  
+                        System.out.println("Id: " + rowSet.getString(1));  
+                        System.out.println("Name: " + rowSet.getString(2));  
+                        System.out.println("Salary: " + rowSet.getString(3));  
+                }  
+                 
+        }  
+}  
+The output is given below:
+
+Id: 55
+Name: Om Bhim
+Salary: 70000
+Id: 190
+Name: abhi
+Salary: 40000
+Id: 191
+Name: umesh
+Salary: 50000
+
+
+Full example of Jdbc RowSet with event handling
+=================================
+To perform event handling with JdbcRowSet, you need to add the instance of RowSetListener in the addRowSetListener method of JdbcRowSet.
+
+The RowSetListener interface provides 3 method that must be implemented. They are as follows:
+
+1) public void cursorMoved(RowSetEvent event);
+2) public void rowChanged(RowSetEvent event);
+3) public void rowSetChanged(RowSetEvent event);
+Let's write the code to retrieve the data and perform some additional tasks while cursor is moved, cursor is changed or rowset is changed. The event handling operation can't be performed using ResultSet so it is preferred now.
+
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.sql.ResultSet;  
+import java.sql.Statement;  
+import javax.sql.RowSetEvent;  
+import javax.sql.RowSetListener;  
+import javax.sql.rowset.JdbcRowSet;  
+import javax.sql.rowset.RowSetProvider;  
+  
+public class RowSetExample {  
+        public static void main(String[] args) throws Exception {  
+                 Class.forName("oracle.jdbc.driver.OracleDriver");  
+      
+    //Creating and Executing RowSet  
+    JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();  
+    rowSet.setUrl("jdbc:oracle:thin:@localhost:1521:xe");  
+    rowSet.setUsername("system");  
+    rowSet.setPassword("oracle");  
+                   
+        rowSet.setCommand("select * from emp400");  
+        rowSet.execute();  
+                   
+    //Adding Listener and moving RowSet  
+    rowSet.addRowSetListener(new MyListener());  
+  
+                 while (rowSet.next()) {  
+                        // Generating cursor Moved event  
+                        System.out.println("Id: " + rowSet.getString(1));  
+                        System.out.println("Name: " + rowSet.getString(2));  
+                        System.out.println("Salary: " + rowSet.getString(3));  
+                }  
+                 
+        }  
+}  
+  
+class MyListener implements RowSetListener {  
+      public void cursorMoved(RowSetEvent event) {  
+                System.out.println("Cursor Moved...");  
+      }  
+     public void rowChanged(RowSetEvent event) {  
+                System.out.println("Cursor Changed...");  
+     }  
+     public void rowSetChanged(RowSetEvent event) {  
+                System.out.println("RowSet changed...");  
+     }  
+}  
+The output is as follows:
+
+Cursor Moved...
+Id: 55
+Name: Om Bhim
+Salary: 70000
+Cursor Moved...
+Id: 190
+Name: abhi
+Salary: 40000
+Cursor Moved...
+Id: 191
+Name: umesh
+Salary: 50000
+Cursor Moved...
+
+
+
+
+
+
+Jdbc New Features
+
+The latest version of JDBC is 4.0 currently. Java has updated jdbc api to ease and simplify the coding to database interactivity.
+
+Here, we are going to see the features included in Jdbc 3.0 and Jdbc 4.0.
+
+Jdbc 3.0 Features
+
+The important features of JDBC API 3.0 are as follows:
+
+Jdbc RowSet We have done the great discussion on JdbcRowSet in the previous page.
+Savepoint in transaction management Now you are able to create, rollback and release the savepoint by Connection.setSavepoint(), Connection.rollback(Savepoint svpt) and Connection.releaseSavepoint(Savepoint svpt) methods.
+Statement and ResultSet Caching for Connection Pooling Now you are able to reuse the statement and result set because jdbc 3 provides you the facility of statement caching and result set caching.
+Switching between Global and Local Transactions
+Retrieval of auto generated keys Now you are able to get the auto generated keys by the method getGeneratedKeys().
+Jdbc 4.0 Features
+
+The important features of JDBC API 4.0 are given below:
+
+Automatic Loading of Driver class You don't need to write Class.forName() now because it is loaded bydefault since jdbc4.
+Subclasses of SQLException Jdbc 4 provides new subclasses of SQLException class for better readability and handling.
+New methods There are many new methods introduced in Connection, PreparedStatement, CallableStatement, ResultSet etc.
+Improved DataSource Now data source implementation is improved.
+Event Handling support in Statement for Connection Pooling Now Connection Pooling can listen statement error and statement closing events.
+
+
+
+
+
+
+New Features in Java
+
+There are many new features that have been added in java. There are major enhancement made in Java5, Java6 and Java7 like auto-boxing, generics, var-args, java annotations, enum, premain method etc.
+
+Most of the interviewers ask questions from this chapter.
+
+
+
+Do You Know ?
+How to create generic class and generic method in java ?
+What is annotation and how to create custom annotation ?
+What is the advantage of assertion and where we should not use it ?
+What is variable argument and what rules are defined for variable argument ?
+What is the difference between import and static import ?
+How autoboxing is applied in method overloading. Which concept beats autoboxing ?
+What is enum type and how to specify specific value to the enum constants ?
+J2SE 4 Features
+
+The important feature of J2SE 4 is assertions. It is used for testing.
+
+Assertion (Java 4)
+J2SE 5 Features
+
+The important features of J2SE 5 are generics and assertions. Others are auto-boxing, enum, var-args, static import, for-each loop (enhanced for loop etc.
+
+For-each loop (Java 5)
+Varargs (Java 5)
+Static Import (Java 5)
+Autoboxing and Unboxing (Java 5)
+Enum (Java 5)
+Covariant Return Type (Java 5)
+Annotation (Java 5)
+Generics (Java 5)
+JavaSE 6 Features
+
+The important feature of JavaSE 6 is premain method (also known as instrumentation).
+
+Instrumentation (premain method) (Java 6)
+JavaSE 7 Features
+
+The important features of JavaSE 7 are try with resource, catching multiple exceptions etc.
+
+String in switch statement (Java 7)
+Binary Literals (Java 7)
+The try-with-resources (Java 7)
+Caching Multiple Exceptions by single catch (Java 7)
+Underscores in Numeric Literals (Java 7)
+
+
+
+
+
+Assertion:
+
+Assertion is a statement in java. It can be used to test your assumptions about the program.
+
+While executing assertion, it is believed to be true. If it fails, JVM will throw an error named AssertionError. It is mainly used for testing purpose.
+
+Advantage of Assertion:
+
+It provides an effective way to detect and correct programming errors.
+
+Syntax of using Assertion:
+
+There are two ways to use assertion. First way is:
+
+assert expression;  
+and second way is:
+
+assert expression1 : expression2;  
+Simple Example of Assertion in java:
+
+import java.util.Scanner;  
+    
+class AssertionExample{  
+ public static void main( String args[] ){  
+  
+  Scanner scanner = new Scanner( System.in );  
+  System.out.print("Enter ur age ");  
+    
+  int value = scanner.nextInt();  
+  assert value>=18:" Not valid";  
+  
+  System.out.println("value is "+value);  
+ }   
+}  
+  
+      
+
+If you use assertion, It will not run simply because assertion is disabled by default. To enable the assertion, -ea or -enableassertions switch of java must be used.
+Compile it by: javac AssertionExample.java
+Run it by: java -ea AssertionExample
+Output: Enter ur age 11
+        Exception in thread "main" java.lang.AssertionError: Not valid
+Where not to use Assertion:
+
+There are some situations where assertion should be avoid to use. They are:
+
+According to Sun Specification, assertion should not be used to check arguments in the public methods because it should result in appropriate runtime exception e.g. IllegalArgumentException, NullPointerException etc.
+Do not use assertion, if you don't want any error in any situation.
+
+
+
+
+For-each loop (Advanced or Enhanced For loop):
+
+The for-each loop introduced in Java5. It is mainly used to traverse array or collection elements. The advantage of for-each loop is that it eliminates the possibility of bugs and makes the code more readable.
+
+Advantage of for-each loop:
+
+It makes the code more readable.
+It elimnates the possibility of programming errors.
+Syntax of for-each loop:
+
+for(data_type variable : array | collection){}  
+Simple Example of for-each loop for traversing the array elements:
+
+    
+class ForEachExample1{  
+  public static void main(String args[]){  
+   int arr[]={12,13,14,44};  
+  
+   for(int i:arr){  
+     System.out.println(i);  
+   }  
+  
+ }   
+}  
+      
+Test it Now
+Output:12
+       13
+       14
+       44
+Simple Example of for-each loop for traversing the collection elements:
+
+import java.util.*;  
+class ForEachExample2{  
+  public static void main(String args[]){  
+   ArrayList<String> list=new ArrayList<String>();  
+   list.add("vimal");  
+   list.add("sonoo");  
+   list.add("ratan");  
+  
+   for(String s:list){  
+     System.out.println(s);  
+   }  
+  
+ }   
+}  
+      
+Test it Now
+Output:vimal
+       sonoo
+       ratan
+
+
+
+
+Variable Argument (Varargs):
+
+The varrags allows the method to accept zero or muliple arguments. Before varargs either we use overloaded method or take an array as the method parameter but it was not considered good because it leads to the maintenance problem. If we don't know how many argument we will have to pass in the method, varargs is the better approach.
+
+Advantage of Varargs:
+
+We don't have to provide overloaded methods so less code.
+
+Syntax of varargs:
+
+The varargs uses ellipsis i.e. three dots after the data type. Syntax is as follows:
+
+return_type method_name(data_type... variableName){}  
+Simple Example of Varargs in java:
+
+    
+class VarargsExample1{  
+   
+ static void display(String... values){  
+  System.out.println("display method invoked ");  
+ }  
+  
+ public static void main(String args[]){  
+  
+ display();//zero argument   
+ display("my","name","is","varargs");//four arguments  
+ }   
+}  
+      
+Test it Now
+Output:display method invoked
+       display method invoked
+Another Program of Varargs in java:
+
+    
+class VarargsExample2{  
+   
+ static void display(String... values){  
+  System.out.println("display method invoked ");  
+  for(String s:values){  
+   System.out.println(s);  
+  }  
+ }  
+  
+ public static void main(String args[]){  
+  
+ display();//zero argument   
+ display("hello");//one argument   
+ display("my","name","is","varargs");//four arguments  
+ }   
+}  
+      
+Test it Now
+Output:display method invoked
+       display method invoked
+       hello
+       display method invoked
+       my
+       name
+       is 
+       varargs
+
+
+
+
+
+
+Static Import:
+
+The static import feature of Java 5 facilitate the java programmer to access any static member of a class directly. There is no need to qualify it by the class name.
+
+Advantage of static import:
+
+Less coding is required if you have access any static member of a class oftenly.
+Disadvantage of static import:
+
+If you overuse the static import feature, it makes the program unreadable and unmaintainable.
+Simple Example of static import
+
+import static java.lang.System.*;    
+class StaticImportExample{  
+  public static void main(String args[]){  
+     
+   out.println("Hello");//Now no need of System.out  
+   out.println("Java");  
+  
+ }   
+}  
+      
+Test it Now
+Output:Hello
+       Java
+  
+What is the difference between import and static import?
+
+The import allows the java programmer to access classes of a package without package qualification whereas the static import feature allows to access the static members of a class without the class qualification. The import provides accessibility to classes and interface whereas static import provides accessibility to static members of the class.
+
+
+
+
+
+Autoboxing and Unboxing:
+
+The automatic conversion of primitive data types into its equivalent Wrapper type is known as boxing and opposite operation is known as unboxing. This is the new feature of Java5. So java programmer doesn't need to write the conversion code.
+
+Advantage of Autoboxing and Unboxing:
+
+No need of conversion between primitives and Wrappers manually so less coding is required.
+Simple Example of Autoboxing in java:
+
+    
+class BoxingExample1{  
+  public static void main(String args[]){  
+    int a=50;  
+        Integer a2=new Integer(a);//Boxing  
+  
+        Integer a3=5;//Boxing  
+          
+        System.out.println(a2+" "+a3);  
+ }   
+}  
+      
+Test it Now
+Output:50 5
+download this example
+Simple Example of Unboxing in java:
+
+The automatic conversion of wrapper class type into corresponding primitive type, is known as Unboxing. Let's see the example of unboxing:
+
+    
+class UnboxingExample1{  
+  public static void main(String args[]){  
+    Integer i=new Integer(50);  
+        int a=i;  
+          
+        System.out.println(a);  
+ }   
+}  
+      
+Test it Now
+Output:50
+Autoboxing and Unboxing with comparison operators
+
+Autoboxing can be performed with comparison operators. Let's see the example of boxing with comparison operator:
+    
+class UnboxingExample2{  
+  public static void main(String args[]){  
+    Integer i=new Integer(50);  
+          
+        if(i<100){            //unboxing internally  
+        System.out.println(i);  
+        }  
+ }   
+}  
+      
+Test it Now
+Output:50
+Autoboxing and Unboxing with method overloading
+
+In method overloading, boxing and unboxing can be performed. There are some rules for method overloading with boxing:
+Widening beats boxing
+Widening beats varargs
+Boxing beats varargs
+1) Example of Autoboxing where widening beats boxing
+
+If there is possibility of widening and boxing, widening beats boxing.
+    
+class Boxing1{  
+  static void m(int i){System.out.println("int");}  
+  static void m(Integer i){System.out.println("Integer");}  
+  
+  public static void main(String args[]){  
+   short s=30;  
+   m(s);  
+ }   
+}  
+      
+Test it Now
+Output:int
+2) Example of Autoboxing where widening beats varargs
+
+If there is possibility of widening and varargs, widening beats var-args.
+    
+class Boxing2{  
+  static void m(int i, int i2){System.out.println("int int");}  
+  static void m(Integer... i){System.out.println("Integer...");}  
+  
+  public static void main(String args[]){  
+   short s1=30,s2=40;  
+   m(s1,s2);  
+ }   
+}  
+      
+Test it Now
+Output:int int
+3) Example of Autoboxing where boxing beats varargs
+
+Let's see the program where boxing beats variable argument:
+    
+class Boxing3{  
+  static void m(Integer i){System.out.println("Integer");}  
+  static void m(Integer... i){System.out.println("Integer...");}  
+  
+  public static void main(String args[]){  
+   int a=30;  
+   m(a);  
+ }   
+}  
+      
+Test it Now
+Output:Integer
+Method overloading with Widening and Boxing
+
+Widening and Boxing can't be performed as given below:
+    
+class Boxing4{  
+  static void m(Long l){System.out.println("Long");}  
+  
+  public static void main(String args[]){  
+   int a=30;  
+   m(a);  
+ }   
+}  
+      
+Test it Now
+Output:Compile Time Error
+
+
+
+Java Enum
+
+Enum in java is a data type that contains fixed set of constants.
+
+It can be used for days of the week (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY and SATURDAY) , directions (NORTH, SOUTH, EAST and WEST) etc. The java enum constants are static and final implicitly. It is available from JDK 1.5.
+
+Java Enums can be thought of as classes that have fixed set of constants.
+
+Points to remember for Java Enum
+
+enum improves type safety
+enum can be easily used in switch
+enum can be traversed
+enum can have fields, constructors and methods
+enum may implement many interfaces but cannot extend any class because it internally extends Enum class
+Simple example of java enum
+
+class EnumExample1{  
+public enum Season { WINTER, SPRING, SUMMER, FALL }  
+  
+public static void main(String[] args) {  
+for (Season s : Season.values())  
+System.out.println(s);  
+  
+}}  
+Test it Now
+Output:WINTER
+       SPRING
+       SUMMER
+       FALL
+download this enum example
+What is the purpose of values() method in enum?
+
+The java compiler internally adds the values() method when it creates an enum. The values() method returns an array containing all the values of the enum.
+
+Internal code generated by the compiler for the above example of enum type
+
+The java compiler internally creates a static and final class that extends the Enum class as shown in the below example:
+
+public static final class EnumExample1$Season extends Enum  
+{  
+  private EnumExample1$Season(String s, int i)  
+    {  
+        super(s, i);  
+    }  
+  
+    public static EnumExample1$Season[] values()  
+    {  
+        return (EnumExample1$Season[])$VALUES.clone();  
+    }  
+  
+    public static EnumExample1$Season valueOf(String s)  
+    {  
+        return (EnumExample1$Season)Enum.valueOf(EnumExample1$Season, s);  
+    }  
+  
+    public static final EnumExample1$Season WINTER;  
+    public static final EnumExample1$Season SPRING;  
+    public static final EnumExample1$Season SUMMER;  
+    public static final EnumExample1$Season FALL;  
+    private static final EnumExample1$Season $VALUES[];  
+  
+    static   
+    {  
+        WINTER = new EnumExample1$Season("WINTER", 0);  
+        SPRING = new EnumExample1$Season("SPRING", 1);  
+        SUMMER = new EnumExample1$Season("SUMMER", 2);  
+        FALL = new EnumExample1$Season("FALL", 3);  
+        $VALUES = (new EnumExample1$Season[] {  
+            WINTER, SPRING, SUMMER, FALL  
+        });  
+    }  
+  
+}  
+Defining Java enum
+
+The enum can be defined within or outside the class because it is similar to a class.
+
+Java enum example: defined outside class
+
+enum Season { WINTER, SPRING, SUMMER, FALL }  
+class EnumExample2{  
+public static void main(String[] args) {  
+Season s=Season.WINTER;  
+System.out.println(s);  
+}}   
+Test it Now
+Output:WINTER
+Java enum example: defined inside class
+
+class EnumExample3{  
+enum Season { WINTER, SPRING, SUMMER, FALL; }//semicolon(;) is optional here  
+public static void main(String[] args) {  
+Season s=Season.WINTER;//enum type is required to access WINTER  
+System.out.println(s);  
+}}  
+Test it Now
+Output:WINTER
+Initializing specific values to the enum constants
+
+The enum constants have initial value that starts from 0, 1, 2, 3 and so on. But we can initialize the specific value to the enum constants by defining fields and constructors. As specified earlier, Enum can have fields, constructors and methods.
+
+Example of specifying initial value to the enum constants
+
+class EnumExample4{  
+enum Season{   
+WINTER(5), SPRING(10), SUMMER(15), FALL(20);   
+  
+private int value;  
+private Season(int value){  
+this.value=value;  
+}  
+}  
+public static void main(String args[]){  
+for (Season s : Season.values())  
+System.out.println(s+" "+s.value);  
+  
+}}  
+      
+Test it Now
+download this enum example
+Output:WINTER 5
+       SPRING 10
+       SUMMER 15
+       FALL 20
+Constructor of enum type is private. If you don't declare private compiler internally creates private constructor.
+
+enum Season{  
+WINTER(10),SUMMER(20);  
+private int value;  
+Season(int value){  
+this.value=value;  
+}  
+}      
+Internal code generated by the compiler for the above example of enum type
+
+final class Season extends Enum  
+{  
+    public static Season[] values()  
+    {  
+        return (Season[])$VALUES.clone();  
+    }  
+    public static Season valueOf(String s)  
+    {  
+        return (Season)Enum.valueOf(Season, s);  
+    }  
+    private Season(String s, int i, int j)  
+    {  
+        super(s, i);  
+        value = j;  
+    }  
+    public static final Season WINTER;  
+    public static final Season SUMMER;  
+    private int value;  
+    private static final Season $VALUES[];  
+    static   
+    {  
+        WINTER = new Season("WINTER", 0, 10);  
+        SUMMER = new Season("SUMMER", 1, 20);  
+        $VALUES = (new Season[] {  
+            WINTER, SUMMER  
+        });  
+    }  
+}  
+Can we create the instance of enum by new keyword?
+
+No, because it contains private constructors only.
+Can we have abstract method in enum?
+
+Yes, ofcourse! we can have abstract methods and can provide the implementation of these methods.
+
+Java enum in switch statement
+
+We can apply enum on switch statement as in the given example:
+
+Example of applying enum on switch statement
+
+class EnumExample5{  
+enum Day{ SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY}  
+public static void main(String args[]){  
+Day day=Day.MONDAY;  
+  
+switch(day){  
+case SUNDAY:   
+ System.out.println("sunday");  
+ break;  
+case MONDAY:   
+ System.out.println("monday");  
+ break;  
+default:  
+System.out.println("other day");  
+}  
+}}  
+
+Test it Now
+
+Output:monday
+
+
+
+Java Annotations
+
+Java Annotation is a tag that represents the metadata i.e. attached with class, interface, methods or fields to indicate some additional information which can be used by java compiler and JVM.
+
+Annotations in java are used to provide additional information, so it is an alternative option for XML and java marker interfaces.
+
+First, we will learn some built-in annotations then we will move on creating and using custom annotations.
+
+Built-In Java Annotations
+
+There are several built-in annotations in java. Some annotations are applied to java code and some to other annotations.
+
+Built-In Java Annotations used in java code
+
+@Override
+@SuppressWarnings
+@Deprecated
+Built-In Java Annotations used in other annotations
+
+@Target
+@Retention
+@Inherited
+@Documented
+Understanding Built-In Annotations in java
+
+Let's understand the built-in annotations first.
+
+@Override
+
+@Override annotation assures that the subclass method is overriding the parent class method. If it is not so, compile time error occurs.
+
+Sometimes, we does the silly mistake such as spelling mistakes etc. So, it is better to mark @Override annotation that provides assurity that method is overridden.
+
+class Animal{  
+void eatSomething(){System.out.println("eating something");}  
+}  
+  
+class Dog extends Animal{  
+@Override  
+void eatsomething(){System.out.println("eating foods");}//should be eatSomething  
+}  
+  
+class TestAnnotation1{  
+public static void main(String args[]){  
+Animal a=new Dog();  
+a.eatSomething();  
+}}  
+Test it Now
+Output:Comple Time Error
+@SuppressWarnings
+
+@SuppressWarnings annotation: is used to suppress warnings issued by the compiler.
+
+import java.util.*;  
+class TestAnnotation2{  
+@SuppressWarnings("unchecked")  
+public static void main(String args[]){  
+ArrayList list=new ArrayList();  
+list.add("sonoo");  
+list.add("vimal");  
+list.add("ratan");  
+  
+for(Object obj:list)  
+System.out.println(obj);  
+  
+}}  
+Test it Now
+Now no warning at compile time.
+If you remove the @SuppressWarnings("unchecked") annotation, it will show warning at compile time because we are using non-generic collection.
+
+@Deprecated
+
+@Deprecated annoation marks that this method is deprecated so compiler prints warning. It informs user that it may be removed in the future versions. So, it is better not to use such methods.
+
+class A{  
+void m(){System.out.println("hello m");}  
+  
+@Deprecated  
+void n(){System.out.println("hello n");}  
+}  
+  
+class TestAnnotation3{  
+public static void main(String args[]){  
+  
+A a=new A();  
+a.n();  
+}}  
+Test it Now
+At Compile Time:
+
+Note: Test.java uses or overrides a deprecated API.
+
+Note: Recompile with -Xlint:deprecation for details.
+At Runtime:
+
+hello n
+Custom Annotation
+
+To create and use custom java annotation, visit the next page.
+
+
+
+
+
+
+
+Java Custom Annotation
+
+Java Custom annotations or Java User-defined annotations are easy to create and use. The @interface element is used to declare an annotation. For example:
+
+@interface MyAnnotation{}  
+Here, MyAnnotation is the custom annotation name.
+
+Points to remember for java custom annotation signature
+
+There are few points that should be remembered by the programmer.
+
+Method should not have any throws clauses
+Method should return one of the following: primitive data types, String, Class, enum or array of these data types.
+Method should not have any parameter.
+We should attach @ just before interface keyword to define annotation.
+It may assign a default value to the method.
+Types of Annotation
+
+There are three types of annotations.
+
+Marker Annotation
+Single-Value Annotation
+Multi-Value Annotation
+1) Marker Annotation
+
+An annotation that has no method, is called marker annotation. For example:
+
+@interface MyAnnotation{}  
+The @Override and @Deprecated are marker annotations.
+
+2) Single-Value Annotation
+
+An annotation that has one method, is called single-value annotation. For example:
+
+@interface MyAnnotation{  
+int value();  
+}  
+We can provide the default value also. For example:
+
+@interface MyAnnotation{  
+int value() default 0;  
+}  
+How to apply Single-Value Annotation
+
+Let's see the code to apply the single value annotation.
+
+@MyAnnotation(value=10)  
+The value can be anything.
+
+3) Mulit-Value Annotation
+
+An annotation that has more than one method, is called Multi-Value annotation. For example:
+
+@interface MyAnnotation{  
+int value1();  
+String value2();  
+String value3();  
+}  
+}  
+We can provide the default value also. For example:
+
+@interface MyAnnotation{  
+int value1() default 1;  
+String value2() default "";  
+String value3() default "xyz";  
+}  
+How to apply Multi-Value Annotation
+
+Let's see the code to apply the multi-value annotation.
+
+@MyAnnotation(value1=10,value2="Arun Kumar",value3="Ghaziabad")  
+Built-in Annotations used in custom annotations in java
+
+@Target
+@Retention
+@Inherited
+@Documented
+@Target
+
+@Target tag is used to specify at which type, the annotation is used.
+
+The java.lang.annotation.ElementType enum declares many constants to specify the type of element where annotation is to be applied such as TYPE, METHOD, FIELD etc. Let's see the constants of ElementType enum:
+
+Element Types	Where the annotation can be applied
+TYPE	class, interface or enumeration
+FIELD	fields
+METHOD	methods
+CONSTRUCTOR	constructors
+LOCAL_VARIABLE	local variables
+ANNOTATION_TYPE	annotation type
+PARAMETER	parameter
+Example to specify annoation for a class
+
+@Target(ElementType.TYPE)  
+@interface MyAnnotation{  
+int value1();  
+String value2();  
+}  
+Example to specify annoation for a class, methods or fields
+
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})  
+@interface MyAnnotation{  
+int value1();  
+String value2();  
+}  
+@Retention
+
+@Retention annotation is used to specify to what level annotation will be available.
+
+RetentionPolicy	Availability
+RetentionPolicy.SOURCE	refers to the source code, discarded during compilation. It will not be available in the compiled class.
+RetentionPolicy.CLASS	refers to the .class file, available to java compiler but not to JVM . It is included in the class file.
+RetentionPolicy.RUNTIME	refers to the runtime, available to java compiler and JVM .
+Example to specify the RetentionPolicy
+
+@Retention(RetentionPolicy.RUNTIME)  
+@Target(ElementType.TYPE)  
+@interface MyAnnotation{  
+int value1();  
+String value2();  
+}  
+Example of custom annotation: creating, applying and accessing annotation
+
+Let's see the simple example of creating, applying and accessing annotation.
+
+File: Test.java
+
+//Creating annotation  
+import java.lang.annotation.*;  
+import java.lang.reflect.*;  
+  
+@Retention(RetentionPolicy.RUNTIME)  
+@Target(ElementType.METHOD)  
+@interface MyAnnotation{  
+int value();  
+}  
+  
+//Applying annotation  
+class Hello{  
+@MyAnnotation(value=10)  
+public void sayHello(){System.out.println("hello annotation");}  
+}  
+  
+//Accessing annotation  
+class TestCustomAnnotation1{  
+public static void main(String args[])throws Exception{  
+  
+Hello h=new Hello();  
+Method m=h.getClass().getMethod("sayHello");  
+  
+MyAnnotation manno=m.getAnnotation(MyAnnotation.class);  
+System.out.println("value is: "+manno.value());  
+}}  
+Test it Now
+Output:value is: 10
+download this example
+How built-in annotaions are used in real scenario?
+
+In real scenario, java programmer only need to apply annotation. He/She doesn't need to create and access annotation. Creating and Accessing annotation is performed by the implementation provider. On behalf of the annotation, java compiler or JVM performs some additional operations.
+
+@Inherited
+
+By default, annotations are not inherited to subclasses. The @Inherited annotation marks the annotation to be inherited to subclasses.
+
+@Inherited  
+@interface ForEveryone { }//Now it will be available to subclass also  
+  
+@interface ForEveryone { }  
+class Superclass{}  
+  
+class Subclass extends Superclass{}  
+@Documented
+
+The @Documented Marks the annotation for inclusion in the documentation.
+
+
+
+
+
+Generics in Java
+
+The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects.
+
+Before generics, we can store any type of objects in collection i.e. non-generic. Now generics, forces the java programmer to store specific type of objects.
+
+Advantage of Java Generics
+
+There are mainly 3 advantages of generics. They are as follows:
+
+1)	Type-safety : We can hold only a single type of objects in generics. It doesn’t allow to store other objects.
+
+2)	Type casting is not required: There is no need to typecast the object.
+
+Before Generics, we need to type cast.
+
+List list = new ArrayList();  
+list.add("hello");  
+String s = (String) list.get(0);//typecasting  
+After Generics, we don't need to typecast the object.
+
+List<String> list = new ArrayList<String>();  
+list.add("hello");  
+String s = list.get(0);  
+3)	Compile-Time Checking: It is checked at compile time so problem will not occur at runtime. The good programming strategy says it is far better to handle the problem at compile time than runtime.
+
+List<String> list = new ArrayList<String>();  
+list.add("hello");  
+list.add(32);//Compile Time Error  
+Syntax to use generic collection
+
+ClassOrInterface<Type>  
+Example to use Generics in java
+
+ArrayList<String>  
+Full Example of Generics in Java
+
+Here, we are using the ArrayList class, but you can use any collection class such as ArrayList, LinkedList, HashSet, TreeSet, HashMap, Comparator etc.
+
+import java.util.*;  
+class TestGenerics1{  
+public static void main(String args[]){  
+ArrayList<String> list=new ArrayList<String>();  
+list.add("rahul");  
+list.add("jai");  
+//list.add(32);//compile time error  
+  
+String s=list.get(1);//type casting is not required  
+System.out.println("element is: "+s);  
+  
+Iterator<String> itr=list.iterator();  
+while(itr.hasNext()){  
+System.out.println(itr.next());  
+}  
+}  
+}  
+Test it Now
+Output:element is: jai
+       rahul
+       jai 
+Example of Java Generics using Map
+
+Now we are going to use map elements using generics. Here, we need to pass key and value. Let us understand it by a simple example:
+
+import java.util.*;  
+class TestGenerics2{  
+public static void main(String args[]){  
+Map<Integer,String> map=new HashMap<Integer,String>();  
+map.put(1,"vijay");  
+map.put(4,"umesh");  
+map.put(2,"ankit");  
+  
+//Now use Map.Entry for Set and Iterator  
+Set<Map.Entry<Integer,String>> set=map.entrySet();  
+  
+Iterator<Map.Entry<Integer,String>> itr=set.iterator();  
+while(itr.hasNext()){  
+Map.Entry e=itr.next();//no need to typecast  
+System.out.println(e.getKey()+" "+e.getValue());  
+}  
+  
+}}  
+Test it Now
+Output:1 vijay
+       2 ankit 
+       4 umesh
+Generic class
+
+A class that can refer to any type is known as generic class. Here, we are using T type parameter to create the generic class of specific type.
+
+Let’s see the simple example to create and use the generic class.
+
+Creating generic class:
+class MyGen<T>{  
+T obj;  
+void add(T obj){this.obj=obj;}  
+T get(){return obj;}  
+}  
+The T type indicates that it can refer to any type (like String, Integer, Employee etc.). The type you specify for the class, will be used to store and retrieve the data.
+
+Using generic class:
+Let’s see the code to use the generic class.
+
+class TestGenerics3{  
+public static void main(String args[]){  
+MyGen<Integer> m=new MyGen<Integer>();  
+m.add(2);  
+//m.add("vivek");//Compile time error  
+System.out.println(m.get());  
+}}  
+Output:2
+Type Parameters
+
+The type parameters naming conventions are important to learn generics thoroughly. The commonly type parameters are as follows:
+
+T - Type
+E - Element
+K - Key
+N - Number
+V - Value
+Generic Method
+
+Like generic class, we can create generic method that can accept any type of argument.
+
+Let’s see a simple example of java generic method to print array elements. We are using here E to denote the element.
+
+public class TestGenerics4{  
+  
+   public static < E > void printArray(E[] elements) {  
+        for ( E element : elements){          
+            System.out.println(element );  
+         }  
+         System.out.println();  
+    }  
+    public static void main( String args[] ) {  
+        Integer[] intArray = { 10, 20, 30, 40, 50 };  
+        Character[] charArray = { 'J', 'A', 'V', 'A', 'T','P','O','I','N','T' };  
+  
+        System.out.println( "Printing Integer Array" );  
+        printArray( intArray  );   
+  
+       System.out.println( "Printing Character Array" );  
+        printArray( charArray );   
+    }   
+}  
+Test it Now
+Output:Printing Integer Array
+        10
+        20
+        30
+        40
+        50
+        Printing Character Array
+        J
+        A
+        V
+        A
+        T
+        P
+        O
+        I
+        N
+        T
+Wildcard in Java Generics
+
+The ? (question mark) symbol represents wildcard element. It means any type. If we write <? extends Number>, it means any child class of Number e.g. Integer, Float, double etc. Now we can call the method of Number class through any child class object.
+
+Let's understand it by the example given below:
+
+import java.util.*;  
+abstract class Shape{  
+abstract void draw();  
+}  
+class Rectangle extends Shape{  
+void draw(){System.out.println("drawing rectangle");}  
+}  
+class Circle extends Shape{  
+void draw(){System.out.println("drawing circle");}  
+}  
+  
+  
+class GenericTest{  
+//creating a method that accepts only child class of Shape  
+public static void drawShapes(List<? extends Shape> lists){  
+for(Shape s:lists){  
+s.draw();//calling method of Shape class by child class instance  
+}  
+}  
+public static void main(String args[]){  
+List<Rectangle> list1=new ArrayList<Rectangle>();  
+list1.add(new Rectangle());  
+  
+List<Circle> list2=new ArrayList<Circle>();  
+list2.add(new Circle());  
+list2.add(new Circle());  
+  
+drawShapes(list1);  
+drawShapes(list2);  
+}}  
+drawing rectangle
+drawing circle
+drawing circle
+
+
+
+
+
+execute ===>
+
+
+execute query ====> used to execute SELECT query. It returns the object of RESULTSET.
+                 
+
+executeupdate====> is used to execute specified query, it may be create, drop, insert, update, delete 

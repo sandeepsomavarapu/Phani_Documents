@@ -1,0 +1,33 @@
+Introduction to OOP and getting started with Java   ===>1st day
+
+
+=>why java ?
+
+=>features 
+
+=>installation,path setting 
+
+=>OOPs  features
+
+=>hello world program
+
+Class
+
+Object
+ 
+
+
+
+ Advanced OOP with Examples     ====>2nd
+
+
+
+Java Threads     ====>3rd
+
+
+
+I/O and Exception Handling      ====>4th
+
+
+Core Java Collection      ====>5th
+

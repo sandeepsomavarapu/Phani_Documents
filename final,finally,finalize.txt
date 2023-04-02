@@ -1,0 +1,34 @@
+ Final:
+=======
+ final is the modifier applicable for classes,methods and variable's.
+   
+  1. if a class declared as final then we can't extend that class.
+     i.e we can't create child class for that class.
+
+  2. if a method declared as final then we can't override that method in the child class.
+
+  3. if a variable declared as final then it will become constant and we can't perform re-assignment for that variable.
+
+
+Finally:
+========
+ Finally is a block always associated with try catch to maintain cleanup code.
+ 
+  try
+   {
+      //Problematic code
+   }
+  catch(X e)
+   {
+      // Handling code
+   } 
+  finally
+   {
+      // cleanup code
+   }
+
+Finalize:
+=========
+
+  finally meant for cleanup activities related to try block.
+  where as finalize() meant for cleanup activities related to object.

@@ -1,0 +1,57 @@
+Byte Stream : It provides a convenient means for handling input and output of byte.
+Character Stream : It provides a convenient means for handling input and output of characters. Character stream uses Unicode and therefore can be internationalized.
+
+InputStream:-
+===========
+
+**InputStream is a abstract class present   in java.io.* package  and which implements Closeable interface present in java.io.* package
+
+**java.io.Closeable is the  interface  which containse one method  called close() and Closeable interface internally extends java.lang.AutoCloseable which containse one method  called close().
+
+**this is the super class for all classes representing an inputstream of bytes.
+
+child classes:
+============
+
+AudioInputStream,ByteArrayInputStream,FileInputStream,FilterInputStream,InputStream,ObjectInputStream,PipedInputStream,SequenceInputStream,StringBufferInputStream
+
+it has only one constructor  i.e====>InputStream().
+
+OutputStream:-
+=============
+
+**OutputStream is the abstract class  whcich implements        java.io.Closeable  ,    java.io.Flushable
+
+
+** java.io.Flushable  interface which containse only one abstract  method callled flush().
+
+
+**ByteArrayOutputStream
+
+**FileOutputStream
+
+**FilterOutputStream
+
+**ObjectOutputStream
+
+**PipedOutputStream
+
+
+Constructor=====> OutputStream()
+
+
+
+
+GarbageCollecter:-
+================
+
+***GC is an apllication program which runs inside the JVM. 
+
+
+**Functionality:
+===============
+**it collects the unused memory.
+
+**it will check heap  memory those objects which are unreferenced it will collect.
+
+**it follows mark and sweep  algorithm

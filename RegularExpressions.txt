@@ -1,0 +1,145 @@
+java.util.regex
+
+Regular Expressions
+===================
+
+1) Introduced on JDK 1.4 onwards
+
+2) java.util.regex.*;
+
+==>Pattern class and
+==>Matcher class
+
+
+Pattern class:
+==============
+compile()--- static method
+
+Pattern p=Pattern.compile("");
+
+Note: comile()is a static Factory method. 
+
+Factory method:
+---------------
+Factory method is a method which will return object of same class.
+
+Pattern p=Pattern.compile("pattern/regularexpression");
+
+Matcher m=p.matcher("target");
+
+Matcher class:
+==============
+In this class we have four methods
+
+1) boolean find()---------- find() return type is boolean based finding the element(true/false)
+
+2)int start()    ---------- It will give starting index value.
+
+3)int end()      ---------- If end index value 'n' then it will give 'n+1' value.
+
+4)String group() ---------- It will give matched values.
+
+Character classes
+==================
+
+1) [abc]--- to find a or b or c.
+
+2) [^abc]--  Except abc.
+
+3) [a-z]-- lowercase alphabets
+
+4) [A-Z]-- uppercase alphabets
+
+5) [0-9]-- numerics
+
+6) [a-zA-Z0-9]-- any alphabet either lowercase or uppercase including numerics(alphanumeric)
+
+7) [^a-zA-Z0-9]-- Except alphanumeric (i.e special symbols like @,#,$ etc..)
+
+
+Predefined character classes
+=============================
+
+\s --Empty space 
+
+compile("([a-z]|\\s)");
+compile("[a-z\\s]");
+
+\S -- Except empty space(capital 'S',without using ^ symbol)
+
+\w -- Except special symbol i.e alphanumeric
+
+\W -- Except alphanumeric i.e only special symbols including space (capital 'W')
+
+.(dot)-- all type of characters i.e alphanumeric,special symbols.
+	
+[.] -- to find only  .(dot) character
+
+
+Quatifiers:
+===========
+
+a+ -- same continuous elements treat like one occurrence
+a* -- zero or more occurrences
+a? --zero or one time
+
+
+	mobile number scenario:
+	========================
+
+To validate a mobile number : 
+
+1) number must be 10 digits
+
+2) it should starts with 7 or 8 or 9.
+
+[789][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
+
+OR
+
+[789][0-9]{9}
+
+
+for 11 or 12 digits i.e if you to add '0' or '91' before the mobile number
+
+(0|91)?[789][0-9]{9}
+
+(0|[+]?91)?[789][0-9]{9}
+
+
+
+Email scenario :
+================
+
+xxx@yyy.com
+xxx@yyy.co.in
+xxx@yyy.nic.in
+
+[a-zA-z][a-zA-Z0-9_[.]]*@[a-zA-Z]+([.][a-zA-Z]+)+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

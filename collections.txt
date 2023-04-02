@@ -1,0 +1,213 @@
+need of collections:-
+==============
+*an array is an indexed colletions of fixed number of homogeneous data elements.
+
+*the main advantage of arrays is we can represent multiple values with a single variable.
+so that reusability of the code will be improved .
+
+limitations of object array:
+---------------------------------
+arrays are fixed in size i.e once we created an array with some size there is no chance of increasing or decreasing it's  size based on our requirement .hence to use arrays complusary  we should know the size in advance  which may not possible always.
+
+2)arrays can hold  only homogeneous data elements.
+ex:-
+Student [] s=new Student[10000];
+s[0]=new Student();correct
+s[1]=new customer();wrong
+
+but we can resolve this problem buy using object arrays.
+object [] o=new object[10000];
+o[0]=new student();
+o[1]=new customer();
+
+**arrays concept is not implemented based on some standard data structure hence readymade method support is not possible  for every requirement we have to write the code explicitly,which is complexcity of programing .
+
+to overcome the above limitations of arrays we should go for collections.
+
+collections are growable in nature .i.e based on our requirement we can increase or decrease the size.
+
+colletions can hold both homogeneous and heterogeneous elements.
+
+available for every  requirement ,being a programer we have tio use this method and we are not responsible to provide implementation.  
+
+difference between arrays and collections:-
+-----------------------------------------------------
+                              * Arrays                                                                          collections  
+1)fixed in size                                                                                             1)growable in nature i.e   based on our requirement we can increase/decrease the size                                                                                                                                                                                                                                             
+2)w.r.t memory these are not recommended to use                                        2)w.r.t memory these are recommended to use
+
+3)w.r.t  performance arrays are recommended to use                                     3)w.r.t  performance collections are not  recommended to use
+                                                                                                                   
+4)arrays can hold only homogeneous datatype elements                                 4)collections can hold homo&heterogeneous.
+
+5)there is no underlying datastructure for arrays	 	                   5)every collection class is implemented based on standard datastructure 
+  and hence readymade methods support is not availabLe                                        and hence readymade methods support is available for every requirement
+  
+6)arrays can hold both primitives & objects                                                    6)collections can hold only objects but not primitives.
+
+
+COLLECTION:-
+---------------------
+if we want represent  a  group of individual objects as single entity then we should go for collection.
+
+collection framework:-
+--------------------------
+it defines several classes and interfaces which can be used a group of objects as single entity.
+
+                java                             c++
+         
+             collection                          container
+      collection framework               stl(standard template library)
+
+
+9 key interfaces of collection framework:-
+============================
+1.collection(I):-
+------------------
+*if we want represent a group of individual objects as a  single entity then we should go for collection.
+
+*collection interface defines the most common methods which are applicable for any collection object.
+
+*in general collection interface is considered as root interface of collection framework.
+
+note:-
+there is no concrete class  which implements collection interface directly.
+
+difference between collection vs collections
+-------------------------------------------------------
+*collection is an interface which can be used to represent a group of individual objects as a single entity.
+
+*collections is an utility class present in java .util.package to define several utility methods(like sorting ,searching....)
+for collection objects.
+
+
+
+ArrayList class
+ArrayList class extends AbstractList class and implements the List interface.
+ArrayList supports dynamic array that can grow as needed. ArrayList has three constructors.
+ArrayList()
+
+ArrayList( Collection C )
+
+ArrayList( int capacity )
+ArrayLists are created with an initial size, when this size is exceeded, it gets enlarged automatically.
+It can contain Duplicate elements and maintains the insertion order.
+ArrayLists are not synchronized.
+Example of ArrayList
+
+ 
+import java.util.*
+class Test
+{
+ public static void main(String[] args)
+ {
+  ArrayList< String> al = new ArrayList< String>();
+  al.add("ab");
+  al.add("bc");
+  al.add("cd");
+  system.out.println(al);
+ }
+}
+Output :
+
+[ab,bc,cd]
+Getting Array from an ArrayList
+
+toArray() method is used to get an araay containing all the contents of the list. Following are the reasons why you must obtain array from your ArrayList whenever required.
+
+To obtain faster processing.
+To pass array to methods who do not accept Collectionn as arguments.
+To integrate and use collections with legacy code.
+Storing User-Defined classes
+
+In the above example we are storing only string object in ArrayList collection. But You can store any type of object, including object of class that you create in Collection classes.
+
+Example of storing User-Defined object
+
+Contact class
+
+LinkedList class
+LinkedList class extends AbstractSequentialList and implements List,Deque and Queue inteface.
+It can be used as List, stack or Queue as it implements all the related interfaces.
+It can contain duplicate elements and is not synchronized.
+
+HashSet class
+
+HashSet extends AbstractSet class and implements the Set interface.
+It creates a collection that uses hash table for storage.
+HashSet does not maintain any order of elements.
+
+LinkedHashSet Class
+
+LinkedHashSet class extends HashSet class
+LinkedHashSet maintains a linked list of entries in the set.
+LinkedHashSet stores elements in the order in which elements are inserted.
+
+
+TreeSet Class
+It extends AbstractSet class and implements the NavigableSet interface.
+It stores elements sorted ascending order.
+Uses a Tree structure to store elements.
+Access and retrieval times are quite fast.
+
+It has four Constructors.
+TreeSet()
+
+TreeSet( Collection C )
+
+TreeSet( Comparator comp )
+
+TreeSet( SortedSet ss )
+
+
+
+
+Map Interface
+A Map stores data in key and value association. Both key and values are objects. The key must be unique but the values can be duplicate. Although Maps are a part of Collection Framework, they can not actually be called as collections because of some properties that they posses. However we can obtain a collection-view of maps.
+
+Interface	                    Description
+Map	                    Maps unique key to value.
+Map.Entry	                    Describe an element in key and value pair in a map. This is an inner class of map.
+NavigableMap	Extends SortedMap to handle the retrienal of entries based on closest match searches
+SortedMap	Extends Map so that key are maintained in an ascending order.
+
+map interface sub interfaces
+
+Commonly used Methods defined by Map
+
+HashMap class
+
+HashMap class extends AbstractMap and implements Map interface.
+It uses a hashtable to store the map. This allows the execution time of get() and put() to remain same.
+
+HashMap has four constructor.
+HashMap()
+HashMap(Map< ? extends k, ? extends V> m)
+HashMap(int capacity)
+HashMap(int capacity, float fillratio)
+HashMap does not maintain order of its element.
+
+TreeMap class
+
+TreeMap class extends AbstractMap and implements NavigableMap interface.
+It creates Map, stored in a tree structure.
+A TreeMap provides an efficient means of storing key/value pair in efficient order.
+It provides key/value pairs in sorted order and allows rapid retrieval.
+
+
+
+LinkedHashMap class
+
+LinkedHashMap extends HashMap class.
+It maintains a linked list of entries in map in order in which they are inserted.
+LinkedHashMap defines the following constructor
+LinkedHashMap()
+
+LinkedHashMap(Map< ? extends k, ? extends V> m)
+
+LinkedHashMap(int capacity)
+
+LinkedHashMap(int capacity, float fillratio)
+
+LinkedHashMap(int capacity, float fillratio, boolean order)
+It adds one new method removeEldestEntry(). This method is called by put() and putAll() By default this method does nothing. However we can override this method to remove oldest element in the map. Syntax

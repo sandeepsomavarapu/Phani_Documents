@@ -1,0 +1,30 @@
+java.lang.package:-
+------------------------
+1)introduction
+2)object class
+3)String class
+4)stringBuffer class
+5)StringBuilder class
+6)wrapperclasses
+7)auto boxing 
+8)auto unboxing
+*with out uitl package we can write  1000's of programs. 
+*with out sql package we can write  lacss of programs .
+*with out io package we can write  1000's of programs .
+*with out lang package we can not write even single program also.
+
+class test
+{
+public static void main(String args[])
+{
+System.out.println("hello world");
+}
+}
+
+*every class in java should be child class objesct class,if we r using class keyword automatically we are using objest class ,the object class present in lang package.
+* argument to the main is (String),it is available in lang package
+*System is also available in lang package.
+
+**for writing any java program the most commnly required classes and interfaces are grouped into a saparate package which is nothing but java.lang package.
+
+	 

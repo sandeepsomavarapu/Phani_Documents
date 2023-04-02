@@ -1,0 +1,61 @@
+1. Overloading of the main method is possible but JVM will always call String[] argument main method only.
+
+2. The other overload method we have to call explicitly then it will be executed just a normal method call.
+
+
+ 
+         class Test
+
+	{
+
+          public static void main (String [] args)
+
+		{
+
+			System.out.println("String []");
+
+		}
+
+	  public static void main (int [] args)
+
+		{
+
+			System.out.println("int []");
+	
+		}
+	}
+
+
+3. Inheritance concept applicable for the main method. Hence while executing child class if child class doesn't contain 
+   main then parent class main method will be executed.
+
+
+	class p
+	{
+
+	  public static void main (String [] args)
+
+		{
+			System.out.println("parent main");
+		}
+	}
+	class c extends p
+	{
+	
+	}	
+
+      java p
+o/p : parent main
+
+      java c
+o/p : parent main
+
+
+4. For main method inhertance and overloading concepts are applicable but overriding concept in not applicable instead of overriding method hidding is applicable.
+
+In 1.6 javac Test.java
+
+       java Test
+
+RE: NoSuchMethodError: main
+	  

@@ -1,0 +1,8 @@
+Exception:
+==========
+
+An unexcepted unwanted event that distruped normal flow of the program
+
+Exception Handling:
+===================
+Exception handling doesnot mean reparing an exception we have to provide alternative way to continue rest of the program normally.

@@ -1,0 +1,155 @@
+OOPS:-
+==============                                         
+*the programing methodology where everything represented as an object is known as truly oops.(smaltalk)
+*oops is methodology to design a program using classes and objects.
+(class, object ,inheritance)
+
+object:-
+object is a real world entity,entity that has state and behaviour.physical.
+class :-
+class is collection of objects and data members,it is logical entity
+
+
+
+1)DATA HIDING                                         ''
+2)ABSTRACTION                                        "    encapsulation/security 
+3)ENCAPSULATION                                   "
+4)TIGHTLY ENCAPSULTED CLASS       "
+                                                                          "
+5)is-a relation                                                 ===>          inheritance 
+6)has-arelation
+7)method signature
+
+*8)overloading                                         "
+*9)overriding                                            "                    polymorphisam
+                                                                    "
+
+
+*10)static control flow      
+*11)instance control flow
+*12)constructers
+13)coupling
+14)cohesion
+15)type casting       
+
+1)DATA HIDING:-
+==============
+Hiding of data
+==>out side person can't access our internal data directly OR our internal data sholud not go out directly 
+this oop feature is nothing but data hiding.
+=>after validation out side person can access our internal data.
+ex:-after providing proper U.N and PWD we can able to access our gmail inbox information.
+ex:-even though we r valid customer of bank we can able access our account  information and we can't access other acnt information.  
+
+
+**By declaring  data member (variable)as private we can achieve data hiding  
+ex:-
+p class account
+{
+private double balance; 
+/*when i make balance as private,no outer class can't access if want to access then call method then valdation success we will get.otherwise not.
+}
+p double get balance()
+{
+validation;
+return balance;
+}                  
+*the main advantage of data hiding is 'security'.
+*it is highly recomended to declare data member(variable) as private.
+
+2)ABSTRATION :-
+=============
+Hiding internal implmentation and just highlight the set  of services what we r offering is the concept of abstraction
+ex:-through bank ATM gui screen bank people are highlighting the set of services what they are offeringwith out hilighting internal implementation.
+ 		
+the main advantages abstraction are 
+1)we can achieve security because we are not highlighting our internal implementation 
+2)with effecting out side person we can able to perform any type of changes in our internal system and hence enhancement will become easy
+3) it improves maintain ability of the application.
+4)it improves easyness to use our system.
+
+**By using interfaces and abstract classes we can implement abstraction .
+
+ENCAPSULATION:-
+==================
+THE PROCESS OF BINDING DATA AND  corresponding methods into a single unit is nothing but encapsulation 
+ex:
+class student
+{
+data members
+           +
+methods(behaviour)
+}
+
+***technical
+****if any component follows data hiding and abstraction such type of component is said to be encapsulated component
+encapsulation =data hiding +abstraction;
+ex:-
+public class account
+{
+public double balance;
+
+pblic double get balance()
+{
+//validation
+return balance
+}
+public void setbalance(double balance)
+{
+//validation
+this.balance=balance;
+}
+}
+the main advantages of encapsulation are 
+1)we can achieve security
+2)enhancement will become easy
+3)it improves maintainbility of the application 
+the main aadvantage of encapsulation is we can achieve security  but the main dis-advantage of encapsulation is it increases length of the code and slows down execution .
+TIGHTLY ENCAPSULATION:-
+=========================
+a class is said to be tightly encapsulated if and only if each and every variable declared as private.
+weather class contain corresponding getter and sender meathods are not and weather these meathods are declared as public or not these things we are not required check
+Ex:-
+public class account
+{
+private double balance;
+public double getbalance()
+{
+return balance;
+}
+}
+1)which of the following classes are tightly encapsulated ?
+class a
+{
+private int x=10;
+}
+class b extends a 
+{
+float y=2.5;
+}
+class c extends a
+{
+private int z=12;
+}
+ans:class A and class c are tightly encapsulated
+
+2)which of the following classes are tightly encapsulated ?
+
+class A
+{
+int x=11;
+}
+class B extends A
+{
+private int y=21;
+}
+class C extends B
+{
+private int z=22;
+}
+ANS:-if the parent class not tightly encapsulated then no child class is tightly encapsulated.
+
+
+
+FIRST BLOCK (DATA HIDING ,ABSTRACTION,ENCAPSULATION,TIGHTLY ENCAPSULATION)ONLY FOR
+""**SECURITY**""

@@ -1,0 +1,73 @@
+Java features: 
+1. Simple, easy and familiar:  
+Java is easy to learn and familiar because java syntax is just like c++.
+
+It is simple because:
+
+a) it does not use header files.
+
+b) eliminated the use of pointer and operator overloading.
+
+2. Platform Independent:  
+Write once, run anywhere (WORA).
+
+java plateform independant
+
+ 
+
+3.Object-Oriented:
+Java is Object oriented throughout language- that mean no coding outside of
+
+class definitions,  including main().
+
+4. Robust: 
+ Robust  means inbuilt capabilities to handle errors/exceptions.
+
+ Java is robust because of  following:
+
+1. Built-in Exception handling.
+
+2. Strong type checking i.e. all data must be declared an explicit type.
+
+3. Local variables must be initialized.
+
+4. Automatic garbage collection.
+
+5. First checks the reliability of the code before Execution etc.
+
+5. Secure:  
+Java is secure because it provides:
+
+1. access restrictions with the help of access modifiers (public, private etc).
+
+2. byte codes verification – checks classes after loading.
+
+Class loader – confines objects to unique namespaces.
+
+Security manager – determines what resources a class can access such as reading and writing to the local disk.
+
+6. Distributed:
+Java provides the network facility. i.e. programs can be access remotely from any machine on the network rather than writing program on the local machine. HTTP and FTP protocols are developed in java.
+
+7. Compiled and interpreted:
+Java code is translated into byte code after compilation and the byte code is interpreted by JVM (Java Virtual Machine). This two steps process allows for extensive code checking and also increase security.
+
+8. Portable:
+Means able to be easily carried or moved. Write once, run anywhere (WORA) feature makes it portable.
+
+9. Architecture-Neutral: 
+Java code is translated into byte code after compilation which is independent of  any computer architecture, it needs only JVM (Java Virtual Machine) to execute.
+
+10. High performance:
+JVM  can execute byte codes (highly optimized) very fast with the help of  Just in time (JIT) compilation technique.
+
+11. Re-usability of code:
+Java provides the code reusability With the Help of Inheritance.
+
+12. Multithreading: 
+Java provides multitasking facility with the help of lightweight processes called threads.
+
+13. Dynamic: 
+Java have the capability of linking dynamic new classes, methods and objects.
+
+- See more at: http://tutorialspointexamples.com/java-features-advantages/#sthash.aSgpWDjK.dpuf

@@ -1,0 +1,42 @@
+spring:
+=======
+
+IOC(Inversion of Control):
+==========================
+
+container
+---------
+1.core-->BeanFactory
+
+2.j2ee-->ApplicationContext-->ConfigureApplicationContext
+
+
+what the container will do:
+---------------------------
+
+1.it will create instances for pojo classes
+2.it will manage lifecycle of pojo classes
+3.it can do DependancyInjection(DI) into pojo classes 
+
+Difference B/W core and j2ee containers:
+----------------------------------------
+
+(Note:SAX parser will check wellformedness of spring.xml document i.e DTD ot XSD.if it is found any unformatted tags then it will throws SAXParserException)
+
+Core container(BeanFactory):
+----------------------------
+
+--> At the time of user request it will create instance for class.
+
+--> It will create instance only once by default the scope is "singleton".
+
+--> IOC will create instance per user request's if the scope is "Prototype";
+
+J2EE container(ApplicationContext):
+-----------------------------------
+
+--> IOC will create instance at the time of loading if the scope is "singleton".
+
+--> IOC will create instance at the time of user-request if the scopr is "prototype"  (prototype means per user it will create instance).
+
+--> IOC will create individual instance for every user.

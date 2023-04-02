@@ -1,0 +1,202 @@
+JSP(java server pages):-
+------------------------------------
+this is given by sun micro system.
+
+
+presentation purpose the re
+we  cann develop dynamic web pages .
+
+
+*when ever we are using servlet technology.
+
+
+
+Drabacks of servlet Technogy
+
+1)when ever we are developing servlet must and   should we need to configure the web.xml. (if we are writing 100 servlets we need to wrte 100 jsp pages )
+
+2)whenever  we are modifying the servlet must and should we need to stop the server ,and  we need o once again redeploy  the application inside he server,and restart the server 
+
+3)servlets are allowe to the only java code but not text  and html code 
+
+JSP advantages:-
+-----------------------------
+1)when ever we are devloping the one jsp page we no need to configure the inside web.xml file.
+
+2)when ever we are modifying the jsp pages we no need to recompile ...and redeply..
+3)jsp pages allows html code and textual data and java code...
+
+RULES:-
+-----------
+we need to save the file in WEB-INF and the extension is .jsp
+
+
+
+
+Jsp elements
+-------------------
+given by the sun micro system
+
+these are categarized  into three types 
+
+
+Scripting elements:-
+------------------------------
+* again scripting elements categirized into 3 types
+
+1)declarative elements <%!      %> //inside this delartive tags we can place our variable/method declaration code 
+2)scriptlets elements<%    %>//nside scriptlet tags we need to place our business java code
+3)expression elements<% =    %> //to print the result we need to go for these expression tags
+
+
+Directives in JSP:-
+-------------------------
+1)page directive
+2)include directive
+3)taglib directive
+
+
+Jsp Action tags:-
+-----------------------------
+ 1)Jsp Predifined action tags
+
+      foword action tag
+      include actiontag
+      param action tag
+      Usebean action tag
+      set property action tag
+      get  property actin tag
+
+
+ 2)Custom Tags
+
+
+
+
+
+
+************************************************
+1)Scripting  Elements:-
+---------------------------------
+
+  Declarative Elements:-
+ ====================
+*by using this we can declare instance variables and instance methods.
+Ex:-
+in java
+
+class Demo
+{
+private int i,j;
+public void sum()
+{
+s.o.p("Hello");
+
+}
+}  
+in JSP by using declarative  elements:-
+
+</!declare the instance variable and instance methods/>
+
+Ex:-
+--------
+</! int  count=0;
+void sum()
+{
+
+
+  } 
+ />
+Scriptlet elements:-
+--------------------------------
+By using scriptlet elements  we can write business logic .
+in servlet we can write business logic inside service or doget or dopost...
+--------------
+pubblic void doGet(HttpServletRequest req,HttpServletResponce res)throws Excepton
+{
+int a=Integer.parseInt(request.getParameter("t1"))
+int b=Integer.parseInt()request.getparameter("t2"))
+int result=a+b;
+}
+
+
+Syntax of scriptlet elements:-
+-------------------------------------------
+<%implementing the business logic 
+%>
+ex:-
+<%
+int a=Integer.ParseInt(request.getParameter(t1));//here request is implicit object
+int b=Integer.parseInt(request.getParamter(t2));
+int result=a+b;
+%>
+
+
+3)Expression elements:-
+-------------------------------------
+*BY using expression elements we can print the result
+
+syntax:-
+------------
+<%=expression%>
+
+//** at the end of the expression donot give the ";"  we will get parse exception.
+
+EX:-
+--------
+<% =a+b %>
+  or
+<% =result  %>
+
+
+
+EXAMPLE:-
+---------------
+<html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

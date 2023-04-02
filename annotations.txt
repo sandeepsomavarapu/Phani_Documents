@@ -1,0 +1,34 @@
+
+
+pre defined
+=============
+
+General perpose Annbotations
+-----------------------------
+@Override
+@Deprecated
+@SuppressWarnings("Single value")
+@FunctionalInterface
+
+
+
+Meta Annotations
+-----------------
+@Target
+
+
+@Document
+@Inherited
+@Retention
+
+
+
+user defined 
+=============
+
+
+
+
+
+
+

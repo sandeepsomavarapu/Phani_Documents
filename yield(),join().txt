@@ -1,0 +1,28 @@
+yield:
+======
+yield method is used to pause current executing thread to give the chance for waiting threads of same priority.
+if there is no waiting thread or all waiting threads have low priority then same thread can continue it's execution.
+
+Note: if multiple threads are waiting with same priority then which thread wil get the chance?
+
+we cant expect why because it depends on thread schedular.
+
+join:
+======
+t1
+
+t2
+
+t3
+
+t1.join()
+
+after complition/termination of t1 thread will get the chance to t2,t3
+sleep:
+======
+t1.sleep()
+
+thread execution stop for some time.
+
+
+t1.setPriority(Norm_priority);===t1.setpriority(1);
